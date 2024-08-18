@@ -28,16 +28,20 @@ function Busca() {
                 {/* Adicionar as opções conforme necessário */}
             </select>
             <ul>
-                {entidadesFiltradas.map((entidade) => (
-                    <li key={entidade.id}>
-                        {entidade.nome}: {entidade.distancia} km de distância
-                        {/* <ul>
-                            {entidade.necessidades.map((necessidade, index) => (
-                                <li key={index}>{necessidade}</li>
-                            ))}
-                        </ul> */}
-                    </li>
-                ))}
+                {entidadesFiltradas.length === 0 ? (
+                    <li>Nenhuma entidade encontrada.</li>
+                ) : (
+                    entidadesFiltradas.map((entidade) => (
+                        <li key={entidade.id}>
+                            {entidade.nome} - {entidade.distancia} km de distância
+                            <ul>
+                                {entidade.necessidades.map((necessidade, index) => (
+                                    <li key={index}>{necessidade}</li>
+                                ))}
+                            </ul>
+                        </li>
+                    ))
+                )}
             </ul>
         </div>
     );
