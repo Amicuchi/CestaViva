@@ -34,3 +34,18 @@ Para a criação do carrossel das entidades cadastradas:
         <div>Item 3</div>
         <div>Item 4</div>
     </Carousel>;
+
+
+
+Criação da página de contato:
+
+Foi instalado uma dependência para colocar a máscara de telefone:
+    npm install react-imask
+
+    import { IMaskInput } from "react-imask";
+    <IMaskInput
+    mask="000.000.000-00"
+    placeholder="Digite o seu CPF"
+    />
+
+
