@@ -1,0 +1,54 @@
+.ConhecaAsEntidadesContainer{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    /* width: 100%; */
+    margin: 50px 0;
+    background-color: rgb(198, 222, 233);
+}
+
+.carousel-container{
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 300px;
+}
+
+.ConhecaAsEntidadesH2{
+    margin: 20px 0;
+}
+
+.Card{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 180px;
+    height: 210px;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.Card:hover {
+    transform: translateY(-10px); /* Eleva o card quando o mouse passa por cima */
+}
+
+.CardTitle{
+    font-size: 1rem;
+    font-weight: lighter;
+    margin: 5px;
+}
+
+.CardImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 20%;
+    box-shadow: rgba(27, 34, 183, 0.08) 4px 4px 8px 0px, rgba(27, 34, 183, 0.07) 0px 6px 20px 0px !important;
+    border: 2px solid orange;
+    margin: 10px;
+    border-bottom: 1px solid #ddd;
+}

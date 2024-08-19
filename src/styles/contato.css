@@ -1,0 +1,74 @@
+.ContatoContainer{
+    margin-bottom: 100px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "nome nome"
+        "email telefone"
+        "mensagem mensagem"
+        "button button";
+}
+
+input[name="nome"] {
+    grid-area: nome;
+}
+
+input[name="email"] {
+    grid-area: email;
+}
+
+.IMaskInput {
+    grid-area: telefone;
+}
+
+input, 
+textarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+input:focus, 
+textarea:focus {
+    border-color: #3a77ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(58, 119, 255, 0.3);
+}
+
+textarea {
+    grid-area: mensagem;
+    resize: none;
+    height: 100px;
+}
+
+button {
+    grid-area: button;
+    padding: 10px 20px;
+    background-color: #3a77ff;
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #335cc7;
+}

@@ -1,28 +1,11 @@
-import { useState, useEffect } from 'react';
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
 import api from '../../services/api';
+import { useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/swiper-bundle.min.css';
+import 'swiper/swiper.min.css';
+import '../../styles/ConhecasAsEntidades.css';
 
 export default function ConhecaAsEntidades() {
-    const responsive = {
-        superLargeDesktop: {
-            // the naming can be any, depends on you.
-            breakpoint: { max: 4000, min: 3000 },
-            items: 5
-        },
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1
-        }
-    };
 
     const [entidades, setEntidades] = useState([]);
 
@@ -33,15 +16,14 @@ export default function ConhecaAsEntidades() {
     }, []);
 
     return(
-        <>
-            <h2>Conheças as Entidades</h2>
-            <Carousel 
-                responsive={responsive}
-                autoPlaySpeed={1000}
-                centerMode={true}
-                customTransition="all .5"
-                transitionDuration={500}
-                infinite={true}
+        <div className='ConhecaAsEntidadesContainer'>
+            <h2 className='ConhecaAsEntidadesH2'>Conheças as Entidades</h2>
+            <Swiper
+                spaceBetween={50}
+                slidesPerView={3}
+                navigation
+                pagination={{ clickable: true }}
+                scrollbar={{ draggable: true }}
             >
                 {entidades.length === 0 ? (
                     <div>
@@ -49,17 +31,19 @@ export default function ConhecaAsEntidades() {
                     </div>
                 ) : (
                     entidades.map((entidade) => (
-                        <div key={entidade.id}>
-                            <h3>{entidade.nome}</h3>
+                    <SwiperSlide key={entidade.id}>
+                        <div className='Card'>
+                            <h3 className='CardTitle'>{entidade.nome}</h3>
                             <img 
                                 src={entidade.img} 
-                                className="ong-logo-width" 
-                                alt="Logo da ONG"
+                                className="CardImg" 
+                                alt="Logo da Entidade"
                             />
                         </div>
+                    </SwiperSlide>
                     ))
                 )}
-            </Carousel>
-        </>
+            </Swiper>
+        </div>
     )
 }
