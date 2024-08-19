@@ -1,3 +1,4 @@
+
 .ConhecaAsEntidadesContainer{
     display: flex;
     flex-direction: column;
@@ -41,6 +42,7 @@
     font-size: 1rem;
     font-weight: lighter;
     margin: 5px;
+    margin-bottom: 10px;
 }
 
 .CardImg{
@@ -48,7 +50,6 @@
     height: 150px;
     border-radius: 20%;
     box-shadow: rgba(27, 34, 183, 0.08) 4px 4px 8px 0px, rgba(27, 34, 183, 0.07) 0px 6px 20px 0px !important;
-    border: 2px solid orange;
     margin: 10px;
     border-bottom: 1px solid #ddd;
 }
