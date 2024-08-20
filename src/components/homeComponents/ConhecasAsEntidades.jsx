@@ -1,8 +1,6 @@
-import api from '../../services/api';
+import api from '../../services/api'
 import { useState, useEffect } from 'react';
-import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import 'pure-react-carousel/dist/react-carousel.es.css';
-import '../../styles/ConhecasAsEntidades.css';
+import '../../styles/ConhecaAsEntidades.css'
 
 export default function ConhecaAsEntidades() {
     const [entidades, setEntidades] = useState([]);
@@ -13,38 +11,41 @@ export default function ConhecaAsEntidades() {
             .catch(error => console.error('Erro ao buscar entidades:', error));
     }, []);
 
-    console.log('Entidades:', entidades); // Adicione esta linha para depuração
+    const [currentIndex, setCurrentIndex] = useState(0);
+
+    const nextSlide = () => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % entidades.length);
+    };
+
+    const prevSlide = () => {
+        setCurrentIndex((prevIndex) =>
+            prevIndex === 0 ? entidades.length - 1 : prevIndex - 1
+        );
+    };
 
     return (
-        <div className='ConhecaAsEntidadesContainer'>
-            <h2 className='ConhecaAsEntidadesH2'>Conheça as Entidades</h2>
-            <CarouselProvider
-                naturalSlideWidth={100}
-                naturalSlideHeight={125}
+        <div className="ConhecaAsEntidadesContainer">
+            <h2 className="ConhecaAsEntidadesH2">Conheça as Entidades</h2>
+            <button className="carousel-button prev" onClick={prevSlide}>
+                    &#10094;
+                </button>
+                <button className="carousel-button next" onClick={nextSlide}>
+                    &#10095;
+                </button>
+            <div className="ConhecaAsEntidadesCarousel"
+                style={{ transform: `translateX(-${currentIndex * 180}px)` }}
             >
-                <Slider>
-                <ButtonBack>Back</ButtonBack>
-                    {entidades.length === 0 ? (
-                        <Slide index={0}>
-                            <p>Nenhuma entidade encontrada.</p>
-                        </Slide>
-                    ) : (
-                        entidades.map((entidade, index) => (
-                            <Slide key={entidade.id} index={index}>
-                                <div className='Card'>
-                                    <img 
-                                        src={entidade.img} 
-                                        className="CardImg" 
-                                        alt={`Logo da Entidade ${entidade.nome}`}
-                                    />
-                                    <h3 className='CardTitle'>{entidade.nome}</h3>
-                                </div>
-                            </Slide>
-                        ))
-                    )}
-                <ButtonNext>Next</ButtonNext>
-                </Slider>
-            </CarouselProvider>
+                {entidades.map((entidade) => (
+                    <div className="Card" key={entidade.id}>
+                        <img
+                            src={entidade.img}
+                            className="CardImg"
+                            alt={`Logo da Entidade ${entidade.nome}`}
+                        />
+                        <h3 className="CardTitle">{entidade.nome}</h3>
+                    </div>
+                ))}
+            </div>
         </div>
-    )
+    );
 }

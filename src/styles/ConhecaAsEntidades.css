@@ -1,25 +1,34 @@
-
 .ConhecaAsEntidadesContainer{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    /* justify-content: center; */
-    /* width: 100%; */
+    align-items: center;
+    width: 100%;
     margin: 50px 0;
     background-color: rgb(198, 222, 233);
+    padding: 20px;
 }
 
-.carousel-container{
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 300px;
+.ConhecaAsEntidadesCarousel{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0;
+    height: 270px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;    /* Essa propriedade faz "cortar" os slides que extrapolam a área do carrossel. */
+    transform: translateX(-180px);
+    transition: transform 0.5s ease-in-out;
 }
 
 .ConhecaAsEntidadesH2{
-    margin: 20px 0;
+    margin-bottom: 20px;
 }
 
 .Card{
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -30,7 +39,7 @@
     background-color: #ffffff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
+    overflow: visible;
     transition: transform 0.3s ease-in-out;
 }
 
@@ -52,4 +61,24 @@
     box-shadow: rgba(27, 34, 183, 0.08) 4px 4px 8px 0px, rgba(27, 34, 183, 0.07) 0px 6px 20px 0px !important;
     margin: 10px;
     border-bottom: 1px solid #ddd;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-button.prev {
+    left: 50px;
+}
+
+.carousel-button.next {
+    right: 50px;
 }
