@@ -13,7 +13,7 @@
     
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto; /* ajusta as linhas de acordo com o conteúdo */
+    grid-template-rows: auto;
     grid-template-areas: 
         "cnpj cnpj"
         "razaoSocial razaoSocial"
