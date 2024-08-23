@@ -39,7 +39,7 @@ input[name="email"] {
     margin-bottom: 15px;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 4px;
+    border-radius: 10px;
     font-size: 16px;
     box-sizing: border-box;
 }
