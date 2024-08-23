@@ -1,6 +1,7 @@
 import api from '../../services/api'
 import { useState, useEffect } from 'react';
-import '../../styles/ConhecaAsEntidades.css'
+import '../../styles/Home.css';
+
 
 export default function ConhecaAsEntidades() {
     const [entidades, setEntidades] = useState([]);

@@ -1,5 +1,4 @@
-import '../../styles/SobreNos.css'
-import '../../styles/SobreProjeto.css'
+import '../../styles/Home.css';
 
 import CestaLogo from '../../assets/CestaViva-Logo.png';
 

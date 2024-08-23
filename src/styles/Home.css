@@ -1,0 +1,250 @@
+/* Aqui estão todos os estilos referentes a página Home */
+
+
+/* Estilo do Busca de Entidade: */
+/* **************************** */
+
+.BEContainer{
+    margin-top: 20px;
+    height: 200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.BEInput{
+    width: 400px;
+    max-width: 70%;
+    margin: 0 30px 0 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.5), 
+        0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.BEInput:focus {
+    border-color: #3a77ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(58, 119, 255, 0.3);
+}
+
+
+
+/* Estilo do Sobre o Projeto: */
+/* ************************** */
+
+.OProjeto{
+    background-color: #E5DBD0;
+}
+
+
+/* Estilo do Sobre o Nós: */
+/* ********************** */
+
+.SobreNosContainer{
+    width: 100%;
+    padding: 20px;
+    margin: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.sobreContainer {
+    max-width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+
+.sobreContainer img{
+    margin-right: 20px;
+    margin-left: 20px;
+    max-width: 300px;
+    border-radius: 50%;
+
+}
+
+.sobreContainer p{
+    text-align: justify;
+    font-weight: 700;
+    font-size: 1.3rem;
+    line-height: 3rem;
+}
+
+@media (max-width: 768px) {
+    .sobreContainer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .sobreContainer.SobreNosImg {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .sobreContainer p {
+        font-size: 1.1rem;
+        text-align: justify;
+    }
+}
+
+
+/* Estilo do Conheça as Entidades: */
+/* ******************************* */
+
+.CAEContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin: 50px 0;
+    background-color: #E5DBD0;
+    padding: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.CAEcarrousselExterno{
+    overflow: hidden;
+}
+
+.CAECarousel{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0;
+    height: 270px;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-180px);
+    transition: transform 0.5s ease-in-out;
+}
+
+.Card{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 180px;
+    height: 210px;
+    margin: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    overflow: visible;
+    transition: transform 0.3s ease-in-out;
+}
+
+.Card:hover {
+    transform: translateY(-10px); /* Eleva o card quando o mouse passa por cima */
+}
+
+.CardTitle{
+    font-size: 1rem;
+    font-weight: lighter;
+    margin: 5px;
+    margin-bottom: 10px;
+}
+
+.CardImg{
+    width: 150px;
+    height: 150px;
+    border-radius: 20%;
+    box-shadow: rgba(27, 34, 183, 0.08) 4px 4px 8px 0px, rgba(27, 34, 183, 0.07) 0px 6px 20px 0px !important;
+    margin: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.carousel-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-button.prev {
+    left: 50px;
+}
+
+.carousel-button.next {
+    right: 50px;
+}
+
+
+/* Estilo do Contato: */
+/* ****************** */
+
+.ContatoContainer{
+    margin-bottom: 100px;
+}
+
+.ContatoForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+        "nome nome"
+        "email telefone"
+        "mensagem mensagem"
+        "button button";
+}
+
+input[name="nome"] {
+    grid-area: nome;
+}
+
+input[name="email"] {
+    grid-area: email;
+}
+
+.IMaskInput {
+    grid-area: telefone;
+}
+
+.ContatoInput, 
+.ContatoTextarea {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.ContatoInput:focus, 
+.ContatoTextarea:focus {
+    border-color: #3a77ff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(58, 119, 255, 0.3);
+}
+
+.ContatoTextarea {
+    grid-area: mensagem;
+    resize: none;
+    height: 100px;
+}

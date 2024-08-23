@@ -1,4 +1,4 @@
-import '../../styles/SobreNos.css'
+import '../../styles/Home.css';
 import GrupoLogo from '../../assets/grupo.jpg';
 
 export default function SobreNos() {

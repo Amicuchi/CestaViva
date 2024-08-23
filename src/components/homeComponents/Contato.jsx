@@ -1,5 +1,5 @@
 import { IMaskInput } from "react-imask";
-import '../../styles/Contato.css';
+import '../../styles/Home.css';
 
 export default function Contato() {
     return(

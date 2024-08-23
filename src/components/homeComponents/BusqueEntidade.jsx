@@ -1,6 +1,4 @@
-import '../../styles/Contato.css';
-import '../../styles/Busque.css';
-
+import '../../styles/Home.css';
 
 export default function BusqueEntidade() {
     return(
