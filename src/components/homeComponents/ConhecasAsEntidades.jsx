@@ -24,27 +24,31 @@ export default function ConhecaAsEntidades() {
     };
 
     return (
-        <div className="ConhecaAsEntidadesContainer">
-            <h2 className="ConhecaAsEntidadesH2">Conheça as Entidades</h2>
+        <div className="CAEContainer">
+            <h2 className="TitleH2">Conheça as Entidades</h2>
             <button className="carousel-button prev" onClick={prevSlide}>
-                    &#10094;
-                </button>
-                <button className="carousel-button next" onClick={nextSlide}>
-                    &#10095;
-                </button>
-            <div className="ConhecaAsEntidadesCarousel"
-                style={{ transform: `translateX(-${currentIndex * 180}px)` }}
-            >
-                {entidades.map((entidade) => (
-                    <div className="Card" key={entidade.id}>
-                        <img
-                            src={entidade.img}
-                            className="CardImg"
-                            alt={`Logo da Entidade ${entidade.nome}`}
-                        />
-                        <h3 className="CardTitle">{entidade.nome}</h3>
-                    </div>
-                ))}
+                &#10094;
+            </button>
+            <button className="carousel-button next" onClick={nextSlide}>
+                &#10095;
+            </button>
+            <div className="CAEcarrousselExterno">
+
+                <div className="CAECarousel"
+                    style={{ transform: `translateX(-${currentIndex * 180}px)` }}
+                >
+                    {entidades.map((entidade) => (
+                        <div className="Card" key={entidade.id}>
+                            <img
+                                src={entidade.img}
+                                className="CardImg"
+                                alt={`Logo da Entidade ${entidade.nome}`}
+                            />
+                            <h3 className="CardTitle">{entidade.nome}</h3>
+                        </div>
+                    ))}
+                </div>
+            
             </div>
         </div>
     );

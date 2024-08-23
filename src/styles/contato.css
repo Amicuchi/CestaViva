@@ -2,7 +2,7 @@
     margin-bottom: 100px;
 }
 
-form {
+.ContatoForm {
     display: grid;
     grid-template-columns: 1fr 1fr;
     align-items: center;
@@ -33,8 +33,8 @@ input[name="email"] {
     grid-area: telefone;
 }
 
-input, 
-textarea {
+.ContatoInput, 
+.ContatoTextarea {
     width: 100%;
     margin-bottom: 15px;
     padding: 10px;
@@ -44,31 +44,15 @@ textarea {
     box-sizing: border-box;
 }
 
-input:focus, 
-textarea:focus {
+.ContatoInput:focus, 
+.ContatoTextarea:focus {
     border-color: #3a77ff;
     outline: none;
     box-shadow: 0 0 5px rgba(58, 119, 255, 0.3);
 }
 
-textarea {
+.ContatoTextarea {
     grid-area: mensagem;
     resize: none;
     height: 100px;
-}
-
-button {
-    grid-area: button;
-    padding: 10px 20px;
-    background-color: #3a77ff;
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #335cc7;
 }
