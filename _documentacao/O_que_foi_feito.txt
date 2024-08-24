@@ -49,3 +49,7 @@ Foi instalado uma dependência para colocar a máscara de telefone:
     />
 
 
+Conversão de png e jpg para svg
+-------------------------------
+Foram feitas pelo site: 
+    https://www.freeconvert.com/png-to-svg/
