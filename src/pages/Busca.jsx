@@ -19,7 +19,7 @@ function Busca() {
     );
 
     return (
-        <div>
+        <main>
             <h1>Busca de Entidades</h1>
             <select onChange={(e) => setFiltro(e.target.value)}>
                 <option value="">Todos os alimentos</option>
@@ -43,7 +43,7 @@ function Busca() {
                     ))
                 )}
             </ul>
-        </div>
+        </main>
     );
 }
 

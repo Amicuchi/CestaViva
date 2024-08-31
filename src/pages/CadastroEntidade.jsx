@@ -19,7 +19,7 @@ function CadastroEntidade() {
     };
 
     return (
-        <div className='CEContainer'>
+        <main className='CEContainer'>
             <h2 className='TitleH2'>Cadastro de Entidade</h2>
             <form className="CEForm" onSubmit={handleSubmit}>
                 <input className='CEInput' type="text" name="CNPJ" placeholder="CNPJ" value={cnpj} onChange={(e) => setCnpj(e.target.value)} required />
@@ -33,7 +33,7 @@ function CadastroEntidade() {
                 <input className='CEInput' type="password" name="ConfirmeSenha" placeholder="Confirme sua Senha" value={senha2} onChange={(e) => setSenha2(e.target.value)} required />
                 <button type="submit" name="CEbutton">Cadastrar</button>
             </form>
-        </div>
+        </main>
     );
 }
 
