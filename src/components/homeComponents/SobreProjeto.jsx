@@ -4,8 +4,8 @@ import CestaLogo from '../../assets/CestaViva-Logo.svg';
 
 export default function SobreProjeto() {
     return (
-        <div className='SobreNosContainer OProjeto'>
-            <h2 className="TitleH2">Sobre o Projeto</h2>
+        <main className='OProjeto'>
+            <h2>Sobre o Projeto</h2>
             <div className="sobreContainer">
                 <img className='SobreNosImg' src={CestaLogo} alt="Cesta Viva Logo" />
                 <div>
@@ -17,6 +17,6 @@ export default function SobreProjeto() {
                     </p>
                 </div>
             </div>
-        </div>
+        </main>
     )
 }

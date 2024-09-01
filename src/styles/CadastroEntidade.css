@@ -3,14 +3,6 @@
 }
 
 .CEForm {
-    align-items: center;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: auto;
@@ -63,20 +55,4 @@ input[name="ConfirmeSenha"] {
 
 button[name="CEbutton"] {
     grid-area: button;
-}
-
-.CEInput {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    margin-bottom: 15px;
-}
-
-.CEInput:focus {
-    border-color: #3a77ff;
-    outline: none;
-    box-shadow: 0 0 5px rgba(58, 119, 255, 0.3);
 }

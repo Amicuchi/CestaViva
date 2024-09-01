@@ -2,12 +2,12 @@ import '../../styles/Home.css';
 
 export default function BusqueEntidade() {
     return(
-        <div className="BEContainer">
-            <h2 className='TitleH2'>Busque uma entidade:</h2>
+        <main className="BEContainer">
             <form className="BEForm" action="">
+                <h2>Busque uma entidade:</h2>
                 <input className="BEInput" type="text" name="busqueEntidade" placeholder="Busque uma entidade aqui"/>
-                <button>Buscar</button>
+                <button className="BEButton">Buscar</button>
             </form>
-        </div>
+        </main>
     )
 }

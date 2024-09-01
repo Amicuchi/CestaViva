@@ -3,8 +3,8 @@ import '../../styles/Home.css';
 
 export default function Contato() {
     return(
-        <div className="ContatoContainer">
-            <h2 className='TitleH2'>Deixe sua mensagem:</h2>
+        <main className="ContatoContainer">
+            <h2>Deixe sua mensagem:</h2>
             <form className="ContatoForm" action="">
                 <input className="ContatoInput" type="text" name="nome" placeholder="Nome"/>
                 <input className="ContatoInput" type="email" name="email" placeholder="E-mail"/>
@@ -16,9 +16,9 @@ export default function Contato() {
                 />
                 <textarea className="ContatoInput ContatoTextArea" name="mensagem" placeholder="Sua mensagem"/>
 
-                <button>Entrar em contato</button>
+                <button className="ButtonTotal">Entrar em contato</button>
 
             </form>
-        </div>
+        </main>
     )
 }

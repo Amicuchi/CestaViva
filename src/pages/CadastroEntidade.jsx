@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import '../styles/CadastroEntidade.css'
 
 function CadastroEntidade() {
     const [cnpj, setCnpj] = useState('');
@@ -20,7 +19,7 @@ function CadastroEntidade() {
 
     return (
         <main className='CEContainer'>
-            <h2 className='TitleH2'>Cadastro de Entidade</h2>
+            <h1>Cadastro de Entidade</h1>
             <form className="CEForm" onSubmit={handleSubmit}>
                 <input className='CEInput' type="text" name="CNPJ" placeholder="CNPJ" value={cnpj} onChange={(e) => setCnpj(e.target.value)} required />
                 <input className='CEInput' type="text" name="RazaoSocial" placeholder="Razão Social" value={razaoSocial} onChange={(e) => setRazaoSocial(e.target.value)} required />
@@ -31,7 +30,7 @@ function CadastroEntidade() {
                 <input className='CEInput' type="text" name="Telefone" placeholder="Telefone do Responsável" value={telefoneResponsavel} onChange={(e) => setTelefoneResponsavel(e.target.value)} />
                 <input className='CEInput' type="password" name="Senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
                 <input className='CEInput' type="password" name="ConfirmeSenha" placeholder="Confirme sua Senha" value={senha2} onChange={(e) => setSenha2(e.target.value)} required />
-                <button type="submit" name="CEbutton">Cadastrar</button>
+                <button className="ButtonTotal" type="submit" name="CEbutton">Cadastrar</button>
             </form>
         </main>
     );

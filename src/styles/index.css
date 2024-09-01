@@ -1,3 +1,12 @@
+:root{
+    --bg-principal: #EBF0FA;
+    --bg-secundario: #E5DBD0;
+    --bg-terciario: #da8327;
+    --bg-hover: #8f4d07;
+    --bg-form: #f9f9f9;
+}
+
+/* Configuração geral */
 *{
     margin: 0;
     padding: 0;
@@ -9,18 +18,31 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: #ebf0fa;
+    background: var(--bg-principal);
 }
 
-h1{
+h1, 
+h2{
     margin-top: 20px;
+    margin-bottom: 20px;
 }
 
+main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px;
+}
+
+
+/* Barra de Navegação */
 nav ul {
     display: flex;
     list-style: none;
     padding: 0;
-    background-color: #e4c39f;
+    background: var(--bg-secundario);
     justify-content: space-evenly;
 }
 
@@ -37,38 +59,74 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    background-color: #555;
+    background: var(--bg-hover);
 }
 
+
+/* Forms, Botões e Inputs */
+
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1000px;
+    min-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: var(--bg-form);
+    border-radius: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    gap: 20px;
+}
+
+.BELi,
+textarea,
+input{
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--bg-terciario);
+    border-radius: 20px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    box-shadow: 
+        0 4px 8px rgba(199, 199, 199, 0.1), 
+        0 6px 20px rgba(199, 199, 199, 0.1);
+}
+
+textarea:focus,
+input:focus{
+    border-color: var(--bg-hover);
+    outline: none;
+    box-shadow: 0 0 5px rgba(58, 119, 255, 0.3);
+}
+
+button {
+    box-sizing: border-box;
+    padding: 10px 20px;
+    background: var(--bg-terciario);
+    color: white;
+    font-size: 1rem;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background: var(--bg-hover);
+}
+
+.ButtonTotal{
+    width: 100%;
+}
+
+/* Footer */
 footer {
-    background-color: #e4c39f;
+    background: var(--bg-secundario);
     color: white;
     padding: 1rem;
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
-}
-
-
-.TitleH2{
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 2rem;
-}
-
-button {
-    grid-area: button;
-    padding: 10px 20px;
-    background-color: #3a77ff;
-    color: white;
-    font-size: 1rem;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #335cc7;
 }

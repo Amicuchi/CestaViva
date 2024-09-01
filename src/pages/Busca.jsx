@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from '../services/api'; // Simula uma chamada à API
+import '../styles/Busca.css'
 
 function Busca() {
     const [entidades, setEntidades] = useState([]);
@@ -19,7 +20,7 @@ function Busca() {
     );
 
     return (
-        <main>
+        <main className='buscaContainer'>
             <h1>Busca de Entidades</h1>
             <select onChange={(e) => setFiltro(e.target.value)}>
                 <option value="">Todos os alimentos</option>
@@ -27,12 +28,12 @@ function Busca() {
                 <option value="feijao">Feijão</option>
                 {/* Adicionar as opções conforme necessário */}
             </select>
-            <ul>
+            <ul className='buscaUL'>
                 {entidadesFiltradas.length === 0 ? (
-                    <li>Nenhuma entidade encontrada.</li>
+                    <li className='BELi'>Nenhuma entidade encontrada.</li>
                 ) : (
                     entidadesFiltradas.map((entidade) => (
-                        <li key={entidade.id}>
+                        <li className="BELi" key={entidade.id}>
                             {entidade.nome} - {entidade.distancia} km de distância
                             {/* <ul>
                                 {entidade.necessidades.map((necessidade, index) => (

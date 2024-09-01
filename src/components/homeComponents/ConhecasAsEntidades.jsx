@@ -25,8 +25,8 @@ export default function ConhecaAsEntidades() {
     };
 
     return (
-        <div className="CAEContainer">
-            <h2 className="TitleH2">Conheça as Entidades</h2>
+        <main className="CAEContainer">
+            <h2>Conheça as Entidades</h2>
             <button className="carousel-button prev" onClick={prevSlide}>
                 &#10094;
             </button>
@@ -34,8 +34,8 @@ export default function ConhecaAsEntidades() {
                 &#10095;
             </button>
             <div className="CAEcarrousselExterno">
-
-                <div className="CAECarousel"
+                <div 
+                    className="CAECarousel"
                     style={{ transform: `translateX(-${currentIndex * 180}px)` }}
                 >
                     {entidades.map((entidade) => (
@@ -51,6 +51,6 @@ export default function ConhecaAsEntidades() {
                 </div>
             
             </div>
-        </div>
+        </main>
     );
 }
