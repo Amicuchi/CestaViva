@@ -1,9 +1,9 @@
 :root{
     --bg-principal: #EBF0FA;
-    --bg-secundario: #E5DBD0;
-    --bg-terciario: #da8327;
-    --bg-hover: #8f4d07;
-    --bg-form: #f9f9f9;
+    --bg-secundario: #dbc08e;
+    --bg-terciario: #b0722b;
+    --bg-hover: #6b501c;
+    --bg-form: #f8f3eb;
 }
 
 /* Configuração geral */
@@ -18,7 +18,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: var(--bg-principal);
+    background-color: var(--bg-principal);
 }
 
 h1, 
@@ -36,13 +36,12 @@ main{
     padding: 20px;
 }
 
-
 /* Barra de Navegação */
 nav ul {
     display: flex;
     list-style: none;
     padding: 0;
-    background: var(--bg-secundario);
+    background-color: var(--bg-secundario);
     justify-content: space-evenly;
 }
 
@@ -52,19 +51,19 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: var(--bg-hover);
     padding: 1rem;
     text-decoration: none;
     display: block;
 }
 
 nav ul li a:hover {
-    background: var(--bg-hover);
+    background-color: var(--bg-terciario);
+    color: white;
 }
 
 
 /* Forms, Botões e Inputs */
-
 form{
     display: flex;
     flex-direction: column;
@@ -73,7 +72,7 @@ form{
     width: 50%;
     margin: 0 auto;
     padding: 20px;
-    background: var(--bg-form);
+    background-color: var(--bg-form);
     border-radius: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     gap: 20px;
@@ -103,7 +102,7 @@ input:focus{
 button {
     box-sizing: border-box;
     padding: 10px 20px;
-    background: var(--bg-terciario);
+    background-color: var(--bg-terciario);
     color: white;
     font-size: 1rem;
     border: none;
@@ -113,7 +112,7 @@ button {
 }
 
 button:hover {
-    background: var(--bg-hover);
+    background-color: var(--bg-hover);
 }
 
 .ButtonTotal{
@@ -122,7 +121,7 @@ button:hover {
 
 /* Footer */
 footer {
-    background: var(--bg-secundario);
+    background-color: var(--bg-secundario);
     color: white;
     padding: 1rem;
     text-align: center;

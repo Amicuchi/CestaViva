@@ -15,7 +15,6 @@
 
 /* Estilo do Sobre o Projeto: */
 /* ************************** */
-
 .OProjeto{
     background: var(--bg-secundario);
 }
@@ -23,7 +22,6 @@
 
 /* Estilo do Sobre o Nós: */
 /* ********************** */
-
 .sobreContainer {
     max-width: 1000px;
     display: flex;
@@ -51,7 +49,7 @@
 
 .CAEContainer{
     margin: 50px 0;
-    background-color: #E5DBD0;
+    background-color: var(--bg-secundario);
     position: relative;
 }
 
@@ -82,15 +80,17 @@
     width: 180px;
     height: 210px;
     margin: 20px;
-    background-color: #ffffff;
+    background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: 
+        0 4px 8px rgba(0, 0, 0, 0.1), 
+        0 6px 20px rgba(0, 0, 0, 0.1);
     overflow: visible;
     transition: transform 0.3s ease-in-out;
 }
 
 .Card:hover {
-    transform: translateY(-10px); /* Eleva o card quando o mouse passa por cima */
+    transform: translateY(-10px);
 }
 
 .CardTitle{
@@ -104,7 +104,9 @@
     width: 150px;
     height: 150px;
     border-radius: 20%;
-    box-shadow: rgba(27, 34, 183, 0.08) 4px 4px 8px 0px, rgba(27, 34, 183, 0.07) 0px 6px 20px 0px !important;
+    box-shadow: 
+        rgba(27, 34, 183, 0.08) 4px 4px 8px 0px, 
+        rgba(27, 34, 183, 0.07) 0px 6px 20px 0px !important;
     margin: 10px;
     border-bottom: 1px solid #ddd;
 }
