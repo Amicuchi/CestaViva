@@ -70,7 +70,7 @@ form{
     flex-direction: column;
     align-items: center;
     max-width: 1000px;
-    min-width: 800px;
+    width: 50%;
     margin: 0 auto;
     padding: 20px;
     background: var(--bg-form);
