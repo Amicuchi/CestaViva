@@ -16,8 +16,7 @@ export default function Contato() {
                 />
                 <textarea className="ContatoInput ContatoTextArea" name="mensagem" placeholder="Sua mensagem"/>
 
-                <button className="ButtonTotal">Entrar em contato</button>
-
+                <button className="ButtonTotal" name="contatoBtn">Entrar em contato</button>
             </form>
         </main>
     )

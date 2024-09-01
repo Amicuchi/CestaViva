@@ -46,24 +46,6 @@
     line-height: 2.5rem;
 }
 
-@media (max-width: 768px) {
-    .sobreContainer {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .sobreContainer.SobreNosImg {
-        width: 100%;
-        max-width: 200px;
-    }
-
-    .sobreContainer p {
-        font-size: 1rem;
-        text-align: justify;
-    }
-}
-
-
 /* Estilo do Conheça as Entidades: */
 /* ******************************* */
 
@@ -165,7 +147,7 @@
         "nome nome"
         "email telefone"
         "mensagem mensagem"
-        "button button";
+        "contatoBtn contatoBtn";
 }
 
 input[name="nome"] {
@@ -188,4 +170,8 @@ textarea{
 
 .ContatoTextarea {
     margin-bottom: 15px;
+}
+
+button[name="contatoBtn"] {
+    grid-area: contatoBtn;
 }
