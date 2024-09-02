@@ -1,3 +1,52 @@
+Estrutura do projeto:
+
+cestaViva
+|- node_nodules
+|- src
+|  |- assets
+|  |  |- CestaViva-logo.svg
+|  |- components
+|  |  |- dasboardComponents
+|  |  |  |- DashboardHeader.jsx
+|  |  |  |- DashboardMain.jsx
+|  |  |  |- DashboardSidebar.jsx
+|  |  |- homeComponents
+|  |  |  |- BusqueEntidade.jsx
+|  |  |  |- ConhecaAsEntidades.jsx
+|  |  |  |- Contato.jsx
+|  |  |  |- SobreNos.jsx
+|  |  |  |- SobreProjeto.jsx
+|  |  |- Footer.jsx
+|  |  |- Navbar.jsx
+|  |- pages
+|  |  |- Busca.jsx
+|  |  |- CadastroDoador.jsx
+|  |  |- CadastroEntidade.jsx
+|  |  |- DashboardEntidade.jsx
+|  |  |- Home.jsx
+|  |  |- Login.jsx
+|  |- routes
+|  |  |- AppRoutes.jsx
+|  |- services
+|  |  |- api.js
+|  |- styles
+|  |  |- Busca.css
+|  |  |- CadastroDoador.css
+|  |  |- CadastroEntidade.css
+|  |  |- Dashboard.css
+|  |  |- Font.css
+|  |  |- Home.css
+|  |  |- index.css
+|  |- App.jsx
+|  |- main.jsx
+|- .gitignore
+|- eslint.config.js
+|- index.html
+|- package-lock.json
+|- package.json
+|- README.md
+|- vite.config.js
+
 
 Para a criação do carrossel das entidades cadastradas:
 
@@ -53,3 +102,9 @@ Conversão de png e jpg para svg
 -------------------------------
 Foram feitas pelo site: 
     https://www.freeconvert.com/png-to-svg/
+
+
+Instalação da Font Awesome para inclusão de ícones
+
+    npm install --save @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons @fortawesome/fontawesome-svg-core
+
