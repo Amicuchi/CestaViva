@@ -142,7 +142,7 @@
 }
 
 
-/* Dashboard Main */
+/* Dashboard Cards */
 .card--container{
     background-color: #fff;
     padding: 2rem;
@@ -245,4 +245,69 @@
 }
 .dark-blue{
     background-color: blue;
+}
+
+
+/* Dashboard Section Table */
+.tabular--wrapper{
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 1rem;
+    margin-bottom: 80px;
+}
+
+.table--container{
+    width: 100%;
+}
+
+table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead{
+    background-color: var(--bg-principal);
+    color: var(--bg-hover);
+}
+
+th{
+    padding: 1rem 0;
+}
+
+tbody{
+    background-color: #fff;
+}
+
+td{
+    padding: 0.3rem 0;
+    font-size: 0.8rem;
+    color: var(--bg-terciario);
+}
+
+tr:nth-child(even){
+    background-color: var(--bg-principal);
+}
+
+.iconEditTrash{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    min-width: 30px;
+    gap: 10px;
+}
+
+tfoot{
+    background-color: var(--bg-secundario);
+    font-weight: bold;
+    color: red;
+}
+
+tfoot td{
+    padding: 1rem;
+}
+
+.table--container button{
+    padding: 5px 5px;
+    width: 80px;
 }
