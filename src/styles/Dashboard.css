@@ -26,12 +26,8 @@
     transition: 0.5s;
 }
 
-.logo{
-    height: 80px;
-    padding: 1.3rem;
-}
-
 .menu{
+    margin-top: 90px;
     height: 88%;
     position: relative;
     list-style: none;
@@ -71,12 +67,10 @@
 }
 
 
-/* main body section */
+/* Header section */
 .main--content{
     position: relative;
-    background-color: var(--bg-terciario);
-    /* width: 100%; */
-    width: 85vw;
+    width: 100%;
     padding: 1rem;
 }
 
@@ -85,10 +79,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
-    background-color: var(--bg-principal);
+    background-color: #fff;
     border-radius: 10px;
     padding: 5px 2rem;
-    margin-bottom: 1rem;
 }
 
 .header--wrapper img{
@@ -118,7 +111,7 @@
 .search--box{
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--bg-principal);
     color: var(--bg-hover);
     border-radius: 15px;
     gap: 10px;
@@ -148,3 +141,108 @@
     transform: scale(1.1);
 }
 
+
+/* Dashboard Main */
+.card--container{
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 0 1rem;
+}
+
+.card--wrapper{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.main--title{
+    color: var(--bg-hover);
+    padding-bottom: 10px;
+    font-size: 0.9rem;
+    margin-top: 0;
+}
+
+.payment--card{
+    background-color: var(--bg-secundario);
+    border-radius: 10px;
+    padding: 1rem;
+    width: 260px;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: all 0.5s ease-in-out;
+}
+
+.payment--card:hover{
+    transform: translateY(-5px);
+}
+
+.card--header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.amount{
+    display: flex;
+    flex-direction: column;
+}
+
+.title{
+    font-size: 1rem;
+    font-weight: 200;
+}
+
+.amount--value{
+    font-size: 1.5rem;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+}
+
+.fas-icon{
+    color: #fff;
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1rem;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.card--detail{
+    font-size: 1.2rem;
+    color: #777;
+    letter-spacing: 2px;
+    font-family: 'Courier New', Courier, monospace;
+} 
+
+/* Cores dos cartões */
+.light-red{
+    background-color: rgb(247, 177, 177);
+}
+.light-purple{
+    background-color: rgb(221, 177, 221);
+}
+.light-green{
+    background-color: lightgreen;
+}
+.light-blue{
+    background-color: lightblue;
+}
+.dark-red{
+    background-color: red;
+}
+.dark-purple{
+    background-color: purple;
+}
+.dark-green{
+    background-color: green;
+}
+.dark-blue{
+    background-color: blue;
+}
