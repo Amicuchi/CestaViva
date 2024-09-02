@@ -127,7 +127,7 @@ footer {
     color: var(--bg-hover);
     text-align: center;
     width: 100%;
-    padding: 1rem;
+    padding: .5rem;
     position: fixed;
     bottom: 0;
 }
