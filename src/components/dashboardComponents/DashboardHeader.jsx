@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Dashboard.css';
-import avatar from '../../assets/avatar.png'
 
 export default function DashboardHeader() {
     return (
@@ -16,7 +15,6 @@ export default function DashboardHeader() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} className='search--icon'/>
                             <input type="text" placeholder='Procure' className='input--dashboard'/>
                         </div>
-                        <img src={avatar} alt="User Avatar" />
                     </div>
                 </div>
             </div>
