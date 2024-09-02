@@ -1,4 +1,4 @@
-export default function DashboardMain() {
+export default function DashboardCards() {
     return (
         <>
             <div className="card--container">
@@ -50,7 +50,7 @@ export default function DashboardMain() {
                             <span className="card--detail">**** **** **** 1234</span>
                     </div>
                 </div>
-
+            
             </div>
         </>
     );
