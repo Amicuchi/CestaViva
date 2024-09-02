@@ -6,8 +6,10 @@ function DashboardEntidade() {
     return (
         <div className="dashboard-container">
             <DashboardSidebar />
-            <DashboardHeader />
-            <DashboardMain />
+            <div className="dashboard-content">
+                <DashboardHeader />
+                <DashboardMain />
+            </div>
         </div>
     );
 }

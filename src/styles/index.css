@@ -124,7 +124,7 @@ button:hover {
 /* Footer */
 footer {
     background-color: var(--bg-secundario);
-    color: white;
+    color: var(--bg-hover);
     text-align: center;
     width: 100%;
     padding: 1rem;
