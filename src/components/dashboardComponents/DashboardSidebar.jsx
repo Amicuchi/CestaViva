@@ -13,7 +13,6 @@ import '../../styles/Dashboard.css';
 export default function DashboardSidebar() {
     return (
         <aside className="sidebar">
-            <div className="logo"></div>
             <ul className="menu">
                 <li className='active'>
                     <a href="#">
