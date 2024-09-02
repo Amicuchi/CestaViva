@@ -9,8 +9,7 @@ export default function DashboardHeader() {
             <div className="main--content">
                 <div className="header--wrapper">
                     <div className="header--title">
-                        <span>Primary</span>
-                        <h2>Dashboard</h2>
+                        <h2>Painel de controle</h2>
                     </div>
                     <div className="user--info">
                         <div className="search--box">
