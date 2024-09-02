@@ -16,7 +16,7 @@ export default function DashboardSidebar() {
             <ul className="menu">
                 <li className='active'>
                     <a href="#">
-                        <FontAwesomeIcon icon={faTachographDigital}  className="fas" />
+                        <FontAwesomeIcon icon={faTachographDigital} className="fas" />
                         <span>Dashboard</span>
                     </a>
                 </li>
