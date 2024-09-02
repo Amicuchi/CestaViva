@@ -4,11 +4,11 @@ import DashboardSidebar from "../components/dashboardComponents/DashboardSidebar
 
 function DashboardEntidade() {
     return (
-        <>
-            <DashboardHeader />
+        <div className="dashboard-container">
             <DashboardSidebar />
+            <DashboardHeader />
             <DashboardMain />
-        </>
+        </div>
     );
 }
 
