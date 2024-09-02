@@ -1,6 +1,7 @@
 import DashboardHeader from "../components/dashboardComponents/DashboardHeader";
-import DashboardMain from "../components/dashboardComponents/DashboardMain";
+import DashboardCards from "../components/dashboardComponents/DashboardCards";
 import DashboardSidebar from "../components/dashboardComponents/DashboardSidebar";
+import DashboardTable from "../components/dashboardComponents/DashboardTable";
 
 function DashboardEntidade() {
     return (
@@ -8,7 +9,8 @@ function DashboardEntidade() {
             <DashboardSidebar />
             <div className="dashboard-content">
                 <DashboardHeader />
-                <DashboardMain />
+                <DashboardCards />
+                <DashboardTable />
             </div>
         </div>
     );
