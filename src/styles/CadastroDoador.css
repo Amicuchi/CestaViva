@@ -1,0 +1,35 @@
+.CDContainer{
+    margin-bottom: 60px;
+}
+
+.CDForm {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+    grid-template-areas: 
+        "CDNome CDNome"
+        "CDEmail CDEmail"
+        "CDSenha CDConfirmaSenha"
+        "CDConfirmaSenha endereco"
+        "CDBtn CDBtn";
+}
+
+input[name="CDNome"] {
+    grid-area: CDNome;
+}
+
+input[name="CDEmail"] {
+    grid-area: CDEmail;
+}
+
+input[name="CDSenha"] {
+    grid-area: CDSenha;
+}
+
+input[name="CDConfirmaSenha"] {
+    grid-area: CDConfirmaSenha;
+}
+
+input[name="CDBtn"] {
+    grid-area: CDBtn;
+}

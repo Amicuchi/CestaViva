@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/CadastroEntidade.css'
 
 function CadastroEntidade() {
     const [cnpj, setCnpj] = useState('');
