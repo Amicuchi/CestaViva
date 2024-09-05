@@ -35,11 +35,11 @@ function Busca() {
                     entidadesFiltradas.map((entidade) => (
                         <li className="BELi" key={entidade.id}>
                             {entidade.nome} - {entidade.distancia} km de distância
-                            {/* <ul>
+                            <ul>
                                 {entidade.necessidades.map((necessidade, index) => (
                                     <li key={index}>{necessidade}</li>
                                 ))}
-                            </ul> */}
+                            </ul>
                         </li>
                     ))
                 )}
