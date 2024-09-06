@@ -4,7 +4,7 @@ import Contato from "../components/homeComponents/Contato";
 import SobreNos from "../components/homeComponents/SobreNos";
 import SobreProjeto from "../components/homeComponents/SobreProjeto";
 
-function Home() {
+export default function Home() {
     return (
         <>
             <h1>Bem-vindo ao CestaViva</h1>
@@ -17,5 +17,3 @@ function Home() {
         </>
     );
 }
-
-export default Home;

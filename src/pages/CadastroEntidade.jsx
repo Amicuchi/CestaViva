@@ -2,7 +2,7 @@ import { useState } from 'react';
 import '../styles/CadastroEntidade.css'
 import ModalTermo from '../components/ModalTermo';
 
-function CadastroEntidade() {
+export default function CadastroEntidade() {
     const [cnpj, setCnpj] = useState('');
     const [razaoSocial, setRazaoSocial] = useState('');
     const [nomeFantasia, setNomeFantasia] = useState('');
@@ -80,5 +80,3 @@ function CadastroEntidade() {
         </main >
     );
 }
-
-export default CadastroEntidade;

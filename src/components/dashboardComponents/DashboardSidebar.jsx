@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faTachographDigital, 
@@ -15,46 +16,46 @@ export default function DashboardSidebar() {
         <aside className="sidebar">
             <ul className="menu">
                 <li className='active'>
-                    <a href="#">
+                    <Link to="/dashboard-entidade">
                         <FontAwesomeIcon icon={faTachographDigital} className="fas" />
                         <span>Dashboard</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/perfil">
                         <FontAwesomeIcon icon={faUser} className="fas" />
                         <span>Perfil</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/estatisticas">
                         <FontAwesomeIcon icon={faChartBar} className="fas" />
                         <span>Estatísticas</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/cestas">
                         <FontAwesomeIcon icon={faBriefcase} className="fas" />
                         <span>Cestas</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/faq">
                         <FontAwesomeIcon icon={faCircleQuestion} className="fas" />
                         <span>FAQ</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
-                    <a href="#">
+                    <Link to="/configuracoes">
                         <FontAwesomeIcon icon={faGear} className="fas" />
                         <span>Configurações</span>
-                    </a>
+                    </Link>
                 </li>
                 <li className='logout'>
-                    <a href="#">
+                    <Link to="/">
                         <FontAwesomeIcon icon={faArrowRightFromBracket} className="fas" />
                         <span>Sair</span>
-                    </a>
+                    </Link>
                 </li>
             </ul>
         </aside>

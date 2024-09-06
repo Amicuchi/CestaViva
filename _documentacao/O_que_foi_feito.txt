@@ -7,9 +7,17 @@ cestaViva
 |  |  |- CestaViva-logo.svg
 |  |- components
 |  |  |- dasboardComponents
+|  |  |  |- Cestas.jsx
+|  |  |  |- DashboardCards.jsx
 |  |  |  |- DashboardHeader.jsx
-|  |  |  |- DashboardMain.jsx
+|  |  |  |- DashboardHome.jsx
 |  |  |  |- DashboardSidebar.jsx
+|  |  |  |- DashboardTable.jsx
+|  |  |  |- Estatistica.jsx
+|  |  |  |- FAQ.jsx
+|  |  |  |- Settings.jsx
+|  |  |  |- Support.jsx
+|  |  |  |- User.jsx
 |  |  |- homeComponents
 |  |  |  |- BusqueEntidade.jsx
 |  |  |  |- ConhecaAsEntidades.jsx
@@ -17,6 +25,7 @@ cestaViva
 |  |  |  |- SobreNos.jsx
 |  |  |  |- SobreProjeto.jsx
 |  |  |- Footer.jsx
+|  |  |- ModalTermo.jsx
 |  |  |- Navbar.jsx
 |  |- pages
 |  |  |- Busca.jsx
@@ -34,9 +43,10 @@ cestaViva
 |  |  |- CadastroDoador.css
 |  |  |- CadastroEntidade.css
 |  |  |- Dashboard.css
-|  |  |- Font.css
+|  |  |- Fonts.css
 |  |  |- Home.css
 |  |  |- index.css
+|  |  |- ModalTermo.css
 |  |- App.jsx
 |  |- main.jsx
 |- .gitignore

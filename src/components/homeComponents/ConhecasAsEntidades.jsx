@@ -1,7 +1,6 @@
-import api from '../../services/api'
 import { useState, useEffect } from 'react';
+import api from '../../services/api'
 import '../../styles/Home.css';
-
 
 export default function ConhecaAsEntidades() {
     const [entidades, setEntidades] = useState([]);
@@ -9,7 +8,10 @@ export default function ConhecaAsEntidades() {
     useEffect(() => {
         api.get('/entidades')
             .then(response => setEntidades(response.data))
-            .catch(error => console.error('Erro ao buscar entidades:', error));
+            .catch(error => {
+                console.error('Erro ao buscar entidades:', error);
+                alert("Ocorreu um erro ao carregar as entidades. Tente novamente mais tarde.");
+            });
     }, []);
 
     const [currentIndex, setCurrentIndex] = useState(0);

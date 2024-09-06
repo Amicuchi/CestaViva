@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/CadastroDoador.css'
 
-function CadastroDoador() {
+export default function CadastroDoador() {
     const [nome, setNome] = useState('');
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
@@ -26,5 +26,3 @@ function CadastroDoador() {
         </main>
     );
 }
-
-export default CadastroDoador;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import api from '../services/api'; // Simula uma chamada à API
 import '../styles/Busca.css'
 
-function Busca() {
+export default function Busca() {
     const [entidades, setEntidades] = useState([]);
     const [filtro, setFiltro] = useState('');
 
@@ -47,5 +47,3 @@ function Busca() {
         </main>
     );
 }
-
-export default Busca;
