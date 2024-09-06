@@ -43,7 +43,6 @@ function CadastroEntidade() {
         <main className='CEContainer'>
             <h1>Cadastro de Entidade</h1>
             <form className="CEForm" onSubmit={handleSubmit}>
-
                 <input className='CEInput' type="text" name="CNPJ" placeholder="CNPJ" value={cnpj} onChange={(e) => setCnpj(e.target.value)} required />
                 <input className='CEInput' type="text" name="RazaoSocial" placeholder="Razão Social" value={razaoSocial} onChange={(e) => setRazaoSocial(e.target.value)} required />
                 <input className='CEInput' type="text" name="NomeFantasia" placeholder="Nome Fantasia" value={nomeFantasia} onChange={(e) => setNomeFantasia(e.target.value)} />
@@ -59,7 +58,7 @@ function CadastroEntidade() {
                 <input className='CEInput' type="password" name="Senha" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} required />
                 <input className='CEInput' type="password" name="ConfirmeSenha" placeholder="Confirme sua Senha" value={senha2} onChange={(e) => setSenha2(e.target.value)} required />
 
-                <div className='CEInput' name='termo'>
+                <div className='CEInput termo-checkbox' name='termo'>
                     <input
                         type="checkbox"
                         id="terms"

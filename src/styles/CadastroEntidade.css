@@ -58,3 +58,14 @@ button[name="CEbutton"] { grid-area: button; }
     grid-column: 1 / -1; /* Para que ocupe a largura total do formulário */
     text-align: center;
 }
+
+.termo-checkbox{
+    display: flex;
+    font-size: 0.7rem;
+}
+
+.termo-checkbox input{
+    width: 1rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
