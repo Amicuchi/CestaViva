@@ -16,37 +16,37 @@ export default function DashboardSidebar() {
         <aside className="sidebar">
             <ul className="menu">
                 <li className='active'>
-                    <Link to="/dashboard-entidade">
+                    <Link to="dashboardhome">
                         <FontAwesomeIcon icon={faTachographDigital} className="fas" />
                         <span>Dashboard</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/perfil">
+                    <Link to="perfil">
                         <FontAwesomeIcon icon={faUser} className="fas" />
                         <span>Perfil</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/estatisticas">
+                    <Link to="estatisticas">
                         <FontAwesomeIcon icon={faChartBar} className="fas" />
                         <span>Estatísticas</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/cestas">
+                    <Link to="cestas">
                         <FontAwesomeIcon icon={faBriefcase} className="fas" />
                         <span>Cestas</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/faq">
+                    <Link to="faq">
                         <FontAwesomeIcon icon={faCircleQuestion} className="fas" />
                         <span>FAQ</span>
                     </Link>
                 </li>
                 <li>
-                    <Link to="/configuracoes">
+                    <Link to="configuracoes">
                         <FontAwesomeIcon icon={faGear} className="fas" />
                         <span>Configurações</span>
                     </Link>

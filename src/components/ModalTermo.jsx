@@ -61,7 +61,10 @@ export default function ModalTermo({ open, handleClose }) {
                     <hr />
                 </div>
                 
-                <Button onClick={handleClose} className="modal-button ButtonTotal" variant="contained" color="primary">
+                <Button 
+                    onClick={handleClose} 
+                    className="ButtonTotal" 
+                    variant="contained">
                     Fechar
                 </Button>
             </Box>

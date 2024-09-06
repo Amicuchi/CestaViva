@@ -10,11 +10,9 @@ export default function DashboardHeader() {
                     <div className="header--title">
                         <h2>Painel de controle</h2>
                     </div>
-                    <div className="user--info">
-                        <div className="search--box">
-                            <FontAwesomeIcon icon={faMagnifyingGlass} className='search--icon'/>
-                            <input type="text" placeholder='Procure' className='input--dashboard'/>
-                        </div>
+                    <div className="search--box">
+                        <FontAwesomeIcon icon={faMagnifyingGlass} className='search--icon' />
+                        <input type="text" placeholder='Procure' className='input--dashboard' />
                     </div>
                 </div>
             </div>

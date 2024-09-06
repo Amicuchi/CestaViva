@@ -12,7 +12,7 @@ export default function Login() {
         const isEntidade = true; // Simulação, verificar a partir da API
         
         if (isEntidade) {
-            navigate('/dashboard-entidade');
+            navigate('/dashboard');
         } else {
             navigate('/busca');
         }
