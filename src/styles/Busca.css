@@ -3,14 +3,21 @@
     margin: 0 auto;
 }
 
+.buscaSelects{
+    display: flex;
+    justify-content: space-between;
+}
+
 select {
     display: block;
-    width: 100%;
-    margin: 20px auto;
+    width: 45%;
+    margin: 10px 0 ;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .buscaUL {
@@ -21,4 +28,51 @@ select {
     margin: 10px 0;
     border-left: 5px solid var(--bg-terciario);;
     padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+.BELi:last-child {
+    margin-bottom: 3rem;
+}
+
+.card {
+    background-color: #fff;
+    padding: 10px;
+    padding-top: 0;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.entidadeNome {
+    font-size: 1.3rem;
+    color: var(--bg-terciario);
+    margin-bottom: 10px;
+}
+
+.entidadeEndereco {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.entidadeNecessidades {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-self: flex-end;
+}
+
+.necessidade {
+    background-color: var(--bg-terciario);
+    color: #fff;
+    padding: 3px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
 }
