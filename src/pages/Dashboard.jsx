@@ -13,7 +13,7 @@ import Cestas from "../components/dashboardComponents/Cestas";
 import Support from "../components/dashboardComponents/Support";
 import Settings from "../components/dashboardComponents/Settings";
 
-export default function DashboardEntidade() {
+export default function Dashboard() {
     return (
         <div className="dashboard-container">
             <DashboardSidebar />

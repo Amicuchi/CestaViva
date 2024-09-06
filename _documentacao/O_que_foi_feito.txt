@@ -31,7 +31,7 @@ cestaViva
 |  |  |- Busca.jsx
 |  |  |- CadastroDoador.jsx
 |  |  |- CadastroEntidade.jsx
-|  |  |- DashboardEntidade.jsx
+|  |  |- Dashboard.jsx
 |  |  |- Home.jsx
 |  |  |- Login.jsx
 |  |- routes

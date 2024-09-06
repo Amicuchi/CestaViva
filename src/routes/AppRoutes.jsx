@@ -3,7 +3,7 @@ import Home from '../pages/Home'
 import Login from '../pages/Login';
 import CadastroEntidade from '../pages/CadastroEntidade';
 // import CadastroDoador from '../pages/CadastroDoador';
-import DashboardEntidade from '../pages/DashboardEntidade';
+import Dashboard from '../pages/Dashboard';
 import Busca from '../pages/Busca';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -18,7 +18,7 @@ export default function AppRoutes() {
                 <Route path="/busca" element={<Busca />} />
                 <Route path="/cadastro-entidade" element={<CadastroEntidade />} />
                 {/* <Route path="/cadastro-doador" element={<CadastroDoador />} /> */}
-                <Route path="/dashboard-entidade" element={<DashboardEntidade />} />
+                <Route path="/dashboard-entidade" element={<Dashboard />} />
             </Routes>
             <Footer />
         </Router>
