@@ -19,16 +19,17 @@ export default function DashboardUser() {
         <div className="user--wrapper">
             <h2 className="main--title">Perfil da Entidade</h2>
             <div>
-                <p><strong>CNPJ:</strong> {entityInfo.CNPJ}</p>
-                <p><strong>Razão Social:</strong> {entityInfo.RazaoSocial}</p>
-                <p><strong>Nome Fantasia:</strong> {entityInfo.NomeFantasia}</p>
-                <p><strong>Endereço:</strong> {`${entityInfo.EnderecoRua}, ${entityInfo.EnderecoNum}, ${entityInfo.EnderecoComp}, ${entityInfo.EnderecoBairro}, ${entityInfo.EnderecoCidade}, ${entityInfo.EnderecoEstado}`}</p>
-                <p><strong>Email:</strong> {entityInfo.Email}</p>
-                <p><strong>Responsável:</strong> {entityInfo.Responsavel}</p>
-                <p><strong>Telefone:</strong> {entityInfo.Telefone}</p>
+                <p>CNPJ: {entityInfo.CNPJ}</p>
+                <p>Razão Social: {entityInfo.RazaoSocial}</p>
+                <p>Nome Fantasia: {entityInfo.NomeFantasia}</p>
+                <p>Endereço: {`${entityInfo.EnderecoRua}, ${entityInfo.EnderecoNum}, ${entityInfo.EnderecoComp}, ${entityInfo.EnderecoBairro}, ${entityInfo.EnderecoCidade}, ${entityInfo.EnderecoEstado}`}</p>
+                <p>Email: {entityInfo.Email}</p>
+                <p>Responsável: {entityInfo.Responsavel}</p>
+                <p>Telefone: {entityInfo.Telefone}</p>
 
                 <h3>Biografia</h3>
                 <textarea defaultValue={entityInfo.Biografia}></textarea>
+                <button className="ButtonTotal" name="contatoBtn">Salvar alteração</button>
             </div>
         </div>
     );
