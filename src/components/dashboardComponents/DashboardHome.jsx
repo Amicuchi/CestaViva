@@ -6,11 +6,9 @@ import DashboardTable from "./DashboardTable";
 
 export default function DashboardHome() {
     return (
-        <div className="dashboard-container">
-            <div className="dashboard-content">
-                <DashboardCards />
-                <DashboardTable />
-            </div>
+        <div className="dashboard-content">
+            <DashboardCards />
+            <DashboardTable />
         </div>
     );
 }

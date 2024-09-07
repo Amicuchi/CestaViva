@@ -1,3 +1,4 @@
+import '../../styles/Dashboard.css'
 export default function DashboardUser() {
     const entityInfo = {
         CNPJ: "00.000.000/0001-00",
@@ -16,7 +17,7 @@ export default function DashboardUser() {
     };
 
     return (
-        <div className="user--wrapper">
+        <div className="card--container">
             <h2 className="main--title">Perfil da Entidade</h2>
             <div>
                 <p>CNPJ: {entityInfo.CNPJ}</p>

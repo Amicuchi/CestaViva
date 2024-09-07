@@ -1,9 +1,14 @@
-.dashboard-container{
-    display: flex;
-}
+/* Atual */
+
+.dashboard-container,
 .dashboard-content{
     display: flex;
+}
+
+.dashboard-content{
     flex-direction: column;
+    flex: 1;                /* Ocupa todo o espaço restante */
+    overflow: auto;         /* Permite rolagem se o conteúdo for maior que a tela */
 }
 
 /* Sidebar */
@@ -29,7 +34,7 @@
 .menu{
     margin-top: 90px;
     height: 88%;
-    position: relative;
+    /* position: relative; */
     list-style: none;
     padding: 0;
 }
@@ -38,11 +43,12 @@
     padding: 1rem;
     margin: 8px 0;
     border-radius: 10px;
-    transition: all 0.5s ease-in-out;
+    /* transition: all 0.5s ease-in-out; */
+    transition: background-color 0.5s ease-in-out;
 }
 
 .menu li:hover,
-.active{
+.menu li.active{
     background-color: var(--bg-secundario);
 }
 
@@ -53,6 +59,7 @@
     gap: 1.5rem;
     font-size: 0.8rem;
     text-decoration: none;
+    transition: color 0.5s ease;
 }
 .menu a:hover{
     color: var(--bg-hover);
@@ -68,73 +75,22 @@
 
 
 /* Header section */
-.main--content{
-    position: relative;
-    width: 100%;
-    padding: 1rem;
-}
-
 .header--wrapper{
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
     border-radius: 10px;
-    padding: 5px 2rem;
-    height: 70px;
+    padding: 0 2rem;
+    height: 50px;
+    margin: 1rem;
+    margin-right: 1rem;
 }
 
 .header--title{
     color: var(--bg-hover);
     text-align: left;
 }
-
-.header--title h2{
-    margin-top: 0;
-    margin-bottom: 0;
-}
-
-
-.user--info{
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.search--box{
-    display: flex;
-    align-items: center;
-    background-color: var(--bg-principal);
-    color: var(--bg-hover);
-    border-radius: 15px;
-    gap: 10px;
-    padding: 4px 12px;
-}
-
-.input--dashboard{
-    height: 1.7rem;
-    background: transparent;
-    padding: 10px;
-    border: none;
-    box-shadow: none;
-}
-
-.input--dashboard:focus{
-    border-color: none;
-    outline: none;
-    box-shadow: none;
-}
-
-.search--icon{
-    font-size: 1srem;
-    cursor: pointer;
-    transition: all 0.5s ease-out;
-}
-.search--icon:hover{
-    transform: scale(1.1);
-}
-
 
 /* Dashboard Cards */
 .card--container{
@@ -158,11 +114,11 @@
     margin-top: 0;
 }
 
-.payment--card{
+.dashboard--card{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    background-color: var(--bg-secundario);
+    /* background-color: var(--bg-secundario); */
     border-radius: 10px;
     padding: 1rem;
     width: 260px;
@@ -170,7 +126,7 @@
     transition: all 0.5s ease-in-out;
 }
 
-.payment--card:hover{
+.dashboard--card:hover{
     transform: translateY(-5px);
 }
 
@@ -284,6 +240,6 @@ tfoot td{
 }
 
 .table--container button{
-    padding: 5px 5px;
+    padding: 5px;
     width: 80px;
 }
