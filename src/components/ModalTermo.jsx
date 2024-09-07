@@ -63,6 +63,7 @@ export default function ModalTermo({ open, handleClose }) {
                 
                 <Button 
                     onClick={handleClose} 
+                    sx={{ backgroundColor: 'var(--bg-terciario)' }} 
                     className="ButtonTotal" 
                     variant="contained">
                     Fechar

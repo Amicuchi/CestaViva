@@ -27,6 +27,7 @@ h1,
 h2{
     margin-top: 20px;
     margin-bottom: 20px;
+    color: var(--bg-hover);
 }
 
 main{
@@ -84,18 +85,19 @@ form{
 textarea,
 input{
     width: 100%;
-    padding: 10px;
+    padding: 5px;
     padding-left: 2rem;
     border: 1px solid var(--bg-terciario);
-    border-radius: 20px;
+    border-radius: 10px;
     font-size: 1rem;
     text-align: left;
-    box-sizing: border-box;
+    /* box-sizing: border-box; */
     box-shadow: 
         0 4px 8px rgba(199, 199, 199, 0.1), 
         0 6px 20px rgba(199, 199, 199, 0.1);
 }
 
+.BELi,
 textarea:focus,
 input:focus{
     border-color: var(--bg-hover);
@@ -122,6 +124,7 @@ button:hover {
 .ButtonTotal{
     width: 100%;
 }
+
 
 /* Footer */
 footer {
