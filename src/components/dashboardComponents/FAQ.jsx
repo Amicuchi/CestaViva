@@ -6,49 +6,37 @@ export default function DashboardFAQ() {
             <div className="card--container">
                 <h2>Perguntas Frequentes</h2>
                 <div>
-                    <h3>1. Introdução</h3>
-                    <p>Bem-vindo ao CestaViva! Este Termo de Uso rege o uso do site, e ao se cadastrar, a entidade aceita os termos aqui descritos. O propósito do site, que é conectar doadores a instituições que montam e distribuem cestas de alimentos. Esse termo de uso rege a utilização do site e o cadastro das entidades.</p>
+                    <h3>Como posso atualizar as informações da minha entidade?</h3>
+                    <p>Por medida de segurança, as informações da entidade não podem ser alteradas pelo usuário, mesmo que esse seja o responsável pela entidade. Para isso, você precisa abrir uma solicitação na página do suporte e enviar o que você precisa que seja atualizado ou corrigido. Lembrando que para maior rapidez na atualização da informação é melhor que você envie documentos que demonstram a necessidade da atualização. Seja uma conta de luz, telefone, alteração no contrato social da entidade ou o que for necessário para que a alteração seja feita.</p>
 
-                    <h3>2. Coleta de Dados</h3>
-                    <p>Durante o cadastro, coletamos informações sobre a instituição. Esses dados serão usados para conectar doadores com sua entidade.</p>
-                    <p>Segue a lista dos dados coleados:</p>
-                    <ul>
-                        <li>CNPJ</li>
-                        <li>Razão Social</li>
-                        <li>Nome da instituição</li>
-                        <li>Endereço</li>
-                        <li>Responsável</li>
-                        <li>Telefone de contato</li>
-                        <li>E-mail</li>
-                    </ul>
+                    <h3>Como adiciono novos itens à minha lista de necessidades?</h3>
+                    <p>No dashboard, acesse a seção &quot;Cestas&quot; e clique em &quot;Adicionar Novo Item&quot;. Preencha as informações solicitadas e clique em &quot;Salvar&quot; para atualizar a lista.</p>
 
-                    <h3>3. Uso dos Dados</h3>
-                    <p>Os dados coletados serão usados para facilitar doações e melhorar nosso sistema. A entidade consente com o uso dessas informações para as finalidades descritas.</p>
+                    <h3>Posso ver um histórico das doações recebidas?</h3>
+                    <p>Sim, você pode visualizar o histórico de doações na seção &quot;Histórico de Doações&quot;. Isso permitirá que você veja todos os itens recebidos e suas respectivas datas.</p>
 
-                    <p>Os dados fornecidos serão utilizados para:</p>
-                    <ul>
-                        <li>Exibir a entidade no sistema, permitindo que doadores a encontrem.</li>
-                        <li>Comunicar sobre possíveis doações e novas oportunidades.</li>
-                        <li>Realizar análises estatísticas e melhorias no sistema.</li>
-                    </ul>
+                    <h3>Como posso definir prioridades para os itens de doação?</h3>
+                    <p>Ainda não temos uma opção para que sejam definidas prioridades nos itens. O doador tem total liberdade para doar o que ele tiver proposto. A única coisa que podemos fazer é definir a quantidade de itens necessária.</p>
 
-                    <h3>4. Compartilhamento de Dados</h3>
-                    <p>Seus dados não serão compartilhados ou cedidos a terceiros sem seu consentimento, exceto quando necessário para o funcionamento do sistema. (como integração com ferramentas de geolocalização).</p>
+                    <h3>Há uma maneira de contatar diretamente os doadores?</h3>
+                    <p>Por medida de segurança e privacidade do doador, o sistema não permite o contato direto com os doadores através do dashboard. O único contato deve ser feito apenas durante o momento do recebimento dos itens e ainda assim, se possível, que a entrega seja feita de forma anônima.</p>
 
-                    <h3>5. Segurança</h3>
-                    <p>Tomamos medidas de segurança para proteger suas informações, como encriptação da senha antes de enviar para o banco de dados, de maneira que apenas você conheça sua senha, mas não podemos garantir proteção completa contra ataques cibernéticos.</p>
+                    <h3>O que fazer se houver um erro nas informações de uma doação recebida?</h3>
+                    <p>Se você encontrar um erro, entre em contato com o suporte técnico através da seção &quot;Suporte&quot; no dashboard. Forneça detalhes sobre o problema para que possamos ajudar a resolver.</p>
 
-                    <h3>6. Alteração e Exclusão de Dados</h3>
-                    <p>Você pode solicitar a alteração ou exclusão de seus dados a qualquer momento, bem como o encerramento da conta.</p>
+                    <h3>Como posso alterar a senha do meu perfil?</h3>
+                    Para alterar a senha, vá até a seção &quot;Configurações da Conta&quot; e selecione &quot;Alterar Senha&quot;. Siga as instruções fornecidas para definir uma nova senha.
 
-                    <h3>7. Responsabilidades da Entidade</h3>
-                    <p>A entidade concorda em fornecer informações corretas e utilizar o sistema de forma legítima. Utilizar o site de acordo com os propósitos estabelecidos, não se envolvendo em atividades fraudulentas.</p>
+                    <h3>Onde posso encontrar informações sobre as próximas campanhas de doação?</h3>
+                    <p>Informações sobre campanhas de doação são geralmente exibidas na seção &quot;Campanhas&quot; do dashboard. Verifique regularmente para atualizações e oportunidades de participação.</p>
 
-                    <h3>8. Modificações nos Termos</h3>
-                    <p>Este termo poderá ser alterado a qualquer momento. Caso seja, as mudanças serão comunicadas pelo site.</p>
+                    <h3>É possível adicionar mais de um endereço de coleta para a minha entidade?</h3>
+                    <p>Atualmente, o sistema permite apenas um endereço de coleta por entidade. Se você precisar de múltiplos endereços, entre em contato com o suporte para discutir possíveis soluções.</p>
 
-                    <h3>9. Contato</h3>
-                    <p>Em caso de dúvidas, entre em contato pelo [e-mail/telefone] para assistência.</p>
+
+                    <h3>Como posso desativar a minha conta?</h3>
+                    <p>Para desativar sua conta, vá até a seção &quot;Configurações da Conta&quot; e selecione &quot;Desativar Conta&quot;. Siga as instruções para confirmar a desativação.</p>
+
                     <hr />
                 </div>
             </div>
