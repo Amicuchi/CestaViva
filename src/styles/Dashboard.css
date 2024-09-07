@@ -116,7 +116,7 @@
 .main--title {
     color: var(--bg-hover);
     padding-bottom: 10px;
-    font-size: 0.9rem;
+    /* font-size: 0.9rem; */
     margin-top: 0;
 }
 
