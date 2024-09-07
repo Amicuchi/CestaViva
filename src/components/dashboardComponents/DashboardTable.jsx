@@ -6,7 +6,7 @@ import {
 
 export default function DashboardTable() {
     return(
-        <div className="tabular--wrapper">
+        <div className="card--container">
                 <h2 className="main--title">Relatório</h2>
                 <div className="table--container">
                     <table>

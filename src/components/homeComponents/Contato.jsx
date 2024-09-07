@@ -3,7 +3,7 @@ import '../../styles/Home.css';
 
 export default function Contato() {
     return(
-        <main className="ContatoContainer">
+        <main className="contato--container lastOne">
             <h2>Deixe sua mensagem:</h2>
             <form className="ContatoForm" action="">
                 <input type="text" name="nome" placeholder="Nome"/>

@@ -98,7 +98,6 @@
     font-weight: normal;
     margin: 5px;
     margin-top: 2px;
-    /* margin-bottom: 10px; */
 }
 
 .CardImg{
@@ -136,9 +135,8 @@
 
 /* Estilo do Contato: */
 /* ****************** */
-
-.ContatoContainer{
-    margin-bottom: 100px;
+.contato--container{
+    height: 400px;
 }
 
 .ContatoForm {
@@ -152,6 +150,7 @@
         "email telefone"
         "mensagem mensagem"
         "contatoBtn contatoBtn";
+    margin-bottom: 80px;
 }
 
 input[name="nome"] {
