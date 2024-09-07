@@ -5,13 +5,14 @@ export default function Estatisticas() {
         <>
             <div className="card--container">
                 <h2>Estatísticas</h2>
-                <p>Aqui devem aparecer os dados de:
-                    - Produros solicitados
-                    - Produtos recebidos
-                    - Cestas completadas
-                    - Cestas distribuídas
-                    - Pessoas ajudadas
-                </p>
+                <p>Aqui devem aparecer os dados de:</p>
+                    <ul>
+                        <li>Produros solicitados</li>
+                        <li>Produtos recebidos</li>
+                        <li>Cestas completadas</li>
+                        <li>Cestas distribuídas</li>
+                        <li>Pessoas ajudadas</li>
+                    </ul>
             </div>
 
             <DashboardTable />
