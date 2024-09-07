@@ -255,10 +255,6 @@ tfoot td {
     align-items: flex-start;
 }
 
-.card--content {
-    max-width: 1000px;
-}
-
 .user--container img {
     height: 300px;
     width: 200px;
@@ -266,12 +262,34 @@ tfoot td {
     border: 1px solid var(--bg-secundario);
 }
 
+.user--container div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: left;
+    width: 100%;
+}
+
+.user--container div textarea {
+    margin-bottom: 2rem;
+}
+
+.user--container h3{
+    margin-top: 2rem;
+}
+
+.card--content {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
 .UserP {
     font-size: 1rem;
     text-align: left;
     padding: 2px;
     padding-left: 1rem;
-    width: 500px;
+    width: 100%;
     border: 1px solid var(--bg-terciario);
     border-radius: 10px;
     box-shadow:
@@ -288,21 +306,6 @@ tfoot td {
     font-weight: 300;
     font-size: 0.8rem;
     text-align: left;
-}
-
-.user--container div {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    text-align: left;
-}
-
-.user--container div textarea {
-    margin-bottom: 2rem;
-}
-
-.user--container h3{
-    margin-top: 2rem;
 }
 
 .dashboard--FAQ-card {

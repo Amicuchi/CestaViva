@@ -22,7 +22,6 @@ export default function DashboardUser() {
     return (
         <div className="card--container">
             <div className="card--content">
-
                 <h2>Perfil da Entidade</h2>
                 <div className="user--container">
                     <img
@@ -58,8 +57,6 @@ export default function DashboardUser() {
                         <h3>Biografia</h3>
                         <textarea defaultValue={entidade.Biografia}></textarea>
                     </div>
-
-
                 </div>
                 <button className="ButtonTotal" name="contatoBtn">Salvar alteração</button>
             </div>
