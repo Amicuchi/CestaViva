@@ -6,14 +6,13 @@ import {
 
 export default function DashboardTable() {
     return(
-        <div className="card--container">
+        <div className="card--container lastOne">
                 <h2 className="main--title">Relatório</h2>
                 <div className="table--container">
                     <table>
                         <thead>
                             <tr>
                                 <th>Data</th>
-                                <th>Transação</th>
                                 <th>Descrição</th>
                                 <th>Qtd</th>
                                 <th>Categoria</th>
@@ -24,7 +23,6 @@ export default function DashboardTable() {
                         <tbody>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Doação</td>
                                 <td>Arroz 5kg</td>
                                 <td>5</td>
                                 <td>Básico</td>
@@ -36,7 +34,6 @@ export default function DashboardTable() {
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Doação</td>
                                 <td>Arroz 5kg</td>
                                 <td>5</td>
                                 <td>Básico</td>
@@ -48,7 +45,6 @@ export default function DashboardTable() {
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Doação</td>
                                 <td>Arroz 5kg</td>
                                 <td>5</td>
                                 <td>Básico</td>
@@ -60,7 +56,6 @@ export default function DashboardTable() {
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Doação</td>
                                 <td>Arroz 5kg</td>
                                 <td>5</td>
                                 <td>Básico</td>
@@ -72,7 +67,6 @@ export default function DashboardTable() {
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Doação</td>
                                 <td>Arroz 5kg</td>
                                 <td>5</td>
                                 <td>Básico</td>
