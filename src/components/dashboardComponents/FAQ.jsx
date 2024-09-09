@@ -61,9 +61,7 @@ export default function DashboardFAQ() {
                 <hr />
             </div>
 
-            <div className="card--container lastOne">
-                <Contato/>
-            </div>
+            <Contato />
         </>
     )
 }
