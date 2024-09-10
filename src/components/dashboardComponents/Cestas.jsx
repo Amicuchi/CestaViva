@@ -89,86 +89,88 @@ export default function Cestas() {
 
     return (
         <>
-            {/* Seção de cadastro de produtos */}
-            <div className="cestas--cadastroProduto">
-                <h2>Cestas de Alimentos</h2>
-                <form className="form-container" onSubmit={adicionarProduto}>
-                    <input
-                        type="text"
-                        name="nome"
-                        placeholder="Nome do produto"
-                        value={novoProduto.nome}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="number"
-                        name="quantidade"
-                        placeholder="Quantidade"
-                        value={novoProduto.quantidade}
-                        onChange={handleInputChange}
-                    />
-                    <input
-                        type="text"
-                        name="categoria"
-                        placeholder="Categoria"
-                        value={novoProduto.categoria}
-                        onChange={handleInputChange}
-                    />
-                    <button type="submit">Adicionar Produto</button>
-                </form>
-            </div>
+            <div className="card--container">
+                {/* Seção de cadastro de produtos */}
+                <div className="cestas--cadastroProduto">
+                    <h2>Cestas de Alimentos</h2>
+                    <form className="form-container" onSubmit={adicionarProduto}>
+                        <input
+                            type="text"
+                            name="nome"
+                            placeholder="Nome do produto"
+                            value={novoProduto.nome}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="number"
+                            name="quantidade"
+                            placeholder="Quantidade"
+                            value={novoProduto.quantidade}
+                            onChange={handleInputChange}
+                        />
+                        <input
+                            type="text"
+                            name="categoria"
+                            placeholder="Categoria"
+                            value={novoProduto.categoria}
+                            onChange={handleInputChange}
+                        />
+                        <button type="submit">Adicionar Produto</button>
+                    </form>
+                </div>
 
-            {/* Seção de lista de produtos cadastrados */}
-            <div className="lista-produtos">
-                {produtos.length === 0 ? (
-                    <p>Nenhum produto adicionado ainda.</p>
-                ) : (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Produto</th>
-                                <th>Categoria</th>
-                                <th>Quantidade Necessária</th>
-                                <th>Recebido</th>
-                                <th>Restante</th>
-                                <th>Dar Baixa</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {produtos.map((produto, index) => {
-                                const restante = produto.quantidade - produto.recebido;
-                                return (
-                                    <tr key={index}>
-                                        <td>{produto.nome}</td>
-                                        <td>{produto.categoria}</td>
-                                        <td>{produto.quantidade}</td>
-                                        <td>{produto.recebido}</td>
-                                        <td>{restante}</td>
-                                        <td>
-                                            {restante > 0 ? (
-                                                <>
-                                                    <input
-                                                        type="number"
-                                                        value={quantidadeBaixa[index] || ''}
-                                                        min="1"
-                                                        max={restante}
-                                                        placeholder="Qtd"
-                                                        onChange={(e) => handleQuantidadeBaixaChange(e, index)}
-                                                    />
-                                                    <button onClick={() => darBaixa(index)}>
-                                                        Dar Baixa
-                                                    </button>
-                                                </>
-                                            ) : (
-                                                <span>Todos recebidos</span>
-                                            )}
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
-                )}
+                {/* Seção de lista de produtos cadastrados */}
+                <div className="lista-produtos">
+                    {produtos.length === 0 ? (
+                        <p>Nenhum produto adicionado ainda.</p>
+                    ) : (
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Produto</th>
+                                    <th>Categoria</th>
+                                    <th>Quantidade Necessária</th>
+                                    <th>Recebido</th>
+                                    <th>Restante</th>
+                                    <th>Dar Baixa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {produtos.map((produto, index) => {
+                                    const restante = produto.quantidade - produto.recebido;
+                                    return (
+                                        <tr key={index}>
+                                            <td>{produto.nome}</td>
+                                            <td>{produto.categoria}</td>
+                                            <td>{produto.quantidade}</td>
+                                            <td>{produto.recebido}</td>
+                                            <td>{restante}</td>
+                                            <td>
+                                                {restante > 0 ? (
+                                                    <>
+                                                        <input
+                                                            type="number"
+                                                            value={quantidadeBaixa[index] || ''}
+                                                            min="1"
+                                                            max={restante}
+                                                            placeholder="Qtd"
+                                                            onChange={(e) => handleQuantidadeBaixaChange(e, index)}
+                                                        />
+                                                        <button onClick={() => darBaixa(index)}>
+                                                            Dar Baixa
+                                                        </button>
+                                                    </>
+                                                ) : (
+                                                    <span>Todos recebidos</span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
+                    )}
+                </div>
             </div>
 
             {/* Seção de cadastro de itens para a cesta completa */}
