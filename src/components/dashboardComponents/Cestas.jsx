@@ -1,12 +1,14 @@
 import { useState } from 'react';
 
 export default function Cestas() {
-    const [produtos, setProdutos] = useState([]);
-    const [novoProduto, setNovoProduto] = useState({ nome: '', quantidade: '', categoria: '' });
-    const [quantidadeBaixa, setQuantidadeBaixa] = useState({});
-    const [cestaCompleta, setCestaCompleta] = useState([]);
-    const [novoItemCesta, setNovoItemCesta] = useState({ nome: '', quantidade: '', categoria: '' });
+    // Estados para armazenar dados relacionados a produtos e cestas
+    const [produtos, setProdutos] = useState([]); // Lista de produtos cadastrados
+    const [novoProduto, setNovoProduto] = useState({ nome: '', quantidade: '', categoria: '' }); // Dados do novo produto a ser adicionado
+    const [quantidadeBaixa, setQuantidadeBaixa] = useState({}); // Quantidade a ser dada baixa para cada produto
+    const [cestaCompleta, setCestaCompleta] = useState([]); // Lista de itens que compõem a cesta completa
+    const [novoItemCesta, setNovoItemCesta] = useState({ nome: '', quantidade: '', categoria: '' }); // Dados do novo item a ser adicionado à cesta completa
 
+    // Função para lidar com a mudança de valores nos campos de entrada do formulário de produto
     const handleInputChange = (e) => {
         const { name, value } = e.target;
         setNovoProduto((prevState) => ({
@@ -15,6 +17,7 @@ export default function Cestas() {
         }));
     };
 
+    // Função para lidar com a mudança de valor na quantidade a ser dada baixa para cada produto
     const handleQuantidadeBaixaChange = (e, index) => {
         const { value } = e.target;
         setQuantidadeBaixa((prevState) => ({
@@ -23,61 +26,70 @@ export default function Cestas() {
         }));
     };
 
+    // Função para adicionar um novo produto à lista de produtos
     const adicionarProduto = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevenir o comportamento padrão do formulário
         if (novoProduto.nome && novoProduto.quantidade > 0 && novoProduto.categoria) {
-            setProdutos([...produtos, { ...novoProduto, recebido: 0 }]);
-            setNovoProduto({ nome: '', quantidade: '', categoria: '' });
+            // Apenas adiciona o produto se todos os campos estiverem preenchidos e a quantidade for maior que 0
+            setProdutos([...produtos, { ...novoProduto, recebido: 0 }]); // Adiciona o novo produto à lista
+            setNovoProduto({ nome: '', quantidade: '', categoria: '' }); // Reseta o formulário
         }
     };
 
+    // Função para adicionar um novo item à cesta completa
     const adicionarItemCesta = (e) => {
-        e.preventDefault();
+        e.preventDefault(); // Prevenir o comportamento padrão do formulário
         if (novoItemCesta.nome && novoItemCesta.quantidade > 0 && novoItemCesta.categoria) {
-            setCestaCompleta([...cestaCompleta, { ...novoItemCesta }]);
-            setNovoItemCesta({ nome: '', quantidade: '', categoria: '' });
+            // Apenas adiciona o item se todos os campos estiverem preenchidos e a quantidade for maior que 0
+            setCestaCompleta([...cestaCompleta, { ...novoItemCesta }]); // Adiciona o novo item à lista de cesta completa
+            setNovoItemCesta({ nome: '', quantidade: '', categoria: '' }); // Reseta o formulário
         }
     };
 
+    // Função para dar baixa na quantidade de um produto
     const darBaixa = (index) => {
-        const qtdBaixa = parseInt(quantidadeBaixa[index] || 1, 10);
-        const updatedProdutos = [...produtos];
+        const qtdBaixa = parseInt(quantidadeBaixa[index] || 1, 10); // Quantidade a ser dada baixa, convertida para número
+        const updatedProdutos = [...produtos]; // Clona a lista de produtos
         const produto = updatedProdutos[index];
-        const restante = produto.quantidade - produto.recebido;
+        const restante = produto.quantidade - produto.recebido; // Calcula a quantidade restante
 
         if (qtdBaixa > 0 && qtdBaixa <= restante) {
-            produto.recebido += qtdBaixa;
-            setProdutos(updatedProdutos);
+            // Verifica se a quantidade a ser dada baixa é válida
+            produto.recebido += qtdBaixa; // Atualiza a quantidade recebida do produto
+            setProdutos(updatedProdutos); // Atualiza a lista de produtos
             setQuantidadeBaixa((prevState) => ({
                 ...prevState,
-                [index]: '', // Limpar o campo após a baixa
+                [index]: '', // Limpa o campo de quantidade a ser dada baixa
             }));
         } else {
-            alert('Quantidade inválida para dar baixa.');
+            alert('Quantidade inválida para dar baixa.'); // Exibe uma mensagem de erro se a quantidade for inválida
         }
     };
 
+    // Função para editar um item da cesta completa
     const editarItem = (index) => {
-        // Aqui você pode implementar a lógica para editar um item da cesta completa.
         const item = cestaCompleta[index];
-        const nome = prompt('Editar nome do produto:', item.nome);
-        const quantidade = prompt('Editar quantidade:', item.quantidade);
-        const categoria = prompt('Editar categoria:', item.categoria);
+        const nome = prompt('Editar nome do produto:', item.nome); // Prompt para editar o nome
+        const quantidade = prompt('Editar quantidade:', item.quantidade); // Prompt para editar a quantidade
+        const categoria = prompt('Editar categoria:', item.categoria); // Prompt para editar a categoria
 
         if (nome && quantidade > 0 && categoria) {
+            // Apenas atualiza se os valores são válidos
             const updatedCesta = [...cestaCompleta];
-            updatedCesta[index] = { nome, quantidade, categoria };
-            setCestaCompleta(updatedCesta);
+            updatedCesta[index] = { nome, quantidade, categoria }; // Atualiza o item na lista
+            setCestaCompleta(updatedCesta); // Atualiza a lista de cesta completa
         }
     };
 
+    // Função para excluir um item da cesta completa
     const excluirItem = (index) => {
-        const updatedCesta = cestaCompleta.filter((_, i) => i !== index);
-        setCestaCompleta(updatedCesta);
+        const updatedCesta = cestaCompleta.filter((_, i) => i !== index); // Remove o item da lista
+        setCestaCompleta(updatedCesta); // Atualiza a lista de cesta completa
     };
 
     return (
         <>
+            {/* Seção de cadastro de produtos */}
             <div className="cestas--cadastroProduto">
                 <h2>Cestas de Alimentos</h2>
                 <form className="form-container" onSubmit={adicionarProduto}>
@@ -106,6 +118,7 @@ export default function Cestas() {
                 </form>
             </div>
 
+            {/* Seção de lista de produtos cadastrados */}
             <div className="lista-produtos">
                 {produtos.length === 0 ? (
                     <p>Nenhum produto adicionado ainda.</p>
@@ -158,6 +171,7 @@ export default function Cestas() {
                 )}
             </div>
 
+            {/* Seção de cadastro de itens para a cesta completa */}
             <div>
                 <h2>Cadastrar Cesta Completa</h2>
                 <form className="form-container" onSubmit={adicionarItemCesta}>
@@ -186,6 +200,7 @@ export default function Cestas() {
                 </form>
             </div>
 
+            {/* Seção de lista de itens da cesta completa */}
             <div>
                 <h2>Composição da Cesta Completa</h2>
                 {cestaCompleta.length === 0 ? (
