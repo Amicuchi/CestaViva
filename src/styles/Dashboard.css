@@ -321,3 +321,23 @@ tfoot td {
 .dashboard--FAQ-card:hover {
     transform: translateY(-5px);
 }
+
+
+/* Dashboard Cestas */
+
+.cestas-flex{
+    display: flex;
+    justify-content: center;
+}
+
+.cestas--cadastroProduto{
+    width: 35%;
+}
+
+.form-container{
+    width: 100%;
+}
+
+.lista-produtos{
+    width: 65%;
+}

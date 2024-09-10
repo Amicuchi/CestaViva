@@ -91,147 +91,157 @@ export default function Cestas() {
         <>
             <div className="card--container">
                 {/* Seção de cadastro de produtos */}
-                <div className="cestas--cadastroProduto">
-                    <h2>Cestas de Alimentos</h2>
-                    <form className="form-container" onSubmit={adicionarProduto}>
-                        <input
-                            type="text"
-                            name="nome"
-                            placeholder="Nome do produto"
-                            value={novoProduto.nome}
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="number"
-                            name="quantidade"
-                            placeholder="Quantidade"
-                            value={novoProduto.quantidade}
-                            onChange={handleInputChange}
-                        />
-                        <input
-                            type="text"
-                            name="categoria"
-                            placeholder="Categoria"
-                            value={novoProduto.categoria}
-                            onChange={handleInputChange}
-                        />
-                        <button type="submit">Adicionar Produto</button>
-                    </form>
-                </div>
+                <h2>Alimentos Necessários</h2>
+                <div className="cestas-flex">
+                    <div className="cestas--cadastroProduto">
+                        <form className="form-container" onSubmit={adicionarProduto}>
+                            <h3>Cadastro do produto</h3>
+                            <input
+                                type="text"
+                                name="nome"
+                                placeholder="Nome do produto"
+                                value={novoProduto.nome}
+                                onChange={handleInputChange}
+                            />
+                            <input
+                                type="number"
+                                name="quantidade"
+                                placeholder="Quantidade"
+                                value={novoProduto.quantidade}
+                                onChange={handleInputChange}
+                            />
+                            <input
+                                type="text"
+                                name="categoria"
+                                placeholder="Categoria"
+                                value={novoProduto.categoria}
+                                onChange={handleInputChange}
+                            />
+                            <button type="submit">Adicionar Produto</button>
+                        </form>
 
-                {/* Seção de lista de produtos cadastrados */}
-                <div className="lista-produtos">
-                    {produtos.length === 0 ? (
-                        <p>Nenhum produto adicionado ainda.</p>
-                    ) : (
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Produto</th>
-                                    <th>Categoria</th>
-                                    <th>Quantidade Necessária</th>
-                                    <th>Recebido</th>
-                                    <th>Restante</th>
-                                    <th>Dar Baixa</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {produtos.map((produto, index) => {
-                                    const restante = produto.quantidade - produto.recebido;
-                                    return (
-                                        <tr key={index}>
-                                            <td>{produto.nome}</td>
-                                            <td>{produto.categoria}</td>
-                                            <td>{produto.quantidade}</td>
-                                            <td>{produto.recebido}</td>
-                                            <td>{restante}</td>
-                                            <td>
-                                                {restante > 0 ? (
-                                                    <>
-                                                        <input
-                                                            type="number"
-                                                            value={quantidadeBaixa[index] || ''}
-                                                            min="1"
-                                                            max={restante}
-                                                            placeholder="Qtd"
-                                                            onChange={(e) => handleQuantidadeBaixaChange(e, index)}
-                                                        />
-                                                        <button onClick={() => darBaixa(index)}>
-                                                            Dar Baixa
-                                                        </button>
-                                                    </>
-                                                ) : (
-                                                    <span>Todos recebidos</span>
-                                                )}
-                                            </td>
-                                        </tr>
-                                    );
-                                })}
-                            </tbody>
-                        </table>
-                    )}
+                    </div>
+
+                    <div className="lista-produtos">
+                        {/* Seção de lista de produtos cadastrados */}
+                        <h2>Lista de alimentos necessários</h2>
+                        {produtos.length === 0 ? (
+                            <p>Nenhum produto adicionado ainda.</p>
+                        ) : (
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Categoria</th>
+                                        <th>Quantidade Necessária</th>
+                                        <th>Recebido</th>
+                                        <th>Restante</th>
+                                        <th>Dar Baixa</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {produtos.map((produto, index) => {
+                                        const restante = produto.quantidade - produto.recebido;
+                                        return (
+                                            <tr key={index}>
+                                                <td>{produto.nome}</td>
+                                                <td>{produto.categoria}</td>
+                                                <td>{produto.quantidade}</td>
+                                                <td>{produto.recebido}</td>
+                                                <td>{restante}</td>
+                                                <td>
+                                                    {restante > 0 ? (
+                                                        <>
+                                                            <input
+                                                                type="number"
+                                                                value={quantidadeBaixa[index] || ''}
+                                                                min="1"
+                                                                max={restante}
+                                                                placeholder="Qtd"
+                                                                onChange={(e) => handleQuantidadeBaixaChange(e, index)}
+                                                            />
+                                                            <button onClick={() => darBaixa(index)}>
+                                                                Dar Baixa
+                                                            </button>
+                                                        </>
+                                                    ) : (
+                                                        <span>Todos recebidos</span>
+                                                    )}
+                                                </td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
+                        )}
+                    </div>
                 </div>
             </div>
 
             {/* Seção de cadastro de itens para a cesta completa */}
-            <div>
-                <h2>Cadastrar Cesta Completa</h2>
-                <form className="form-container" onSubmit={adicionarItemCesta}>
-                    <input
-                        type="text"
-                        name="nome"
-                        placeholder="Nome do produto"
-                        value={novoItemCesta.nome}
-                        onChange={(e) => setNovoItemCesta({ ...novoItemCesta, nome: e.target.value })}
-                    />
-                    <input
-                        type="number"
-                        name="quantidade"
-                        placeholder="Quantidade"
-                        value={novoItemCesta.quantidade}
-                        onChange={(e) => setNovoItemCesta({ ...novoItemCesta, quantidade: e.target.value })}
-                    />
-                    <input
-                        type="text"
-                        name="categoria"
-                        placeholder="Categoria"
-                        value={novoItemCesta.categoria}
-                        onChange={(e) => setNovoItemCesta({ ...novoItemCesta, categoria: e.target.value })}
-                    />
-                    <button type="submit">Adicionar à Cesta Completa</button>
-                </form>
-            </div>
+            <div className="card--container lastOne">
+                <h2>Cesta Completa</h2>
+                <div className="cestas-flex">
+                    <div className="cestas--cadastroProduto">
+                        <form className="form-container" onSubmit={adicionarItemCesta}>
+                            <h3>Cadastro do produto</h3>
+                            <input
+                                type="text"
+                                name="nome"
+                                placeholder="Nome do produto"
+                                value={novoItemCesta.nome}
+                                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, nome: e.target.value })}
+                            />
+                            <input
+                                type="number"
+                                name="quantidade"
+                                placeholder="Quantidade"
+                                value={novoItemCesta.quantidade}
+                                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, quantidade: e.target.value })}
+                            />
+                            <input
+                                type="text"
+                                name="categoria"
+                                placeholder="Categoria"
+                                value={novoItemCesta.categoria}
+                                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, categoria: e.target.value })}
+                            />
+                            <button type="submit">Adicionar à Cesta Completa</button>
+                        </form>
+                    </div>
 
-            {/* Seção de lista de itens da cesta completa */}
-            <div>
-                <h2>Composição da Cesta Completa</h2>
-                {cestaCompleta.length === 0 ? (
-                    <p>Nenhum item na cesta completa ainda.</p>
-                ) : (
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Produto</th>
-                                <th>Categoria</th>
-                                <th>Quantidade Necessária</th>
-                                <th>Ações</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {cestaCompleta.map((item, index) => (
-                                <tr key={index}>
-                                    <td>{item.nome}</td>
-                                    <td>{item.categoria}</td>
-                                    <td>{item.quantidade}</td>
-                                    <td>
-                                        <button onClick={() => editarItem(index)}>Editar</button>
-                                        <button onClick={() => excluirItem(index)}>Excluir</button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                )}
+                    {/* Seção de lista de itens da cesta completa */}
+                    <div className="lista-produtos">
+                        <h2>Composição da Cesta Completa</h2>
+                        {cestaCompleta.length === 0 ? (
+                            <p>Nenhum item na cesta completa ainda.</p>
+                        ) : (
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Produto</th>
+                                        <th>Categoria</th>
+                                        <th>Quantidade Necessária</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {cestaCompleta.map((item, index) => (
+                                        <tr key={index}>
+                                            <td>{item.nome}</td>
+                                            <td>{item.categoria}</td>
+                                            <td>{item.quantidade}</td>
+                                            <td>
+                                                <button onClick={() => editarItem(index)}>Editar</button>
+                                                <button onClick={() => excluirItem(index)}>Excluir</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        )}
+                    </div>
+                </div>
             </div>
         </>
     );
