@@ -133,7 +133,7 @@ export default function Cestas() {
                                     <tr>
                                         <th>Produto</th>
                                         <th>Categoria</th>
-                                        <th>Quantidade Necessária</th>
+                                        <th>Quantidade <br /> Necessária</th>
                                         <th>Recebido</th>
                                         <th>Restante</th>
                                         <th>Dar Baixa</th>
@@ -153,6 +153,7 @@ export default function Cestas() {
                                                     {restante > 0 ? (
                                                         <>
                                                             <input
+                                                                className='btnQtd inputQtd'
                                                                 type="number"
                                                                 value={quantidadeBaixa[index] || ''}
                                                                 min="1"
@@ -160,7 +161,10 @@ export default function Cestas() {
                                                                 placeholder="Qtd"
                                                                 onChange={(e) => handleQuantidadeBaixaChange(e, index)}
                                                             />
-                                                            <button onClick={() => darBaixa(index)}>
+                                                            <button
+                                                                className='btnQtd'
+                                                                onClick={() => darBaixa(index)}
+                                                            >
                                                                 Dar Baixa
                                                             </button>
                                                         </>
@@ -221,7 +225,7 @@ export default function Cestas() {
                                     <tr>
                                         <th>Produto</th>
                                         <th>Categoria</th>
-                                        <th>Quantidade Necessária</th>
+                                        <th>Quantidade <br /> Necessária</th>
                                         <th>Ações</th>
                                     </tr>
                                 </thead>
@@ -232,8 +236,18 @@ export default function Cestas() {
                                             <td>{item.categoria}</td>
                                             <td>{item.quantidade}</td>
                                             <td>
-                                                <button onClick={() => editarItem(index)}>Editar</button>
-                                                <button onClick={() => excluirItem(index)}>Excluir</button>
+                                                <button 
+                                                    className='btnQtd'
+                                                    onClick={() => editarItem(index)}
+                                                >
+                                                    Editar
+                                                </button>
+                                                <button 
+                                                    className='btnQtd left'
+                                                    onClick={() => excluirItem(index)}
+                                                >
+                                                    Excluir
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}

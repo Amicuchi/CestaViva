@@ -328,6 +328,7 @@ tfoot td {
 .cestas-flex{
     display: flex;
     justify-content: center;
+    gap: 1rem;
 }
 
 .cestas--cadastroProduto{
@@ -340,4 +341,21 @@ tfoot td {
 
 .lista-produtos{
     width: 65%;
+}
+.lista-produtos table{
+    font-size: 0.8rem;
+}
+
+.btnQtd{
+    width: 100px;
+    padding: 2px;
+    font-size: 0.8rem;
+}
+.btnQtd.left{
+    margin-left: 1rem;
+}
+
+.inputQtd{
+    padding-left: 1rem;
+    margin-right: 10px;
 }
