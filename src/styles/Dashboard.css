@@ -5,12 +5,10 @@
     display: flex;
 }
 
-.dashboard-content {
+.dashboard-content {    
     flex-direction: column;
-    flex: 1;
-    /* Ocupa todo o espaço restante */
-    overflow: auto;
-    /* Permite rolagem se o conteúdo for maior que a tela */
+    flex: 1;        /* Ocupa todo o espaço restante */
+    overflow: auto; /* Permite rolagem se o conteúdo for maior que a tela */
 }
 
 /* Sidebar */
