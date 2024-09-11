@@ -301,7 +301,7 @@ const api = {
         } else if (url.startsWith('/necessidades/')) {
             const id = parseInt(url.split('/').pop(), 10);
             const entidade = necessidadesMock.find(ent => ent.id === id);
-            return entidade ? Promise.resolve({ data: entidade.necessidades }) : Promise.reject(new Error('Entidade não encontrada'));
+            return entidade ? Promise.resolve(entidade.necessidades) : Promise.reject(new Error('Entidade não encontrada'));
         }
         return Promise.reject(new Error('Endpoint não encontrado'));
     }
