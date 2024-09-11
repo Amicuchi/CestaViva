@@ -110,13 +110,13 @@ export default function Cestas() {
                                 value={novoProduto.quantidade}
                                 onChange={handleInputChange}
                             />
-                            {/* <input
+                            <input
                                 type="text"
-                                name="categoria"
-                                placeholder="Categoria"
+                                name="campanha"
+                                placeholder="Campanha"
                                 value={novoProduto.categoria}
                                 onChange={handleInputChange}
-                            /> */}
+                            />
                             <button type="submit">Adicionar Produto</button>
                         </form>
 
@@ -165,7 +165,7 @@ export default function Cestas() {
                                                                 className='btnQtd'
                                                                 onClick={() => darBaixa(index)}
                                                             >
-                                                                Dar Baixa
+                                                                Receber
                                                             </button>
                                                         </>
                                                     ) : (
