@@ -15,7 +15,6 @@ const entidadesMock = [
         email: 'lagoinha.rp@ieq.com.br',
         responsavel: 'André Carvalho',
         responsavelTelefone: '(16) 91234-1234',
-        necessidades: ['arroz', 'feijão', 'macarrão'],
         img: ieq
     },
     {
@@ -32,7 +31,6 @@ const entidadesMock = [
         email: 'cristorei@paroquia.com.br',
         responsavel: 'José Santos',
         responsavelTelefone: '(11) 99876-5432',
-        necessidades: ['feijão', 'macarrão', 'óleo'],
         img: ieq
     },
     {
@@ -49,7 +47,6 @@ const entidadesMock = [
         email: 'zonasul@comunidade.com.br',
         responsavel: 'Maria Oliveira',
         responsavelTelefone: '(11) 91234-5678',
-        necessidades: ['arroz', 'leite', 'açúcar'],
         img: ieq
     },
     {
@@ -66,7 +63,6 @@ const entidadesMock = [
         email: 'casadovovo@repouso.com.br',
         responsavel: 'João Pereira',
         responsavelTelefone: '(16) 91234-8765',
-        necessidades: ['arroz', 'feijão', 'leite'],
         img: ieq
     },
     {
@@ -83,7 +79,6 @@ const entidadesMock = [
         email: 'cantinhodoceu@acolhimento.com.br',
         responsavel: 'Ana Paula Silva',
         responsavelTelefone: '(19) 99876-4321',
-        necessidades: ['feijão', 'macarrão', 'farinha'],
         img: ieq
     },
     {
@@ -100,7 +95,6 @@ const entidadesMock = [
         email: 'santacasa@saopaulo.com.br',
         responsavel: 'Carlos Alberto',
         responsavelTelefone: '(11) 98765-4321',
-        necessidades: ['arroz', 'feijão', 'açúcar'],
         img: ieq
     },
     {
@@ -117,7 +111,6 @@ const entidadesMock = [
         email: 'apae@rj.com.br',
         responsavel: 'Fernanda Costa',
         responsavelTelefone: '(21) 91234-5678',
-        necessidades: ['arroz', 'feijão', 'leite'],
         img: ieq
     },
     {
@@ -134,7 +127,6 @@ const entidadesMock = [
         email: 'laridosos@saovicente.com.br',
         responsavel: 'Ricardo Mendes',
         responsavelTelefone: '(41) 91234-5678',
-        necessidades: ['feijão', 'macarrão', 'óleo'],
         img: ieq
     },
     {
@@ -151,7 +143,6 @@ const entidadesMock = [
         email: 'crecheesperanca@esperanca.com.br',
         responsavel: 'Luana Souza',
         responsavelTelefone: '(71) 98765-4321',
-        necessidades: ['arroz', 'leite', 'farinha'],
         img: ieq
     },
     {
@@ -168,7 +159,6 @@ const entidadesMock = [
         email: 'larcriancas@saofrancisco.com.br',
         responsavel: 'Marcos Lima',
         responsavelTelefone: '(31) 91234-5678',
-        necessidades: ['feijão', 'açúcar', 'farinha'],
         img: ieq
     },
     {
@@ -185,7 +175,6 @@ const entidadesMock = [
         email: 'luzdoamanha@reabilitacao.com.br',
         responsavel: 'Helena Martins',
         responsavelTelefone: '(51) 98765-4321',
-        necessidades: ['arroz', 'macarrão', 'leite'],
         img: ieq
     },
     {
@@ -202,7 +191,6 @@ const entidadesMock = [
         email: 'pazeamor@acolhimento.com.br',
         responsavel: 'Joana Costa',
         responsavelTelefone: '(61) 91234-5678',
-        necessidades: ['feijão', 'leite', 'açúcar'],
         img: ieq
     },
 ];
@@ -306,11 +294,14 @@ const necessidadesMock = [
     }
 ];
 
-
 const api = {
     get: (url) => {
         if (url === '/entidades') {
             return Promise.resolve({ data: entidadesMock });
+        } else if (url.startsWith('/necessidades/')) {
+            const id = parseInt(url.split('/').pop(), 10);
+            const entidade = necessidadesMock.find(ent => ent.id === id);
+            return entidade ? Promise.resolve({ data: entidade.necessidades }) : Promise.reject(new Error('Entidade não encontrada'));
         }
         return Promise.reject(new Error('Endpoint não encontrado'));
     }
