@@ -341,7 +341,10 @@ tfoot td {
 
 .lista-produtos{
     width: 65%;
+    padding: 20px;
+    background: var(--bg-principal);
 }
+
 .lista-produtos table{
     font-size: 0.8rem;
 }

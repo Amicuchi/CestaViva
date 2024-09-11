@@ -110,13 +110,13 @@ export default function Cestas() {
                                 value={novoProduto.quantidade}
                                 onChange={handleInputChange}
                             />
-                            <input
+                            {/* <input
                                 type="text"
                                 name="categoria"
                                 placeholder="Categoria"
                                 value={novoProduto.categoria}
                                 onChange={handleInputChange}
-                            />
+                            /> */}
                             <button type="submit">Adicionar Produto</button>
                         </form>
 
@@ -124,7 +124,7 @@ export default function Cestas() {
 
                     <div className="lista-produtos">
                         {/* Seção de lista de produtos cadastrados */}
-                        <h2>Lista de alimentos necessários</h2>
+                        <h3>Lista de alimentos necessários</h3>
                         {produtos.length === 0 ? (
                             <p>Nenhum produto adicionado ainda.</p>
                         ) : (
@@ -216,7 +216,7 @@ export default function Cestas() {
 
                     {/* Seção de lista de itens da cesta completa */}
                     <div className="lista-produtos">
-                        <h2>Composição da Cesta Completa</h2>
+                        <h3>Composição da Cesta Completa</h3>
                         {cestaCompleta.length === 0 ? (
                             <p>Nenhum item na cesta completa ainda.</p>
                         ) : (
