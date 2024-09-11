@@ -12,6 +12,7 @@ export default function CadastroEntidade() {
     const [enderecoBairro, setEnderecoBairro] = useState('');
     const [enderecoCidade, setEnderecoCidade] = useState('');
     const [enderecoEstado, setEnderecoEstado] = useState('');
+    const [enderecoCep, setEnderecoCep] = useState('');
     const [nomeResponsavel, setNomeResponsavel] = useState('');
     const [telefoneResponsavel, setTelefoneResponsavel] = useState('');
     const [email, setEmail] = useState('');
@@ -48,10 +49,11 @@ export default function CadastroEntidade() {
                 <input className='CEInput' type="text" name="NomeFantasia" placeholder="Nome Fantasia" value={nomeFantasia} onChange={(e) => setNomeFantasia(e.target.value)} />
                 <input className='CEInput' type="text" name="EnderecoRua" placeholder="Logradouro (Rua, Av, Travessa, etc" value={enderecoRua} onChange={(e) => setEnderecoRua(e.target.value)} required />
                 <input className='CEInput' type="text" name="EnderecoNum" placeholder="Número" value={enderecoNum} onChange={(e) => setEnderecoNum(e.target.value)} required />
-                <input className='CEInput' type="text" name="EnderecoComp" placeholder="Complemento" value={enderecoComp} onChange={(e) => setEnderecoComp(e.target.value)} required />
+                <input className='CEInput' type="text" name="EnderecoComp" placeholder="Complemento" value={enderecoComp} onChange={(e) => setEnderecoComp(e.target.value)} />
                 <input className='CEInput' type="text" name="EnderecoBairro" placeholder="Bairro" value={enderecoBairro} onChange={(e) => setEnderecoBairro(e.target.value)} required />
                 <input className='CEInput' type="text" name="EnderecoCidade" placeholder="Cidade" value={enderecoCidade} onChange={(e) => setEnderecoCidade(e.target.value)} required />
                 <input className='CEInput' type="text" name="EnderecoEstado" placeholder="Estado" value={enderecoEstado} onChange={(e) => setEnderecoEstado(e.target.value)} required />
+                <input className='CEInput' type="text" name="EnderecoCep" placeholder="CEP" value={enderecoCep} onChange={(e) => setEnderecoCep(e.target.value)} />
                 <input className='CEInput' type="email" name="Email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                 <input className='CEInput' type="text" name="Responsavel" placeholder="Nome do Responsável" value={nomeResponsavel} onChange={(e) => setNomeResponsavel(e.target.value)} required />
                 <input className='CEInput' type="text" name="Telefone" placeholder="Telefone do Responsável" value={telefoneResponsavel} onChange={(e) => setTelefoneResponsavel(e.target.value)} />

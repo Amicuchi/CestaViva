@@ -12,7 +12,7 @@
         "nomeFantasia nomeFantasia nomeFantasia nomeFantasia"
         "enderecoRua enderecoRua enderecoRua enderecoNum"
         "enderecoComp enderecoComp enderecoBairro enderecoBairro"
-        "enderecoCidade enderecoCidade enderecoCidade enderecoEstado"
+        "enderecoCidade enderecoCidade enderecoEstado enderecoCep"
         "email email email email"
         "responsavel responsavel telefone telefone"
         "senha senha confirmeSenha confirmeSenha"
@@ -37,6 +37,8 @@ input[name="EnderecoBairro"] { grid-area: enderecoBairro; }
 input[name="EnderecoCidade"] { grid-area: enderecoCidade; }
 
 input[name="EnderecoEstado"] { grid-area: enderecoEstado; }
+
+input[name="EnderecoCep"] { grid-area: enderecoCep; }
 
 input[name="Responsavel"] { grid-area: responsavel; }
 
