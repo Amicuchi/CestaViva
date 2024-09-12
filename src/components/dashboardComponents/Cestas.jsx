@@ -114,7 +114,7 @@ export default function Cestas() {
                                 type="text"
                                 name="campanha"
                                 placeholder="Campanha"
-                                value={novoProduto.categoria}
+                                value={novoProduto.campanha}
                                 onChange={handleInputChange}
                             />
                             <button type="submit">Adicionar Produto</button>
@@ -131,8 +131,8 @@ export default function Cestas() {
                             <table>
                                 <thead>
                                     <tr>
+                                        <th>Campanha</th>
                                         <th>Produto</th>
-                                        <th>Categoria</th>
                                         <th>Quantidade <br /> Necessária</th>
                                         <th>Recebido</th>
                                         <th>Restante</th>
@@ -144,8 +144,8 @@ export default function Cestas() {
                                         const restante = produto.quantidade - produto.recebido;
                                         return (
                                             <tr key={index}>
+                                                <td>{produto.campanha}</td>
                                                 <td>{produto.nome}</td>
-                                                <td>{produto.categoria}</td>
                                                 <td>{produto.quantidade}</td>
                                                 <td>{produto.recebido}</td>
                                                 <td>{restante}</td>
@@ -199,16 +199,16 @@ export default function Cestas() {
                             <input
                                 type="number"
                                 name="quantidade"
-                                placeholder="Quantidade"
+                                placeholder="Qtd na cesta"
                                 value={novoItemCesta.quantidade}
                                 onChange={(e) => setNovoItemCesta({ ...novoItemCesta, quantidade: e.target.value })}
                             />
                             <input
                                 type="text"
-                                name="categoria"
-                                placeholder="Categoria"
-                                value={novoItemCesta.categoria}
-                                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, categoria: e.target.value })}
+                                name="campanha"
+                                placeholder="Campanha"
+                                value={novoItemCesta.campanha}
+                                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, campanha: e.target.value })}
                             />
                             <button type="submit">Adicionar à Cesta Completa</button>
                         </form>
@@ -236,13 +236,13 @@ export default function Cestas() {
                                             <td>{item.categoria}</td>
                                             <td>{item.quantidade}</td>
                                             <td>
-                                                <button 
+                                                <button
                                                     className='btnQtd'
                                                     onClick={() => editarItem(index)}
                                                 >
                                                     Editar
                                                 </button>
-                                                <button 
+                                                <button
                                                     className='btnQtd left'
                                                     onClick={() => excluirItem(index)}
                                                 >
