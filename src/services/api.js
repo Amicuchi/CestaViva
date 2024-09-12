@@ -195,6 +195,39 @@ const entidadesMock = [
     },
 ];
 
+const campanhas = [
+    {
+        id: 1,
+        nomeCampanha: 'Básica',
+        inicioCampanha: '01/01/2024',
+        terminoCampanha: '31/12/2024'
+    },
+    {
+        id: 2,
+        nomeCampanha: 'Dia das Mães',
+        inicioCampanha: '01/04/2024',
+        terminoCampanha: '05/05/2024'
+    },
+    {
+        id: 3,
+        nomeCampanha: 'Dia dos Pais',
+        inicioCampanha: '01/07/2024',
+        terminoCampanha: '31/07/2024'
+    },
+    {
+        id: 4,
+        nomeCampanha: 'Dia das Criaças',
+        inicioCampanha: '01/09/2024',
+        terminoCampanha: '10/10/2024'
+    },
+    {
+        id: 5,
+        nomeCampanha: 'Natal',
+        inicioCampanha: '01/11/2024',
+        terminoCampanha: '24/12/2024'
+    },
+];
+
 const necessidadesMock = [
     {
         id: 1,
@@ -298,6 +331,8 @@ const api = {
     get: (url) => {
         if (url === '/entidades') {
             return Promise.resolve({ data: entidadesMock });
+        } else if (url === '/campanhas') {
+            return Promise.resolve({ data: campanhas });
         } else if (url.startsWith('/necessidades/')) {
             const id = parseInt(url.split('/').pop(), 10);
             const entidade = necessidadesMock.find(ent => ent.id === id);
