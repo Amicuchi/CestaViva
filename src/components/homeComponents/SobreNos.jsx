@@ -1,6 +1,6 @@
 import '../../styles/Home.css';
 import '../../styles/index.css'
-import GrupoLogo from '../../assets/grupo.svg';
+import GrupoLogo from '../../assets/images/grupo.svg';
 
 export default function SobreNos() {
     return (

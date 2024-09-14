@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-// useLocation: Obtém a localização atual para acessar os parâmetros da URL
+import { useLocation } from 'react-router-dom'; // useLocation: Obtém a localização atual para acessar os parâmetros da URL
 import api from '../services/api';  // Simula uma chamada à API
 import '../styles/Busca.css';
-
+// atual
 export default function Busca() {
     const [entidades, setEntidades] = useState([]);
     const [cidades, setCidades] = useState([]);
@@ -48,8 +47,18 @@ export default function Busca() {
     const entidadesFiltradas = entidades.filter(entidade => {
         // Aplica filtro de cidade
         const filtroCidadeAplicado = filtroCidade === '' || entidade.cidade.toLowerCase() === filtroCidade.toLowerCase();
+        
         // Aplica filtro de item
-        const filtroItemAplicado = filtroItem === '' || (entidade.necessidades && entidade.necessidades.includes(filtroItem));
+        // const filtroItemAplicado = filtroItem === '' || (entidade.necessidades && entidade.necessidades.includes(filtroItem));
+            // Aqui, verifica se o filtroItem (que é o valor selecionado no filtro) está presente diretamente na lista entidade.necessidades. 
+            // No entanto, o método .includes() funciona bem apenas para arrays que contêm valores primitivos (como strings e números). 
+            // Portanto, se entidade.necessidades é um array de objetos e não um array de strings, .includes() não funcionará como esperado para verificar a presença de um item com base em uma propriedade de objeto.
+
+        const filtroItemAplicado = filtroItem === '' || (entidade.necessidades && entidade.necessidades.some(necessidade => necessidade.nomeProduto === filtroItem));
+            // Aqui, o método .some() verifica se pelo menos um item em entidade.necessidades atende à condição fornecida. 
+            // Especificamente, ele verifica se algum dos objetos em entidade.necessidades tem o nomeProduto igual ao filtroItem. 
+            // Isso é necessário se entidade.necessidades for um array de objetos e filtrar com base em uma propriedade desses objetos.
+
         return filtroCidadeAplicado && filtroItemAplicado;
     });
 
@@ -68,7 +77,7 @@ export default function Busca() {
                 <select value={filtroItem} onChange={(e) => setFiltroItem(e.target.value)}>
                     <option value="">Todos os alimentos</option>
                     {itens.map(item => (
-                        <option key={item} value={item}>{item}</option>
+                        <option key={item._id} value={item.nomeProduto}>{item.nomeProduto}</option>
                     ))}
                 </select>
             </div>
@@ -77,16 +86,16 @@ export default function Busca() {
                     <li className='BELi'>Nenhuma entidade encontrada.</li>
                 ) : (
                     entidadesFiltradas.map((entidade) => (
-                        <li className="BELi card" key={entidade.id}>
+                        <li className="BELi card" key={entidade._id}>
                             <h2 className="entidadeNome">{entidade.nomeFantasia}</h2>
-                            <p className="entidadeEndereco">{entidade.logradouro}, {entidade.numero}, {entidade.complemento}</p>
+                            <p className="entidadeEndereco">{entidade.endereco}, {entidade.numero}, {entidade.complemento}</p>
                             <p className="entidadeEndereco">{entidade.bairro}</p>
                             <p className="entidadeEndereco">{entidade.cidade} - {entidade.estado}</p>
                             <div className="entidadeNecessidades">
                                 {/* Exibe necessidades da entidade */}
                                 {entidade.necessidades && entidade.necessidades.length > 0 ? (
-                                    entidade.necessidades.map((necessidade, index) => (
-                                        <span className="necessidade" key={index}>
+                                    entidade.necessidades.map((necessidade) => (
+                                        <span className="necessidade" key={necessidade._id}>
                                             {necessidade.nomeProduto} ({necessidade.tipo}) - Quantidade: {necessidade.qtdNecessaria}
                                         </span>
                                     ))
