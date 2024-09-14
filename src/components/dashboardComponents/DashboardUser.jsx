@@ -45,7 +45,7 @@ export default function DashboardUser() {
                 const userResponse = await api.get('/auth/me'); // Novo endpoint para buscar os dados do usuário
                 const userId = userResponse.data._id;
 
-                // Agora, buscar a entidade vinculada ao usuário logado
+                // Buscar a entidade vinculada ao usuário logado
                 const entidadeResponse = await api.get(`/entidades/user/${userId}`);
                 setEntidade(entidadeResponse.data);
                 console.log('Entidade:', entidadeResponse.data);
