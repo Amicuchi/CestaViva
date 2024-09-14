@@ -13,11 +13,11 @@ cestaViva
 |  |  |  |- DashboardHome.jsx
 |  |  |  |- DashboardSidebar.jsx
 |  |  |  |- DashboardTable.jsx
+|  |  |  |- DashboardUser.jsx
 |  |  |  |- Estatistica.jsx
 |  |  |  |- FAQ.jsx
 |  |  |  |- Settings.jsx
 |  |  |  |- Support.jsx
-|  |  |  |- User.jsx
 |  |  |- homeComponents
 |  |  |  |- BusqueEntidade.jsx
 |  |  |  |- ConhecaAsEntidades.jsx
@@ -27,6 +27,7 @@ cestaViva
 |  |  |- Footer.jsx
 |  |  |- ModalTermo.jsx
 |  |  |- Navbar.jsx
+|  |  |- PrivateRoute.jsx
 |  |- pages
 |  |  |- Busca.jsx
 |  |  |- CadastroDoador.jsx
@@ -34,10 +35,8 @@ cestaViva
 |  |  |- Dashboard.jsx
 |  |  |- Home.jsx
 |  |  |- Login.jsx
-|  |- routes
-|  |  |- AppRoutes.jsx
 |  |- services
-|  |  |- api.js
+|  |  |- axiosConfig.js
 |  |- styles
 |  |  |- Busca.css
 |  |  |- CadastroDoador.css
@@ -49,6 +48,7 @@ cestaViva
 |  |  |- ModalTermo.css
 |  |- App.jsx
 |  |- main.jsx
+|- .env
 |- .gitignore
 |- eslint.config.js
 |- index.html
