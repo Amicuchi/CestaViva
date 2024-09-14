@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
 
 import Home from './pages/Home'
 import Login from './pages/Login';
@@ -27,7 +28,14 @@ export default function App() {
                 <Route path="/busca" element={<Busca />} />
                 <Route path="/cadastro-entidade" element={<CadastroEntidade />} />
 
-                <Route path="/dashboard" element={<Dashboard />}>
+                <Route
+                    path="/dashboard"
+                    element={
+                        <PrivateRoute>
+                            <Dashboard />
+                        </PrivateRoute>
+                }>
+
                     <Route path="dashboardhome" element={<DashboardHome />} />
                     <Route path="perfil" element={<DashboardUser />} />
                     <Route path="estatisticas" element={<Estatisticas />} />
