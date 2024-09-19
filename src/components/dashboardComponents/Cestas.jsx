@@ -3,10 +3,10 @@ import { useState } from 'react';
 export default function Cestas() {
     // Estados para armazenar dados relacionados a produtos e cestas
     const [produtos, setProdutos] = useState([]); // Lista de produtos cadastrados
-    const [novoProduto, setNovoProduto] = useState({ nome: '', quantidade: '', categoria: '' }); // Dados do novo produto a ser adicionado
+    const [novoProduto, setNovoProduto] = useState({ nome: '', quantidade: '', campanha: '' }); // Dados do novo produto a ser adicionado
     const [quantidadeBaixa, setQuantidadeBaixa] = useState({}); // Quantidade a ser dada baixa para cada produto
     const [cestaCompleta, setCestaCompleta] = useState([]); // Lista de itens que compõem a cesta completa
-    const [novoItemCesta, setNovoItemCesta] = useState({ nome: '', quantidade: '', categoria: '' }); // Dados do novo item a ser adicionado à cesta completa
+    const [novoItemCesta, setNovoItemCesta] = useState({ nome: '', quantidade: '', campanha: '' }); // Dados do novo item a ser adicionado à cesta completa
 
     // Função para lidar com a mudança de valores nos campos de entrada do formulário de produto
     const handleInputChange = (e) => {
@@ -29,20 +29,20 @@ export default function Cestas() {
     // Função para adicionar um novo produto à lista de produtos
     const adicionarProduto = (e) => {
         e.preventDefault(); // Prevenir o comportamento padrão do formulário
-        if (novoProduto.nome && novoProduto.quantidade > 0 && novoProduto.categoria) {
+        if (novoProduto.nome && novoProduto.quantidade > 0 && novoProduto.campanha) {
             // Apenas adiciona o produto se todos os campos estiverem preenchidos e a quantidade for maior que 0
             setProdutos([...produtos, { ...novoProduto, recebido: 0 }]); // Adiciona o novo produto à lista
-            setNovoProduto({ nome: '', quantidade: '', categoria: '' }); // Reseta o formulário
+            setNovoProduto({ nome: '', quantidade: '', campanha: '' }); // Reseta o formulário
         }
     };
 
     // Função para adicionar um novo item à cesta completa
     const adicionarItemCesta = (e) => {
         e.preventDefault(); // Prevenir o comportamento padrão do formulário
-        if (novoItemCesta.nome && novoItemCesta.quantidade > 0 && novoItemCesta.categoria) {
+        if (novoItemCesta.nome && novoItemCesta.quantidade > 0 && novoItemCesta.campanha) {
             // Apenas adiciona o item se todos os campos estiverem preenchidos e a quantidade for maior que 0
             setCestaCompleta([...cestaCompleta, { ...novoItemCesta }]); // Adiciona o novo item à lista de cesta completa
-            setNovoItemCesta({ nome: '', quantidade: '', categoria: '' }); // Reseta o formulário
+            setNovoItemCesta({ nome: '', quantidade: '', campanha: '' }); // Reseta o formulário
         }
     };
 
@@ -71,12 +71,12 @@ export default function Cestas() {
         const item = cestaCompleta[index];
         const nome = prompt('Editar nome do produto:', item.nome); // Prompt para editar o nome
         const quantidade = prompt('Editar quantidade:', item.quantidade); // Prompt para editar a quantidade
-        const categoria = prompt('Editar categoria:', item.categoria); // Prompt para editar a categoria
+        const campanha = prompt('Editar campanha:', item.campanha); // Prompt para editar a campanha
 
-        if (nome && quantidade > 0 && categoria) {
+        if (nome && quantidade > 0 && campanha) {
             // Apenas atualiza se os valores são válidos
             const updatedCesta = [...cestaCompleta];
-            updatedCesta[index] = { nome, quantidade, categoria }; // Atualiza o item na lista
+            updatedCesta[index] = { nome, quantidade, campanha }; // Atualiza o item na lista
             setCestaCompleta(updatedCesta); // Atualiza a lista de cesta completa
         }
     };
@@ -224,7 +224,7 @@ export default function Cestas() {
                                 <thead>
                                     <tr>
                                         <th>Produto</th>
-                                        <th>Categoria</th>
+                                        <th>campanha</th>
                                         <th>Quantidade <br /> Necessária</th>
                                         <th>Ações</th>
                                     </tr>
@@ -233,7 +233,7 @@ export default function Cestas() {
                                     {cestaCompleta.map((item, index) => (
                                         <tr key={index}>
                                             <td>{item.nome}</td>
-                                            <td>{item.categoria}</td>
+                                            <td>{item.campanha}</td>
                                             <td>{item.quantidade}</td>
                                             <td>
                                                 <button
