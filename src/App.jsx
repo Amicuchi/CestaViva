@@ -17,6 +17,8 @@ import Cestas from './components/dashboardComponents/Cestas'
 import FAQ from './components/dashboardComponents/FAQ'
 import Support from './components/dashboardComponents/Support'
 import Settings from './components/dashboardComponents/Settings'
+import RedefinirSenha from './components/RedefinriSenha'
+import SolicitarRedefinicaoSenha from './components/SolicitarRedefinicaoSenha';
 
 export default function App() {
     return (
@@ -25,6 +27,8 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/solicitar-redefinicao-senha" element={<SolicitarRedefinicaoSenha />} />
+                <Route path="/redefinir-senha/:token" element={<RedefinirSenha />} />
                 <Route path="/busca" element={<Busca />} />
                 <Route path="/cadastro-entidade" element={<CadastroEntidade />} />
 
