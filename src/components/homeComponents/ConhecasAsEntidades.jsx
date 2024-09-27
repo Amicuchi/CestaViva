@@ -48,7 +48,7 @@ export default function ConhecaAsEntidades() {
                             {entidades.map((entidade) => (
                                 <div className="Card" key={entidade._id}>
                                     <img
-                                        src={entidade.img}  // Verificar como cadastrar uma imagem para a entidade
+                                        src={entidade.imagem}  // Verificar como cadastrar uma imagem para a entidade
                                         className="CardImg"
                                         alt={`Logo da Entidade ${entidade.nomeFantasia}`}
                                     />
