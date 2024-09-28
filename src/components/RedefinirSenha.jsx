@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom"; // Hook para obter parâmetros da URL
 
-const RedefinirSenha = () => {
+export default function RedefinirSenha() {
   // Definindo estados para armazenar a nova senha, confirmação da senha e a mensagem de feedback
   const [novaSenha, setSenha] = useState(""); // Armazena a nova senha
   const [confirmarSenha, setConfirmarSenha] = useState(""); // Armazena a confirmação da nova senha
@@ -68,5 +68,3 @@ const RedefinirSenha = () => {
     </div>
   );
 };
-
-export default RedefinirSenha;
