@@ -5,8 +5,9 @@ import {
     faUser, 
     faChartBar, 
     faBriefcase, 
-    faCircleQuestion, 
     faGear, 
+    faHeadset,
+    faCircleQuestion, 
     faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons';
 import '../../styles/Dashboard.css';
@@ -40,15 +41,21 @@ export default function DashboardSidebar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="faq">
-                        <FontAwesomeIcon icon={faCircleQuestion} className="fas" />
-                        <span>FAQ</span>
-                    </Link>
-                </li>
-                <li>
                     <Link to="configuracoes">
                         <FontAwesomeIcon icon={faGear} className="fas" />
                         <span>Configurações</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="suporte">
+                        <FontAwesomeIcon icon={faHeadset} className="fas" />
+                        <span>Suporte</span>
+                    </Link>
+                </li>
+                <li>
+                    <Link to="faq">
+                        <FontAwesomeIcon icon={faCircleQuestion} className="fas" />
+                        <span>FAQ</span>
                     </Link>
                 </li>
                 <li className='logout'>
