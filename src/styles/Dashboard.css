@@ -1,5 +1,3 @@
-/* Atual */
-
 .dashboard-container,
 .dashboard-content {
     display: flex;
@@ -114,7 +112,6 @@
 .main--title {
     color: var(--bg-hover);
     padding-bottom: 10px;
-    /* font-size: 0.9rem; */
     margin-top: 0;
 }
 
@@ -322,9 +319,7 @@ tfoot td {
     transform: translateY(-5px);
 }
 
-
 /* Dashboard Cestas */
-
 .cestas-flex{
     display: flex;
     justify-content: center;
@@ -362,3 +357,4 @@ tfoot td {
     padding-left: 1rem;
     margin-right: 10px;
 }
+
