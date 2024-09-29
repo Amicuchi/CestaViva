@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import api from '../../services/axiosConfig';
+import useRandomAvatar from "../../services/useRandomAvatar";
 import '../../styles/Home.css';
 
 export default function ConhecaAsEntidades() {
     const [entidades, setEntidades] = useState([]); // Armazena as entidades
     const [currentIndex, setCurrentIndex] = useState(0); // Controla o índice atual do carrossel
+
+    // Usando o hook para gerenciar a imagem
+    const { getImageToDisplay } = useRandomAvatar();
 
     useEffect(() => {
         // Função para buscar entidades no backend
@@ -41,14 +45,14 @@ export default function ConhecaAsEntidades() {
                     </button>
 
                     <div className="CAEcarrousselExterno">
-                        <div 
+                        <div
                             className="CAECarousel"
                             style={{ transform: `translateX(-${currentIndex * 180}px)` }}
                         >
                             {entidades.map((entidade) => (
                                 <div className="Card" key={entidade._id}>
                                     <img
-                                        src={entidade.imagem}  // Verificar como cadastrar uma imagem para a entidade
+                                        src={entidade.imagem || getImageToDisplay()}
                                         className="CardImg"
                                         alt={`Logo da Entidade ${entidade.nomeFantasia}`}
                                     />
