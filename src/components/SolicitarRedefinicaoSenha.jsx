@@ -1,7 +1,7 @@
 import { useState } from "react"; // Importa o hook useState para gerenciar o estado local no componente
 import axios from "axios"; // Importa o Axios para fazer requisições HTTP
 
-const SolicitarRedefinicaoSenha = () => {
+export default function SolicitarRedefinicaoSenha() {
   // Define dois estados: email para armazenar o e-mail inserido e mensagem para exibir uma mensagem de sucesso ou erro
   const [email, setEmail] = useState(""); // Estado para armazenar o valor do campo de e-mail
   const [mensagem, setMensagem] = useState(""); // Estado para armazenar a mensagem de retorno (sucesso ou erro)
@@ -50,5 +50,3 @@ const SolicitarRedefinicaoSenha = () => {
     </div>
   );
 };
-
-export default SolicitarRedefinicaoSenha;
