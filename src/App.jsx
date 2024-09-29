@@ -2,10 +2,10 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 
 import Home from './pages/Home'
-import Login from './pages/Login';
-import CadastroEntidade from './pages/CadastroEntidade';
-import Dashboard from './pages/Dashboard';
 import Busca from './pages/Busca';
+import CadastroEntidade from './pages/CadastroEntidade';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -17,7 +17,7 @@ import Cestas from './components/dashboardComponents/Cestas'
 import FAQ from './components/dashboardComponents/FAQ'
 import Support from './components/dashboardComponents/Support'
 import Settings from './components/dashboardComponents/Settings'
-import RedefinirSenha from './components/RedefinriSenha'
+import RedefinirSenha from './components/RedefinirSenha'
 import SolicitarRedefinicaoSenha from './components/SolicitarRedefinicaoSenha';
 
 export default function App() {
