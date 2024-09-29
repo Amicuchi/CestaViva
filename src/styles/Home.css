@@ -3,23 +3,23 @@
 /* Estilo do Busca de Entidade: */
 /* **************************** */
 
-.BEContainer{
+.BEContainer {
     height: 500px;
 }
 
-.BEContainer form{
+.BEContainer form {
     margin-top: 2rem;
 }
 
 .BEButton,
-.BEInput{
+.BEInput {
     margin: 0 30px;
     width: 400px;
 }
 
 /* Estilo do Sobre o Projeto: */
 /* ************************** */
-.OProjeto{
+.OProjeto {
     background: var(--bg-secundario);
 }
 
@@ -34,14 +34,14 @@
     margin: 0 auto;
 }
 
-.sobreContainer img{
+.sobreContainer img {
     margin-right: 20px;
     margin-left: 20px;
     max-width: 300px;
     border-radius: 50%;
 }
 
-.sobreContainer p{
+.sobreContainer p {
     text-align: justify;
     font-weight: 300;
     font-size: 1.1rem;
@@ -51,17 +51,18 @@
 /* Estilo do Conheça as Entidades: */
 /* ******************************* */
 
-.CAEContainer{
+.CAEContainer {
     margin: 50px 0;
     background-color: var(--bg-secundario);
     position: relative;
 }
 
-.CAEcarrousselExterno{
+.CAEcarrousselExterno {
     overflow: hidden;
+
 }
 
-.CAECarousel{
+.CAECarousel {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -71,11 +72,11 @@
     margin: 0;
     height: 270px;
     position: relative;
-    transform: translateX(-180px);
     transition: transform 0.5s ease-in-out;
+    padding-left: 100px;
 }
 
-.Card{
+.Card {
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
@@ -86,10 +87,10 @@
     margin: 20px;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 
-        0 4px 8px rgba(0, 0, 0, 0.1), 
+    box-shadow:
+        0 4px 8px rgba(0, 0, 0, 0.1),
         0 6px 20px rgba(0, 0, 0, 0.1);
-    overflow: visible;
+    /* overflow: visible; */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -97,20 +98,20 @@
     transform: translateY(-10px);
 }
 
-.CardTitle{
+.CardTitle {
     font-size: 1rem;
     font-weight: normal;
     margin: 5px;
     margin-top: 2px;
 }
 
-.CardImg{
+.CardImg {
     width: 150px;
     height: 150px;
-    border-radius: 20%;
-    box-shadow: 
-        rgba(27, 34, 183, 0.08) 4px 4px 8px 0px, 
-        rgba(27, 34, 183, 0.07) 0px 6px 20px 0px !important;
+    border-radius: 50%;
+    box-shadow:
+        rgba(27, 34, 183, 0.2) 4px 4px 8px 0px,
+        rgba(27, 34, 183, 0.1) 0px 6px 20px 0px !important;
     margin: 10px;
     margin-bottom: 5px;
     border-bottom: 1px solid #ddd;
@@ -139,7 +140,7 @@
 
 /* Estilo do Contato: */
 /* ****************** */
-.contato--container{
+.contato--container {
     height: 400px;
 }
 
@@ -149,7 +150,7 @@
     max-width: 1000px;
 
     grid-template-rows: auto auto auto;
-    grid-template-areas: 
+    grid-template-areas:
         "nome nome"
         "email telefone"
         "mensagem mensagem"
@@ -169,7 +170,7 @@ input[name="email"] {
     grid-area: telefone;
 }
 
-textarea{
+textarea {
     grid-area: mensagem;
     resize: none;
     height: 100px;
