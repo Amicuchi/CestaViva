@@ -30,7 +30,7 @@ export default function Support() {
             setProtocolo(response.data.protocolo);
             alert(`Ticket enviado com sucesso! Protocolo: ${response.data.protocolo}`);
         } catch (error) {
-            setErro('Erro ao enviar o ticket. Tente novamente. Erro: ', error.message);
+            setErro(`Falha ao enviar o ticket. Tente novamente. Erro: ${error.message}`);
         } finally {
             setLoading(false);
         }
@@ -44,11 +44,11 @@ export default function Support() {
     };
 
     return (
-        <div className="card--container">
+        <div className="card--container lastOne">
             <h2>Contato com o Suporte</h2>
             <p>Aqui, o usuário pode enviar imagens, arquivos e texto para o suporte, de maneira que possa abrir um ticket de solicitação de suporte para incluir, excluir ou alterar qualquer informação sobre a entidade.</p>
             <form onSubmit={handleSubmit}>
-                <label>Tipo de Solicitação:</label>
+                <label className='UserLabel'>Tipo de Solicitação:</label>
                 <select value={tipo} onChange={(e) => setTipo(e.target.value)} required>
                     <option value="">Selecione</option>
                     <option value="duvida">Dúvida</option>
@@ -60,17 +60,22 @@ export default function Support() {
                     <option value="alteracao_usuario">Alteração de dados do Voluntário</option>
                 </select>
 
-                <label>Mensagem:</label>
+                <label className='UserLabel'>Mensagem:</label>
                 <textarea value={mensagem} onChange={(e) => setMensagem(e.target.value)} required />
 
-                <label>Enviar Arquivos:</label>
+                <label className='UserLabel'>Enviar Arquivos:</label>
                 <input type="file" multiple onChange={handleFileChange} />
 
                 {loading ? <p>Enviando...</p> : null}
-                {erro ? <p>{erro}</p> : null}
+                {erro ? <p className='errorMessage'>{erro}</p> : null}
 
                 <button type="submit">Enviar</button>
-                <button type="button" onClick={handleClear}>Limpar Formulário</button>
+                <button
+                    type="button"
+                    onClick={handleClear}
+                >
+                    Limpar Formulário
+                </button>
             </form>
 
             {protocolo && <p>Protocolo: {protocolo}</p>}
