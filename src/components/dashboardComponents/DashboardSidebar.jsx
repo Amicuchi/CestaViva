@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faTachographDigital, 
     faUser, 
-    faChartBar, 
     faBriefcase, 
     faGear, 
     faHeadset,
@@ -28,12 +27,12 @@ export default function DashboardSidebar() {
                         <span>Perfil</span>
                     </Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link to="estatisticas">
                         <FontAwesomeIcon icon={faChartBar} className="fas" />
                         <span>Estatísticas</span>
                     </Link>
-                </li>
+                </li> */}
                 <li>
                     <Link to="cestas">
                         <FontAwesomeIcon icon={faBriefcase} className="fas" />
