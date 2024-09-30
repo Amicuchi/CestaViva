@@ -382,3 +382,15 @@ tfoot td {
 .form--support div{
     width: 100%;
 }
+
+
+/* FAQ */
+.perguntas{
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.marginBotton{
+    margin-bottom: 0;
+}
