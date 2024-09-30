@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import api from "../../services/axiosConfig";
+
 // atual
 export default function Cestas() {
     const [produtos, setProdutos] = useState(() => {
@@ -8,13 +10,30 @@ export default function Cestas() {
     });
     const [novoProduto, setNovoProduto] = useState({ nome: '', quantidade: '', campanha: '' }); // Dados do novo produto a ser adicionado
     const [quantidadeBaixa, setQuantidadeBaixa] = useState({}); // Quantidade a ser recebida para cada produto
+    const [campanhas, setCampanhas] = useState([]); // Estado para armazenar as campanhas
+    const [novoItemCesta, setNovoItemCesta] = useState({ nome: '', quantidade: '', campanha: '' }); // Dados do novo item a ser adicionado à cesta completa
 
     // Função que salva os produtos no localStorage toda vez que o estado de produtos for atualizado
     useEffect(() => {
         localStorage.setItem('produtos', JSON.stringify(produtos)); // Converte a lista de produtos para string JSON e armazena no localStorage
     }, [produtos]); // A função será executada sempre que o estado de produtos mudar
 
-    // Função para lidar com a mudança de valores nos campos de entrada do formulário de produto
+
+    // Função para buscar campanhas cadastradas no backend
+    const fetchCampanhas = async () => {
+        try {
+            const response = await api.get("/cestas"); // Rota para retornar as cestas (campanhas) da instituição logada
+            setCampanhas(response.data); // Armazenando as campanhas no estado
+        } catch (error) {
+            console.error("Erro ao buscar campanhas:", error);
+        }
+    };
+
+    // Carregar campanhas quando a página for carregada
+    useEffect(() => {
+        fetchCampanhas();
+    }, []);
+
     const handleInputChange = (e) => {
         const { name, value } = e.target; // Obtém o nome do campo (name) e seu valor (value)
         setNovoProduto((prevState) => ({
@@ -72,6 +91,19 @@ export default function Cestas() {
                     <div className="cestas--cadastroProduto">
                         <form className="form-container" onSubmit={adicionarProduto}>
                             <h3>Cadastro do produto</h3>
+                            <select
+                                className='form--span'
+                                name="campanha"
+                                value={novoItemCesta.campanha}
+                                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, campanha: e.target.value })}
+                            >
+                                <option value="">Selecione uma campanha</option>
+                                {campanhas.map((campanha, index) => (
+                                    <option key={index} value={campanha.nomeCampanha}>
+                                        {campanha.nomeCampanha}
+                                    </option>
+                                ))}
+                            </select>
                             <input
                                 type="text"
                                 name="nome"
@@ -84,13 +116,6 @@ export default function Cestas() {
                                 name="quantidade"
                                 placeholder="Quantidade"
                                 value={novoProduto.quantidade}
-                                onChange={handleInputChange}
-                            />
-                            <input
-                                type="text"
-                                name="campanha"
-                                placeholder="Campanha"
-                                value={novoProduto.campanha}
                                 onChange={handleInputChange}
                             />
                             <button type="submit">Adicionar Produto</button>
