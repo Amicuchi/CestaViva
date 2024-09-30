@@ -198,13 +198,19 @@ export default function Settings() {
           <div className="cestas--cadastroProduto">
             <form className="form-container" onSubmit={adicionarItemCesta}>
               <h3>Cadastro do produto</h3>
-              <input
-                type="text"
+              <select
+                className='form--span'
                 name="campanha"
-                placeholder="Campanha"
                 value={novoItemCesta.campanha}
                 onChange={(e) => setNovoItemCesta({ ...novoItemCesta, campanha: e.target.value })}
-              />
+              >
+                <option value="">Selecione uma campanha</option>
+                {campanhas.map((campanha, index) => (
+                  <option key={index} value={campanha.nomeCampanha}>
+                    {campanha.nomeCampanha}
+                  </option>
+                ))}
+              </select>
               <input
                 type="text"
                 name="nome"
@@ -261,7 +267,8 @@ export default function Settings() {
                         </button>
                       </td>
                     </tr>
-                  )))}
+                  ))
+                )}
               </tbody>
             </table>
           </div>
@@ -271,7 +278,7 @@ export default function Settings() {
       {/* Seção de troca de senha */}
       <div className="card--container lastOne">
         <form onSubmit={trocarSenha}>
-        <h2>Troca de Senha</h2>
+          <h2>Troca de Senha</h2>
           <input
             type="password"
             placeholder="Senha atual"
