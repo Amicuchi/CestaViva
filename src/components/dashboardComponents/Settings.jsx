@@ -114,6 +114,7 @@ export default function Settings() {
       setSenhaAtual("");
       setNovaSenha("");
       setConfirmarSenha("");
+
     } catch (error) {
       console.error("Erro ao trocar senha:", error);
       alert("Erro ao trocar senha.");
@@ -122,69 +123,71 @@ export default function Settings() {
 
   return (
     <>
+      {/* Seção de cadastro de campanhas */}
       <div className="card--container">
         <h2>Administre suas campanhas</h2>
-        {/* Seção de cadastro de campanhas */}
-        <div className="cestas--cadastroProduto">
-          <form className="form-container" onSubmit={handleSubmitCampanha}>
-            <h3>Cadastro da Campanha</h3>
-            <input
-              type="text"
-              name="nome"
-              placeholder="Nome da campanha"
-              value={nomeCampanha}
-              onChange={(e) => setNomeCampanha(e.target.value)}
-            />
-            <input
-              type="date"
-              name="inicio"
-              placeholder="Data de Início"
-              value={comecaEm}
-              onChange={(e) => setComecaEm(e.target.value)}
-            />
-            <input
-              type="date"
-              name="termino"
-              placeholder="Data de Término"
-              value={terminaEm}
-              onChange={(e) => setTerminaEm(e.target.value)}
-            />
-            <button type="submit">Adicionar Campanha</button>
-          </form>
-        </div>
+        <div className="cestas-flex">
+          <div className="cestas--cadastroProduto">
+            <form className="form-container" onSubmit={handleSubmitCampanha}>
+              <h3>Cadastro da Campanha</h3>
+              <input
+                type="text"
+                name="nome"
+                placeholder="Nome da campanha"
+                value={nomeCampanha}
+                onChange={(e) => setNomeCampanha(e.target.value)}
+              />
+              <input
+                type="date"
+                name="inicio"
+                placeholder="Data de Início"
+                value={comecaEm}
+                onChange={(e) => setComecaEm(e.target.value)}
+              />
+              <input
+                type="date"
+                name="termino"
+                placeholder="Data de Término"
+                value={terminaEm}
+                onChange={(e) => setTerminaEm(e.target.value)}
+              />
+              <button type="submit">Adicionar Campanha</button>
+            </form>
+          </div>
 
-        {/* Seção de listagem das campanhas */}
-        <div className="table--container">
-          <h3>Campanhas Cadastradas</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Nome da Campanha</th>
-                <th>Data de Início</th>
-                <th>Data de Término</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {campanhas.length === 0 ? (
+          {/* Seção de listagem das campanhas */}
+          <div className="table--container lista-produtos">
+            <h3>Campanhas Cadastradas</h3>
+            <table>
+              <thead>
                 <tr>
-                  <td colSpan="4">Nenhuma campanha cadastrada.</td>
+                  <th>Nome da Campanha</th>
+                  <th>Data de Início</th>
+                  <th>Data de Término</th>
+                  <th>Ações</th>
                 </tr>
-              ) : (
-                campanhas.map((campanha, index) => (
-                  <tr key={index}>
-                    <td>{campanha.nomeCampanha}</td>
-                    <td>{campanha.comecaEm}</td>
-                    <td>{campanha.terminaEm}</td>
-                    <td className="iconEditTrash">
-                      <FontAwesomeIcon icon={faPen} />
-                      <FontAwesomeIcon icon={faTrashCan} />
-                    </td>
+              </thead>
+              <tbody>
+                {campanhas.length === 0 ? (
+                  <tr>
+                    <td colSpan="4">Nenhuma campanha cadastrada.</td>
                   </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+                ) : (
+                  campanhas.map((campanha, index) => (
+                    <tr key={index}>
+                      <td>{campanha.nomeCampanha}</td>
+                      <td>{campanha.comecaEm}</td>
+                      <td>{campanha.terminaEm}</td>
+                      <td className="iconEditTrash">
+                        <FontAwesomeIcon icon={faPen} />
+                        <FontAwesomeIcon icon={faTrashCan} />
+                      </td>
+                    </tr>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
@@ -195,6 +198,13 @@ export default function Settings() {
           <div className="cestas--cadastroProduto">
             <form className="form-container" onSubmit={adicionarItemCesta}>
               <h3>Cadastro do produto</h3>
+              <input
+                type="text"
+                name="campanha"
+                placeholder="Campanha"
+                value={novoItemCesta.campanha}
+                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, campanha: e.target.value })}
+              />
               <input
                 type="text"
                 name="nome"
@@ -209,66 +219,59 @@ export default function Settings() {
                 value={novoItemCesta.quantidade}
                 onChange={(e) => setNovoItemCesta({ ...novoItemCesta, quantidade: e.target.value })}
               />
-              <input
-                type="text"
-                name="campanha"
-                placeholder="Campanha"
-                value={novoItemCesta.campanha}
-                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, campanha: e.target.value })}
-              />
               <button type="submit">Adicionar à Cesta Completa</button>
             </form>
           </div>
-        </div>
 
-        {/* Seção de lista de itens da cesta completa */}
-        <div className="lista-produtos">
-          <h3>Composição da Cesta Completa</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Produto</th>
-                <th>Campanha</th>
-                <th>Quantidade</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {cestaCompleta.length === 0 ? (
+          {/* Seção de lista de itens da cesta completa */}
+          <div className="lista-produtos">
+            <h3>Composição da Cesta Completa</h3>
+            <table>
+              <thead>
                 <tr>
-                  <td colSpan="4">Nenhum item na cesta completa ainda.</td>
+                  <th>Campanha</th>
+                  <th>Produto</th>
+                  <th>Quantidade</th>
+                  <th>Ações</th>
                 </tr>
-              ) : (
-                cestaCompleta.map((item, index) => (
-                  <tr key={index}>
-                    <td>{item.nome}</td>
-                    <td>{item.campanha}</td>
-                    <td>{item.quantidade}</td>
-                    <td>
-                      <button
-                        className='btnQtd'
-                        onClick={() => editarItem(index)}
-                      >
-                        Editar
-                      </button>
-                      <button
-                        className='btnQtd left'
-                        onClick={() => excluirItem(index)}
-                      >
-                        Excluir
-                      </button>
-                    </td>
+              </thead>
+              <tbody>
+                {cestaCompleta.length === 0 ? (
+                  <tr>
+                    <td colSpan="4">Nenhum item na cesta completa ainda.</td>
                   </tr>
-                )))}
-            </tbody>
-          </table>
+                ) : (
+                  cestaCompleta.map((item, index) => (
+                    <tr key={index}>
+                      <td>{item.campanha}</td>
+                      <td>{item.nome}</td>
+                      <td>{item.quantidade}</td>
+                      <td>
+                        <button
+                          className='btnQtd'
+                          onClick={() => editarItem(index)}
+                        >
+                          Editar
+                        </button>
+                        <button
+                          className='btnQtd left'
+                          onClick={() => excluirItem(index)}
+                        >
+                          Excluir
+                        </button>
+                      </td>
+                    </tr>
+                  )))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
       {/* Seção de troca de senha */}
       <div className="card--container lastOne">
+        <form onSubmit={trocarSenha}>
         <h2>Troca de Senha</h2>
-        <form className="form-container" onSubmit={trocarSenha}>
           <input
             type="password"
             placeholder="Senha atual"
