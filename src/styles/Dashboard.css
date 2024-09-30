@@ -252,7 +252,7 @@ tfoot td {
 
 .user--container img {
     height: 300px;
-    width: 200px;
+    width: 300px;
     margin-right: 2rem;
     border: 1px solid var(--bg-secundario);
 }
