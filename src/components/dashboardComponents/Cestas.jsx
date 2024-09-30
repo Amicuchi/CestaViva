@@ -11,7 +11,6 @@ export default function Cestas() {
     const [novoProduto, setNovoProduto] = useState({ nome: '', quantidade: '', campanha: '' }); // Dados do novo produto a ser adicionado
     const [quantidadeBaixa, setQuantidadeBaixa] = useState({}); // Quantidade a ser recebida para cada produto
     const [campanhas, setCampanhas] = useState([]); // Estado para armazenar as campanhas
-    const [novoItemCesta, setNovoItemCesta] = useState({ nome: '', quantidade: '', campanha: '' }); // Dados do novo item a ser adicionado à cesta completa
 
     // Função que salva os produtos no localStorage toda vez que o estado de produtos for atualizado
     useEffect(() => {
@@ -94,8 +93,8 @@ export default function Cestas() {
                             <select
                                 className='form--span'
                                 name="campanha"
-                                value={novoItemCesta.campanha}
-                                onChange={(e) => setNovoItemCesta({ ...novoItemCesta, campanha: e.target.value })}
+                                value={novoProduto.campanha}
+                                onChange={(e) => setNovoProduto({ ...novoProduto, campanha: e.target.value })}
                             >
                                 <option value="">Selecione uma campanha</option>
                                 {campanhas.map((campanha, index) => (
