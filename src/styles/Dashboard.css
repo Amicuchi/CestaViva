@@ -200,19 +200,29 @@ table {
 thead {
     background-color: var(--bg-principal);
     color: var(--bg-hover);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.1rem;
 }
 
-th {
+th, 
+td {
     padding: 1rem 0;
+    border-bottom: 1px solid #ddd;
 }
 
 tbody {
     background-color: #fff;
 }
 
+tbody tr:hover {
+    background-color: #e0f7fa; /* Efeito hover para realçar a linha */
+    cursor: pointer;
+}
+
 td {
     padding: 0.3rem 0;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     color: var(--bg-terciario);
 }
 
@@ -237,12 +247,6 @@ tfoot {
 tfoot td {
     padding: 1rem;
 }
-
-.table--container button {
-    padding: 5px;
-    width: 80px;
-}
-
 
 /* Dashboard User */
 .user--container {

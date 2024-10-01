@@ -1,9 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-    faPen, 
-    faTrashCan
-} from '@fortawesome/free-solid-svg-icons';
-
 export default function DashboardTable() {
     return(
         <div className="card--container lastOne">
@@ -12,69 +6,70 @@ export default function DashboardTable() {
                     <table>
                         <thead>
                             <tr>
-                                <th>Data</th>
-                                <th>Descrição</th>
-                                <th>Qtd</th>
-                                <th>Categoria</th>
-                                <th>Status</th>
-                                <th>Ação</th>
+                                <th>Data Cadastro</th>
+                                <th>Último Recebimento</th>
+                                <th>Campanha</th>
+                                <th>Produto</th>
+                                <th>Unidade</th>
+                                <th>Qtd Recebida</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Arroz 5kg</td>
-                                <td>5</td>
-                                <td>Básico</td>
-                                <td>Efetivado</td>
-                                <td className='iconEditTrash'>
-                                    <FontAwesomeIcon icon={faPen} /> 
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                </td>
+                                <td>30/09/2024</td>
+                                <td>Cesta Básica</td>
+                                <td>Arroz</td>
+                                <td>Saco de 5Kg</td>
+                                <td>24</td>
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Arroz 5kg</td>
-                                <td>5</td>
-                                <td>Básico</td>
-                                <td>Efetivado</td>
-                                <td className='iconEditTrash'>
-                                    <FontAwesomeIcon icon={faPen} /> 
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                </td>
+                                <td>30/09/2024</td>
+                                <td>Cesta Básica</td>
+                                <td>Arroz</td>
+                                <td>Saco de 5Kg</td>
+                                <td>24</td>
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Arroz 5kg</td>
-                                <td>5</td>
-                                <td>Básico</td>
-                                <td>Efetivado</td>
-                                <td className='iconEditTrash'>
-                                    <FontAwesomeIcon icon={faPen} /> 
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                </td>
+                                <td>30/09/2024</td>
+                                <td>Cesta Básica</td>
+                                <td>Arroz</td>
+                                <td>Saco de 5Kg</td>
+                                <td>24</td>
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Arroz 5kg</td>
-                                <td>5</td>
-                                <td>Básico</td>
-                                <td>Efetivado</td>
-                                <td className='iconEditTrash'>
-                                    <FontAwesomeIcon icon={faPen} /> 
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                </td>
+                                <td>30/09/2024</td>
+                                <td>Cesta Básica</td>
+                                <td>Arroz</td>
+                                <td>Saco de 5Kg</td>
+                                <td>24</td>
                             </tr>
                             <tr>
                                 <td>02/09/2024</td>
-                                <td>Arroz 5kg</td>
-                                <td>5</td>
-                                <td>Básico</td>
-                                <td>Efetivado</td>
-                                <td className='iconEditTrash'>
-                                    <FontAwesomeIcon icon={faPen} /> 
-                                    <FontAwesomeIcon icon={faTrashCan} />
-                                </td>
+                                <td>30/09/2024</td>
+                                <td>Cesta Básica</td>
+                                <td>Arroz</td>
+                                <td>Saco de 5Kg</td>
+                                <td>24</td>
+                            </tr>
+                            <tr>
+                                <td>02/09/2024</td>
+                                <td>30/09/2024</td>
+                                <td>Cesta Básica</td>
+                                <td>Arroz</td>
+                                <td>Saco de 5Kg</td>
+                                <td>24</td>
+                            </tr>
+                            <tr>
+                                <td>02/09/2024</td>
+                                <td>30/09/2024</td>
+                                <td>Cesta Básica</td>
+                                <td>Arroz</td>
+                                <td>Saco de 5Kg</td>
+                                <td>24</td>
                             </tr>
                         </tbody>
                     </table>
