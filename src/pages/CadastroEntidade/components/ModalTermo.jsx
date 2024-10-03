@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import { Modal, Box, Button } from '@mui/material';
-import './ModalTermo.css'
+import './ModalTermo.module.css'
 
 export default function ModalTermo({ open, handleClose }) {
     return (
