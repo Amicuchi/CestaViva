@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import api from "../../../../services/axiosConfig";
 
-// atual
 export default function Cestas() {
     const [produtos, setProdutos] = useState(() => {
         // Carrega os dados do localStorage apenas uma vez, quando o componente é montado
