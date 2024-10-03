@@ -7,7 +7,9 @@ export default function PrivateRoute({ children }) {
     const token = localStorage.getItem('token');
 
     // Se o token não existir, redirecionar para a página de login
-    if (!token) return <Navigate to="/login" />;
+    if (!token) {
+        return <Navigate to="/login" />;
+    }
 
     return children;
 };

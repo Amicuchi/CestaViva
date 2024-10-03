@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import AppRoutes from './routes/AppRoutes';
 
@@ -9,9 +9,7 @@ export default function App() {
     return (
         <Router>
             <Navbar />
-            <Routes>
-                <AppRoutes />
-            </Routes>
+            <AppRoutes />
             <Footer />
         </Router>
     );
