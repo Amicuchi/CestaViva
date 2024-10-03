@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import api from "../../services/axiosConfig";
+import api from "../../../../services/axiosConfig";
 
 // atual
 export default function Cestas() {

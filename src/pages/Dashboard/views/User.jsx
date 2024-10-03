@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import api from "../../services/axiosConfig";
-import useRandomAvatar from "../../services/useRandomAvatar";
+import api from "../../../services/axiosConfig";
+import useRandomAvatar from "../../../services/useRandomAvatar";
 import "../../styles/Dashboard.css";
 
 export default function DashboardUser() {

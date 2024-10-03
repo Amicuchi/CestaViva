@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router-dom';
 
-import DashboardHeader from "../components/dashboardComponents/DashboardHeader";
+import DashboardHeader from "./components/Header";
 import DashboardSidebar from "../components/dashboardComponents/DashboardSidebar";
 
 export default function Dashboard() {

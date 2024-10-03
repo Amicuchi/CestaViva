@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../styles/CadastroEntidade.css";
-import ModalTermo from "../components/ModalTermo";
-import axios from "../services/axiosConfig"; // Importar o axios configurado para fazer as requisições
+import ModalTermo from "./components/ModalTermo";
+import axios from "../../services/axiosConfig"; // Importar o axios configurado para fazer as requisições
 
 export default function CadastroEntidade() {
   const [cnpj, setCnpj] = useState("");

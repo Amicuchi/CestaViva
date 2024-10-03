@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"; // Importação do axios para fazer a requisição ao backend - Para requisições HTTP
 
@@ -31,10 +31,14 @@ export default function Login() {
       // Se ocorrer um erro (como credenciais inválidas)
       const errorMessage =
         error.response?.data?.message ||
-        "Erro ao tentar fazer login. Verifique suas credenciais e tente novamente.";
+        "Erro ao tentar fazer login. Verifique seu e-mail e senha e tente novamente.";
       setError(errorMessage);
     }
   };
+
+  useEffect(() => {
+    localStorage.removeItem('token');
+  }, []);
 
   return (
     <main>
