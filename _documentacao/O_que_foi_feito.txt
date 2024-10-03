@@ -4,48 +4,85 @@ cestaViva
 |- node_nodules
 |- src
 |  |- assets
-|  |  |- CestaViva-logo.svg
+|  |  |- default-images
+|  |  |  |- default1.jpg
+|  |  |  |- default2.jpg
+|  |  |  |- default3.jpg
+|  |  |  |- default4.jpg
+|  |  |  |- default5.jpg
+|  |  |  |- default6.jpg
+|  |  |  |- default7.jpg
+|  |  |  |- default8.jpg
+|  |  |  |- default9.jpg
+|  |  |  |- default10.jpg
+|  |  |- images
+|  |  |  |- avatar.png
+|  |  |  |- CestaViva-logo.svg
+|  |  |  |- doaCelular.svg
+|  |  |  |- grupo.svg
 |  |- components
-|  |  |- dasboardComponents
-|  |  |  |- Cestas.jsx
-|  |  |  |- DashboardCards.jsx
-|  |  |  |- DashboardHeader.jsx
-|  |  |  |- DashboardHome.jsx
-|  |  |  |- DashboardSidebar.jsx
-|  |  |  |- DashboardTable.jsx
-|  |  |  |- DashboardUser.jsx
-|  |  |  |- Estatistica.jsx
-|  |  |  |- FAQ.jsx
-|  |  |  |- Settings.jsx
-|  |  |  |- Support.jsx
-|  |  |- homeComponents
-|  |  |  |- BusqueEntidade.jsx
-|  |  |  |- ConhecaAsEntidades.jsx
-|  |  |  |- Contato.jsx
-|  |  |  |- SobreNos.jsx
-|  |  |  |- SobreProjeto.jsx
 |  |  |- Footer.jsx
-|  |  |- ModalTermo.jsx
-|  |  |- Navbar.jsx
-|  |  |- PrivateRoute.jsx
+|  |  |- NavBar.jsx
 |  |- pages
-|  |  |- Busca.jsx
-|  |  |- CadastroDoador.jsx
-|  |  |- CadastroEntidade.jsx
-|  |  |- Dashboard.jsx
-|  |  |- Home.jsx
-|  |  |- Login.jsx
+|  |  |- Busca
+|  |  |  |- Busca.jsx
+|  |  |  |- Busca.module.css
+|  |  |- CadastroEntidade
+|  |  |  |- Components
+|  |  |  |  |- ModalTermo.jsx
+|  |  |  |  |- ModalTermo.module.css
+|  |  |  |- CadastroEntidade.jsx
+|  |  |  |- CadastroEntidade.module.css
+|  |  |- Dashboard
+|  |  |  |- components
+|  |  |  |  |- Header.jsx
+|  |  |  |  |- Sidebar.jsx
+|  |  |  |- views
+|  |  |  |  |- Campanhas
+|  |  |  |  |  |- components
+|  |  |  |  |  |  |- ListaCampanhas.jsx
+|  |  |  |  |  |  |- ListaProdutos.jsx
+|  |  |  |  |  |- Cestas.jsx
+|  |  |  |  |- DashboardHome
+|  |  |  |  |  |- components
+|  |  |  |  |  |  |- Cards.jsx
+|  |  |  |  |  |  |- Table.jsx
+|  |  |  |  |- DashboardHome.jsx
+|  |  |  |  |- FAQ
+|  |  |  |  |  |- components
+|  |  |  |  |  |  |- Questions.jsx
+|  |  |  |  |  |  |- Support.jsx
+|  |  |  |  |- FAQ.jsx
+|  |  |  |  |- Settings
+|  |  |  |  |  |- Settings.jsx
+|  |  |  |  |- User.jsx
+|  |  |  |- Dashboard.jsx
+|  |  |  |- Dashboard.module.css
+|  |  |- Home
+|  |  |  |- HomeComponents
+|  |  |  |  |- BusqueEntidade.jsx
+|  |  |  |  |- ConhecaAsEntidades.jsx
+|  |  |  |  |- Contato.jsx
+|  |  |  |  |- SobreNos.jsx
+|  |  |  |  |- SobreProjeto.jsx
+|  |  |  |- Home.jsx
+|  |  |  |- Home.module.css
+|  |  |- Login
+|  |  |  |- Login.jsx
+|  |  |- RedefinirSenha
+|  |  |  |- RedefinirSenha.jsx
+|  |  |  |- SolicitarRedefinicaoSenha.jsx
+|  |- routes
+|  |  |- AppRoutes.jsx
+|  |  |- PrivateRoute.js
 |  |- services
 |  |  |- axiosConfig.js
+|  |  |- useRandomAvatar.js
 |  |- styles
-|  |  |- Busca.css
-|  |  |- CadastroDoador.css
-|  |  |- CadastroEntidade.css
-|  |  |- Dashboard.css
 |  |  |- Fonts.css
-|  |  |- Home.css
 |  |  |- index.css
-|  |  |- ModalTermo.css
+|  |- utils
+|  |  |- isLogged.js
 |  |- App.jsx
 |  |- main.jsx
 |- .env
