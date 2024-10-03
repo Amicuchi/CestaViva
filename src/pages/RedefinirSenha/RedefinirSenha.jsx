@@ -39,32 +39,26 @@ export default function RedefinirSenha() {
   return (
     <div>
       <h2>Redefinir Senha</h2>
-      {/* Formulário para o usuário inserir a nova senha */}
       <form onSubmit={handleSubmit}>
-        {/* Campo para o usuário inserir a nova senha */}
         <label>Nova Senha:</label>
         <input
-          type="password" // Define o tipo como "password" para esconder os caracteres inseridos
-          value={novaSenha} // Valor controlado pelo estado 'senha'
-          onChange={(e) => setSenha(e.target.value)} // Atualiza o estado 'senha' sempre que o usuário digita
-          required // Define que o campo é obrigatório
+          type="password"
+          value={novaSenha}
+          onChange={(e) => setSenha(e.target.value)}
+          required
         />
 
-        {/* Campo para confirmar a nova senha */}
         <label>Confirmar Nova Senha:</label>
         <input
-          type="password" // Campo de senha
-          value={confirmarSenha} // Valor controlado pelo estado 'confirmarSenha'
-          onChange={(e) => setConfirmarSenha(e.target.value)} // Atualiza o estado 'confirmarSenha' ao digitar
-          required // Campo obrigatório
+          type="password" 
+          value={confirmarSenha} 
+          onChange={(e) => setConfirmarSenha(e.target.value)} 
+          required 
         />
 
-        {/* Botão para enviar o formulário */}
         <button type="submit">Redefinir Senha</button>
       </form>
-      {/* Exibe a mensagem de sucesso ou erro, caso exista */}
       {mensagem && <p>{mensagem}</p>}{" "}
-      {/* Só renderiza o parágrafo se houver uma mensagem */}
     </div>
   );
 };

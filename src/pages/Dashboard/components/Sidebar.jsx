@@ -8,7 +8,7 @@ import {
     faCircleQuestion, 
     faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/Dashboard.css';
+import '../Dashboard.module.css';
 
 export default function Sidebar() {
     return (

@@ -1,4 +1,4 @@
-import '../../styles/Home.css';
+import '../Home.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar o hook useNavigate
 

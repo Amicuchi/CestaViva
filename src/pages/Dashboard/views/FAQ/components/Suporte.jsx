@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import axios from 'axios';
 
-export default function Support() {
+export default function Suporte() {
     const [tipo, setTipo] = useState('');
     const [mensagem, setMensagem] = useState('');
     const [arquivos, setArquivos] = useState([]);

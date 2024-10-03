@@ -1,5 +1,5 @@
-import { useState } from "react"; // Importa o hook useState para gerenciar o estado local no componente
-import axios from "axios"; // Importa o Axios para fazer requisições HTTP
+import { useState } from "react";
+import axios from "axios";
 
 export default function SolicitarRedefinicaoSenha() {
   // Define dois estados: email para armazenar o e-mail inserido e mensagem para exibir uma mensagem de sucesso ou erro
@@ -30,23 +30,17 @@ export default function SolicitarRedefinicaoSenha() {
   return (
     <div>
       <h2>Solicitar Redefinição de Senha</h2>
-      {/* Formulário para solicitar redefinição de senha */}
       <form onSubmit={handleSubmit}>
         <label>Digite seu Email:</label>
-        {/* Campo de input para o usuário inserir o e-mail. 
-            O valor do input está vinculado ao estado 'email', e o 'onChange' atualiza esse estado a cada alteração. */}
         <input
-          type="email" // Define o tipo de input como e-mail
-          value={email} // Valor controlado pelo estado 'email'
-          onChange={(e) => setEmail(e.target.value)} // Atualiza o estado 'email' sempre que o usuário digita algo
-          required // Campo obrigatório
+          type="email" 
+          value={email} 
+          onChange={(e) => setEmail(e.target.value)} 
+          required
         />
-        {/* Botão de envio do formulário */}
         <button type="submit">Enviar</button>
       </form>
-      {/* Exibe a mensagem de sucesso ou erro, se houver */}
       {mensagem && <p>{mensagem}</p>}{" "}
-      {/* Só exibe o parágrafo se a mensagem não estiver vazia */}
     </div>
   );
 };

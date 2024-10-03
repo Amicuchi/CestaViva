@@ -1,14 +1,14 @@
 import { Outlet } from 'react-router-dom';
 
-import DashboardHeader from "./components/Header";
-import DashboardSidebar from "../components/dashboardComponents/DashboardSidebar";
+import Header from "./components/Header";
+import Sidebar from "./components/Sidebar";
 
 export default function Dashboard() {
     return (
         <div className="dashboard-container">
-            <DashboardSidebar />
+            <Sidebar />
             <div className="dashboard-content">
-                <DashboardHeader />
+                <Header />
                 <Outlet />
             </div>
         </div>

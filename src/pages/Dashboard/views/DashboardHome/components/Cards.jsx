@@ -1,4 +1,4 @@
-export default function DashboardCards() {
+export default function Cards() {
     return (
         <>
             <div className="card--container">

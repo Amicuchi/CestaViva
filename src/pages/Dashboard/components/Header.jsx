@@ -1,8 +1,6 @@
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-import '../../styles/Dashboard.css';
+import '../Dashboard.module.css';
 
-export default function DashboardHeader() {
+export default function Header() {
     return (
         <>
             <div className="header--wrapper">

@@ -1,6 +1,7 @@
-import '../../styles/Home.css';
+import '../Home.module.css';
 
-import CestaLogo from '../../assets/images/CestaViva-Logo.svg';
+// import CestaLogo from '../../assets/images/CestaViva-Logo.svg';
+import CestaLogo from '../../../assets/images/CestaViva-Logo.svg';
 
 export default function SobreProjeto() {
     return (

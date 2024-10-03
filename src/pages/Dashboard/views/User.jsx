@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../../../services/axiosConfig";
 import useRandomAvatar from "../../../services/useRandomAvatar";
-import "../../styles/Dashboard.css";
+import '../Dashboard.module.css';
 
 export default function DashboardUser() {
   const [entidade, setEntidade] = useState(null);

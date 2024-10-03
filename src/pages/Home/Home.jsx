@@ -1,8 +1,8 @@
-import BusqueEntidade from "../../components/homeComponents/BusqueEntidade";
-import ConhecaAsEntidades from "../../components/homeComponents/ConhecasAsEntidades";
-import Contato from "../../components/homeComponents/Contato";
-import SobreNos from "../../components/homeComponents/SobreNos";
-import SobreProjeto from "../../components/homeComponents/SobreProjeto";
+import BusqueEntidade from "../Home/homeComponents/BusqueEntidade";
+import ConhecaAsEntidades from "../Home/homeComponents/ConhecasAsEntidades";
+import Contato from "../Home/homeComponents/Contato";
+import SobreNos from "../Home/homeComponents/SobreNos";
+import SobreProjeto from "../Home/homeComponents/SobreProjeto";
 
 export default function Home() {
     return (

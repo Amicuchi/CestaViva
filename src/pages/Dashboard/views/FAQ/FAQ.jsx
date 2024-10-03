@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import '../../styles/Dashboard.css';
-import Support from './components/Support';
+import '../../Dashboard.module.css';
+import Suporte from './components/Suporte';
 
 export default function DashboardFAQ() {
     // Armazena o índice da pergunta que está aberta
@@ -76,7 +76,7 @@ export default function DashboardFAQ() {
             </div>
 
             <div className="card--container lastOne" style={{ paddingBottom: 10 }}>
-                <Support className='' />
+                <Suporte />
             </div>
         </>
     );
