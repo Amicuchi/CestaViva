@@ -1,4 +1,3 @@
-// axiosConfig.js
 import axios from 'axios';
 
 // Criação da instância Axios com a baseURL dinâmica vinda das variáveis de ambiente
