@@ -1,6 +1,6 @@
 import Suporte from './components/Support';
 import Questions from './components/Questions';
-import '../../Dashboard.module.css';
+import '../../Dashboard.css';
 
 export default function DashboardFAQ() {
 

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
-import isLogged from '../utils/isLogged';
 import { useEffect, useState } from 'react';
+import isLogged from '../utils/isLogged';
 import avatar from '../assets/images/avatar.png';
 
 export default function Navbar() {
@@ -15,9 +15,9 @@ export default function Navbar() {
 
     // Função para realizar o logout
     const handleLogout = () => {
-        localStorage.removeItem('token'); // Remove o token do localStorage
-        setUserLogged(false); // Atualiza o estado para refletir que o usuário não está mais logado
-        navigate('/'); // Redireciona para a página inicial
+        localStorage.removeItem('token');   // Remove o token do localStorage
+        setUserLogged(false);               // Atualiza o estado para refletir que o usuário não está mais logado
+        navigate('/');                      // Redireciona para a página inicial
     };
 
     return (

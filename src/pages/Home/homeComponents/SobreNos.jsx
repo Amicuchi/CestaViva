@@ -1,5 +1,5 @@
 import '../../../styles/index.css';
-import '../Home.module.css';
+import '../Home.css';
 
 import GrupoLogo from '../../../assets/images/grupo.svg';
 

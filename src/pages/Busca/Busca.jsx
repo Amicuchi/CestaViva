@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // useLocation: Obtém a localização atual para acessar os parâmetros da URL
 import api from '../../services/axiosConfig';
-import './Busca.module.css';
+import './Busca.css';
 
 export default function Busca() {
     const [entidades, setEntidades] = useState([]);

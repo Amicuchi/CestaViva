@@ -1,4 +1,4 @@
-import '../Dashboard.module.css';
+import '../Dashboard.css';
 
 export default function Header() {
     return (

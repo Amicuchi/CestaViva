@@ -1,6 +1,6 @@
-import '../Home.module.css';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importar o hook useNavigate
+import '../Home.css';
 
 export default function BusqueEntidade() {
     

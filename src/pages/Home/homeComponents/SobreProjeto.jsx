@@ -1,4 +1,4 @@
-import '../Home.module.css';
+import '../Home.css';
 
 // import CestaLogo from '../../assets/images/CestaViva-Logo.svg';
 import CestaLogo from '../../../assets/images/CestaViva-Logo.svg';

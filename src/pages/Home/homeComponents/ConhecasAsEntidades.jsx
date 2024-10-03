@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import api from '../../../services/axiosConfig';
 import useRandomAvatar from "../../../services/useRandomAvatar";
-import '../Home.module.css';
+import '../Home.css';
 
 export default function ConhecaAsEntidades() {
     const [entidades, setEntidades] = useState([]); // Armazena as entidades

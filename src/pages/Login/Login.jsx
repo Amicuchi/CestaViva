@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios"; // Importação do axios para fazer a requisição ao backend - Para requisições HTTP
+import axios from "axios";
 
 export default function Login() {
   const [email, setEmail] = useState("");

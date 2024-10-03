@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
-import api from "../../../../services/axiosConfig";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import api from "../../../../services/axiosConfig";
 
 export default function Settings() {
   // Estados para a campanha
