@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import PropTypes from 'prop-types'; // Importando PropTypes para validação de props
+import { faPen, faBoxOpen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import PropTypes from 'prop-types';
 import api from '../../../../../services/axiosConfig';
 
-export default function ListaCampanha ({ onUpdateCampanhas }) {
+export default function ListaCampanhas({ onEditCampanha, onIncluirProdutos, onDeleteCampanha, botaoNovaCampanha }) {
     const [campanhas, setCampanhas] = useState([]);
     const [loading, setLoading] = useState(false);
 
@@ -24,29 +24,13 @@ export default function ListaCampanha ({ onUpdateCampanhas }) {
         }
     };
 
-    const handleDeleteCampanha = async (id) => {
-        if (window.confirm("Tem certeza que deseja excluir esta campanha?")) {
-            try {
-                await api.delete(`/cestas/${id}`);
-                onUpdateCampanhas(); // Atualiza a lista após a exclusão
-                alert("Campanha excluída com sucesso!");
-            } catch (error) {
-                console.error("Erro ao excluir campanha:", error);
-                alert("Erro ao excluir campanha.");
-            }
-        }
-    };
-
-    const handleEditCampanha = (id) => {
-        // Implemente a lógica para edição da campanha com base no ID
-
-        console.log(`Editar campanha com ID ${id}`);
-        // Exemplo: redirecionar para página de edição ou abrir modal de edição
-    };
-
     return (
-        <div className="table--container lista-produtos">
-            <h3>Campanhas Cadastradas</h3>
+        <div className="card--container lista-produtos">
+            <div className="table-header">
+                <h3>Campanhas Cadastradas</h3>
+                {botaoNovaCampanha}
+            </div>
+            
             {loading ? (
                 <p>Carregando campanhas...</p>
             ) : (
@@ -65,14 +49,15 @@ export default function ListaCampanha ({ onUpdateCampanhas }) {
                                 <td colSpan="4">Nenhuma campanha cadastrada.</td>
                             </tr>
                         ) : (
-                            campanhas.map((campanha, index) => (
-                                <tr key={index}>
+                            campanhas.map((campanha) => (
+                                <tr key={campanha.id}>
                                     <td>{campanha.nomeCampanha}</td>
                                     <td>{campanha.comecaEm}</td>
                                     <td>{campanha.terminaEm}</td>
                                     <td className="iconEditTrash">
-                                        <FontAwesomeIcon icon={faPen} onClick={() => handleEditCampanha(campanha.id)} />
-                                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => handleDeleteCampanha(campanha.id)} />
+                                        <FontAwesomeIcon icon={faPen} onClick={() => onEditCampanha(campanha.id)} />
+                                        <FontAwesomeIcon icon={faBoxOpen} onClick={() => onIncluirProdutos(campanha.id)} />
+                                        <FontAwesomeIcon icon={faTrashAlt} onClick={() => onDeleteCampanha(campanha.id)} />
                                     </td>
                                 </tr>
                             ))
@@ -82,9 +67,11 @@ export default function ListaCampanha ({ onUpdateCampanhas }) {
             )}
         </div>
     );
-};
+}
 
-// Definindo PropTypes para garantir a validação das props
-ListaCampanha.propTypes = {
-    onUpdateCampanhas: PropTypes.func.isRequired,
+ListaCampanhas.propTypes = {
+    onEditCampanha: PropTypes.func.isRequired,
+    onIncluirProdutos: PropTypes.func.isRequired,
+    onDeleteCampanha: PropTypes.func.isRequired,
+    botaoNovaCampanha: PropTypes.node.isRequired,
 };

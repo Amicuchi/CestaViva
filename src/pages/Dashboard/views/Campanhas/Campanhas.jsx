@@ -1,24 +1,59 @@
-import CadastraCampanha from "./Components/CadastraCampanha";
-import CadastraProduto from "./Components/CadastraProduto";
-import CestaCompleta from "./Components/CestaCompleta";
-import ListaCampanha from "./Components/ListaCampanha";
-import ListaProdutos from "./Components/ListaProdutos";
+import { useState } from 'react';
+import api from '../../../../services/axiosConfig';
+import ListaCampanhas from './components/ListaCampanhas';
+import ModalCampanha from './components/ModalCampanha';
+import CestaCompleta from './components/CestaCompleta';
 
-export default function CampanhasPage () {
+export default function Campanhas() {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [campanhaAtual, setCampanhaAtual] = useState(null);
+
+    const handleIncluirProdutos = (id) => {
+        // Lógica para incluir produtos (exibir componente relacionado)
+        console.log("Incluir produtos na campanha", id);
+    };
+
+    const handleEditCampanha = (id) => {
+        // Carregar dados da campanha e setar campanhaAtual
+        setCampanhaAtual({ id });
+        setIsModalOpen(true);
+    };
+
+    const handleDeleteCampanha = async (id) => {
+        if (window.confirm("Tem certeza que deseja excluir esta campanha?")) {
+            try {
+                await api.delete(`/cestas/${id}`);
+                alert("Campanha excluída com sucesso!");
+                // Atualizar a lista de campanhas após a exclusão (chamar uma função de atualização)
+            } catch (error) {
+                console.error("Erro ao excluir campanha:", error);
+                alert("Erro ao excluir campanha.");
+            }
+        }
+    };
+
+    const handleSaveCampanha = (novaCampanha) => {
+        // Lógica para salvar a campanha (via API)
+        setIsModalOpen(false);
+        console.log("Campanha salva:", novaCampanha);
+    };
 
     return (
-        <div className="campanhas-page">
-            <div className="section">
-                <CadastraCampanha />
-                <ListaCampanha />
-            </div>
-            <div className="section">
-                <CadastraProduto />
-                <ListaProdutos />
-            </div>
-            <div className="section">
-                <CestaCompleta />
-            </div>
+        <div className="">
+            <ListaCampanhas
+                onEditCampanha={handleEditCampanha}
+                onIncluirProdutos={handleIncluirProdutos}
+                onDeleteCampanha={handleDeleteCampanha}
+                // Passa o botão "Nova Campanha" como prop para o componente ListaCampanhas
+                botaoNovaCampanha={<button onClick={() => setIsModalOpen(true)}>Nova Campanha</button>}
+            />
+            <ModalCampanha
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                campanhaAtual={campanhaAtual}
+                onSaveCampanha={handleSaveCampanha}
+            />
+            <CestaCompleta campanhaId={campanhaAtual?.id} />
         </div>
     );
-};
+}

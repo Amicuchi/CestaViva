@@ -42,7 +42,7 @@ export default function CadastraProduto ({ campanhaId, onUpdateProdutos }) {
     };
 
     return (
-        <div className="cestas--cadastroProduto">
+        <div className="card--container">
             <form className="form-container" onSubmit={handleSubmitProduto}>
                 <h3>Cadastro de Produto</h3>
                 <input

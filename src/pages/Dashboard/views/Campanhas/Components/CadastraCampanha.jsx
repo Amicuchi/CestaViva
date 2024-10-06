@@ -55,7 +55,7 @@ export default function CadastraCampanha ({ onUpdateCampanhas }) {
     };
 
     return (
-        <div className="cestas--cadastroProduto">
+        <div className="card--container">
             <form className="form-container" onSubmit={handleSubmitCampanha}>
                 <h3>Cadastro da Campanha</h3>
                 <input

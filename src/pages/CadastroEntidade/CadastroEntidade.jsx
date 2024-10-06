@@ -53,14 +53,15 @@ export default function CadastroEntidade() {
         cnpj,
         razaoSocial,
         nomeFantasia,
-        endereco: enderecoRua, // Renomeado para corresponder ao esquema
-        numero: enderecoNum, // Renomeado para corresponder ao esquema
+        endereco: enderecoRua,
+        numero: enderecoNum,
         complemento: enderecoComp,
-        bairro: enderecoBairro, // Renomeado para corresponder ao esquema
-        cidade: enderecoCidade, // Renomeado para corresponder ao esquema
-        estado: enderecoEstado, // Renomeado para corresponder ao esquema
-        cep: enderecoCep, // Renomeado para corresponder ao esquema
-        telefone: telefoneResponsavel, // Renomeado para corresponder ao esquema
+        bairro: enderecoBairro,
+        cidade: enderecoCidade,
+        estado: enderecoEstado,
+        cep: enderecoCep,
+        telefone: telefoneResponsavel,
+        
         // Definir o objeto usuario com os dados de email e senha
         usuario: {
           nome: nomeResponsavel,
@@ -91,13 +92,13 @@ export default function CadastroEntidade() {
         setAcceptedTerms(false);
       }
     } catch (error) {
-      // Exibir informações detalhadas do errono frontend caso a requisição falhe
+      // Exibir informações detalhadas do erro no frontend caso a requisição falhe
       if (error.response) {
-        console.error("Erro no backend:", error.response.data); // Exibir a mensagem de erro no console
+        console.error("Erro no backend:", error.response.data); // Exibe a mensagem de erro no console
         setError(
           error.response.data.message ||
             "Erro ao realizar o cadastro. Tente novamente."
-        ); // Exibir a mensagem do backend
+        ); // Exibe a mensagem do backend
       } else if (error.request) {
         console.error("Nenhuma resposta recebida do backend:", error.request);
         setError("Erro de conexão com o servidor. Tente novamente mais tarde.");

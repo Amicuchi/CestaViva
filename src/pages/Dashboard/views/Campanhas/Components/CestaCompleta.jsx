@@ -11,13 +11,12 @@ export default function CestaCompleta ({ campanhaId }) {
     };
 
     return (
-        <div className="cestas--cestaCompleta">
+        <div className="card--container">
             <CadastraProduto campanhaId={campanhaId} onUpdateProdutos={handleUpdateProdutos} />
             <ListaProdutos campanhaId={campanhaId} key={produtosAtualizados ? 'updated' : 'not-updated'} />
         </div>
     );
 };
-
 
 // Definindo PropTypes para garantir a validação das props
 CestaCompleta.propTypes = {

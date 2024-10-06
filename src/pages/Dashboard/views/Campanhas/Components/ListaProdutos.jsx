@@ -20,7 +20,7 @@ export default function ListaProdutos ({ campanhaId }) {
     }, [campanhaId]);
 
     return (
-        <div className="cestas--listaProdutos">
+        <div className="CEContainer cestas--listaProdutos">
             <h3>Lista de Produtos</h3>
             <ul>
                 {produtos.map((produto) => (
