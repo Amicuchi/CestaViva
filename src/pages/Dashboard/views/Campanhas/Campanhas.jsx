@@ -4,8 +4,7 @@ import CestaCompleta from "./Components/CestaCompleta";
 import ListaCampanha from "./Components/ListaCampanha";
 import ListaProdutos from "./Components/ListaProdutos";
 
-const CampanhasPage = () => {
-    // Defina aqui o estado e funções necessárias para a página de campanhas, se houver
+export default function CampanhasPage () {
 
     return (
         <div className="campanhas-page">
@@ -23,5 +22,3 @@ const CampanhasPage = () => {
         </div>
     );
 };
-
-export default CampanhasPage;
