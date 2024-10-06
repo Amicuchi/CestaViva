@@ -61,7 +61,6 @@ export default function Login() {
           required
         />
         {error && <p style={{ color: "red" }}>{error}</p>}{" "}
-        {/* Exibir erro, se houver */}
         <button className="ButtonTotal" type="submit">
           Entrar
         </button>

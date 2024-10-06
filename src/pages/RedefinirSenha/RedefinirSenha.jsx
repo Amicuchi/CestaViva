@@ -55,10 +55,10 @@ export default function RedefinirSenha() {
           onChange={(e) => setConfirmarSenha(e.target.value)} 
           required 
         />
-
+        {mensagem && <p>{mensagem}</p>}{" "}
+        
         <button type="submit">Redefinir Senha</button>
       </form>
-      {mensagem && <p>{mensagem}</p>}{" "}
     </div>
   );
 };

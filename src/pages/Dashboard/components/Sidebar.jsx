@@ -33,7 +33,7 @@ export default function Sidebar() {
                     </Link>
                 </li> */}
                 <li>
-                    <Link to="cestas">
+                    <Link to="campanhas">
                         <FontAwesomeIcon icon={faBriefcase} className="fas" />
                         <span>Campanhas</span>
                     </Link>

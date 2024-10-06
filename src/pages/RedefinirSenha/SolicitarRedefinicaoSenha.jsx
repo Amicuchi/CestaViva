@@ -2,11 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 
 export default function SolicitarRedefinicaoSenha() {
-  // Define dois estados: email para armazenar o e-mail inserido e mensagem para exibir uma mensagem de sucesso ou erro
-  const [email, setEmail] = useState(""); // Estado para armazenar o valor do campo de e-mail
+  const [email, setEmail] = useState("");       // Estado para armazenar o valor do campo de e-mail
   const [mensagem, setMensagem] = useState(""); // Estado para armazenar a mensagem de retorno (sucesso ou erro)
 
-  // Função que será chamada ao submeter o formulário
   const handleSubmit = async (e) => {
     e.preventDefault(); // Evita que o formulário recarregue a página ao ser enviado
 

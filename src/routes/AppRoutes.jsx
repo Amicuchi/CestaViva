@@ -13,7 +13,7 @@ import Dashboard from '../pages/Dashboard/Dashboard';
 
 import DashboardHome from '../pages/Dashboard/views/DashboardHome/DashboardHome';
 import DashboardUser from '../pages/Dashboard/views/User';
-import Cestas from '../pages/Dashboard/views/Campanhas/Cestas';
+import Campanhas from '../pages/Dashboard/views/Campanhas/Campanhas';
 import DashboardFAQ from '../pages/Dashboard/views/FAQ/FAQ';
 import Settings from '../pages/Dashboard/views/Settings/Settings';
 
@@ -38,7 +38,7 @@ export default function AppRoutes() {
             >
                 <Route path="dashboardhome" element={<DashboardHome />} />
                 <Route path="perfil" element={<DashboardUser />} />
-                <Route path="cestas" element={<Cestas />} />
+                <Route path="campanhas" element={<Campanhas />} />
                 <Route path="faq" element={<DashboardFAQ />} />
                 <Route path="configuracoes" element={<Settings />} />
             </Route>
