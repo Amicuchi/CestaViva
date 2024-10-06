@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types'; // Importando PropTypes para validação de props
 import api from '../../../../../services/axiosConfig';
+import PropTypes from 'prop-types';
 
-const CadastraCampanha = ({ onUpdateCampanhas }) => {
+export default function CadastraCampanha ({ onUpdateCampanhas }) {
     // Estado para os campos do formulário de campanha
     const [novaCampanha, setNovaCampanha] = useState({
         nomeCampanha: "",
@@ -98,5 +98,3 @@ const CadastraCampanha = ({ onUpdateCampanhas }) => {
 CadastraCampanha.propTypes = {
     onUpdateCampanhas: PropTypes.func.isRequired,
 };
-
-export default CadastraCampanha;
