@@ -99,7 +99,6 @@ export default function CadastraCampanha ({ onUpdateCampanhas }) {
     );
 };
 
-// Definindo PropTypes para garantir a validação das props
 CadastraCampanha.propTypes = {
     onUpdateCampanhas: PropTypes.func.isRequired,
 };
