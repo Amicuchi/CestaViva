@@ -9,10 +9,7 @@ export default function ListaCampanhas({ onEditCampanha, onIncluirProdutos, onDe
     const [campanhas, setCampanhas] = useState([]);
     const [loading, setLoading] = useState(false);
 
-    useEffect(() => {
-        fetchCampanhas();
-    }, []);
-
+    // Função para buscar campanhas via API
     const fetchCampanhas = async () => {
         setLoading(true);
         try {
@@ -25,12 +22,17 @@ export default function ListaCampanhas({ onEditCampanha, onIncluirProdutos, onDe
         }
     };
 
+    // Chamada inicial e para recarregar a lista de campanhas
+     useEffect(() => {
+        fetchCampanhas();
+    }, []);
+
     return (
         <div className="card--container lista-produtos">
-            <span className="table-header">
+            <div className="table-header">
                 <h3>Campanhas Cadastradas</h3>
                 <button onClick={onClickNovaCampanha}>Nova Campanha</button>
-            </span>
+            </div>
             
             {loading ? (
                 <p>Carregando campanhas...</p>
