@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "../../services/axiosConfig"; // Importar o axios configurado para fazer as requisições
+import axios from "../../services/axiosConfig";
 import ModalTermo from "./components/ModalTermo";
 import "./CadastroEntidade.css";
 
