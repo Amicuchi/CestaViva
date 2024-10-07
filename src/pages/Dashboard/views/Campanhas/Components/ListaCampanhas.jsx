@@ -51,7 +51,6 @@ export default function ListaCampanhas({ onEditCampanha, onIncluirProdutos, onDe
                             </tr>
                         ) : (
                             campanhas.map((campanha, index) => (
-                                // <tr key={campanha.id}>
                                 <tr key={index}>
                                     <td>{campanha.nomeCampanha}</td>
                                     <td>{campanha.comecaEm}</td>
