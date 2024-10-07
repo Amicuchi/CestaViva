@@ -1,12 +1,15 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import api from '../../../../../services/axiosConfig';
+import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
+import ModalProduto from './ModalProduto';
 
 export default function ListaProdutos({ campanhaId }) {
     const [produtos, setProdutos] = useState([]);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [produtoAtual, setProdutoAtual] = useState(null);
 
     // Função para buscar os produtos da campanha
-    useEffect(() => {
         const fetchProdutos = async () => {
             try {
                 const response = await api.get(`/produtos/${campanhaId}`);
@@ -16,7 +19,9 @@ export default function ListaProdutos({ campanhaId }) {
                 alert("Erro ao buscar produtos.");
             }
         };
-        fetchProdutos();
+
+        useEffect(() => {
+                    fetchProdutos();
     }, [campanhaId]);
 
     // Função para dar baixa no produto
@@ -44,8 +49,8 @@ export default function ListaProdutos({ campanhaId }) {
                 )
             );
         } catch (error) {
-            console.error("Erro ao dar baixa no produto:", error.response);
-            alert("Erro ao dar baixa no produto.");
+            console.error('Erro ao dar baixa no produto:', error.response);
+            alert('Erro ao dar baixa no produto.');
         }
     };
 
