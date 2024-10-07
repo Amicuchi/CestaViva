@@ -1,4 +1,3 @@
-// ListaProdutos.jsx
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import api from '../../../../../services/axiosConfig';
@@ -6,6 +5,7 @@ import api from '../../../../../services/axiosConfig';
 export default function ListaProdutos({ campanhaId }) {
     const [produtos, setProdutos] = useState([]);
 
+    // Função para buscar os produtos da campanha
     useEffect(() => {
         const fetchProdutos = async () => {
             try {
@@ -16,15 +16,33 @@ export default function ListaProdutos({ campanhaId }) {
                 alert("Erro ao buscar produtos.");
             }
         };
-
         fetchProdutos();
     }, [campanhaId]);
 
-    const handleDarBaixaProduto = async (produtoId) => {
+    // Função para dar baixa no produto
+    const handleDarBaixaProduto = async (produtoId, quantidadeRecebida) => {
+        if (quantidadeRecebida <= 0) return alert("Insira uma quantidade válida!");
+
         try {
-            await api.delete(`/produtos/${produtoId}`);  // Simulação de "dar baixa"
-            alert("Produto removido com sucesso!");
-            setProdutos(produtos.filter((produto) => produto.id !== produtoId));
+            const produto = produtos.find((p) => p.id === produtoId);
+            const quantidadeRestante = produto.quantidadeNecessaria - produto.quantidadeRecebida;
+
+            if (quantidadeRecebida > quantidadeRestante) {
+                alert("Quantidade recebida excede a quantidade necessária.");
+                return;
+            }
+
+            const novaQuantidade = produto.quantidadeRecebida + quantidadeRecebida;
+            await api.put(`/produtos/${produtoId}`, { quantidadeRecebida: novaQuantidade });
+
+            // Atualizar a lista de produtos
+            setProdutos((prevProdutos) =>
+                prevProdutos.map((p) =>
+                    p.id === produtoId
+                        ? { ...p, quantidadeRecebida: novaQuantidade }
+                        : p
+                )
+            );
         } catch (error) {
             console.error("Erro ao dar baixa no produto:", error.response);
             alert("Erro ao dar baixa no produto.");
@@ -33,12 +51,26 @@ export default function ListaProdutos({ campanhaId }) {
 
     return (
         <div className="CEContainer cestas--listaProdutos">
-            <h3>Lista de Produtos da Campanha</h3>
+            <h3>Produtos da Campanha</h3>
             <ul>
                 {produtos.map((produto) => (
                     <li key={produto.id}>
-                        {produto.nome} - {produto.descricao}
-                        <button onClick={() => handleDarBaixaProduto(produto.id)}>Dar Baixa</button>
+                        {produto.nome} - {produto.quantidadeNecessaria} unidades
+                        {produto.quantidadeRecebida < produto.quantidadeNecessaria ? (
+                            <>
+                                <span>
+                                    {produto.quantidadeRecebida} recebidos -{" "}
+                                    {produto.quantidadeNecessaria - produto.quantidadeRecebida} restantes
+                                </span>
+                                <input
+                                    type="number"
+                                    placeholder="Receber"
+                                    onChange={(e) => handleDarBaixaProduto(produto.id, Number(e.target.value))}
+                                />
+                            </>
+                        ) : (
+                            <span>Todos os produtos foram recebidos</span>
+                        )}
                     </li>
                 ))}
             </ul>
