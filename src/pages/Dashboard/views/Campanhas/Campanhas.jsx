@@ -1,16 +1,18 @@
 import { useState } from 'react';
 import api from '../../../../services/axiosConfig';
+
 import ListaCampanhas from './components/ListaCampanhas';
 import ModalCampanha from './components/ModalCampanha';
-import CestaCompleta from './components/CestaCompleta';
+import ListaProdutos from './components/ListaProdutos';
 
 export default function Campanhas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [campanhaAtual, setCampanhaAtual] = useState(null);
+    const [produtosVisiveis, setProdutosVisiveis] = useState(null);
 
-    const handleIncluirProdutos = (id) => {
-        // Lógica para incluir produtos (exibir componente relacionado)
-        console.log("Incluir produtos na campanha", id);
+    // Função para listar os produtos de uma campanha específica
+    const handleIncluirProdutos = (campanhaId) => {
+        setProdutosVisiveis(campanhaId === produtosVisiveis ? null : campanhaId); // Alterna a visibilidade dos produtos
     };
 
     const handleEditCampanha = (id) => {
@@ -53,7 +55,9 @@ export default function Campanhas() {
                 campanhaAtual={campanhaAtual}
                 onSaveCampanha={handleSaveCampanha}
             />
-            {campanhaAtual && <CestaCompleta campanhaId={campanhaAtual.id} />}
+            
+            {/* Exibe a lista de produtos apenas quando a campanha é selecionada */}
+            {produtosVisiveis && <ListaProdutos campanhaId={produtosVisiveis} />}
         </div>
     );
 }
