@@ -44,8 +44,8 @@ export default function Campanhas() {
                 onEditCampanha={handleEditCampanha}
                 onIncluirProdutos={handleIncluirProdutos}
                 onDeleteCampanha={handleDeleteCampanha}
-                // Passa o botão "Nova Campanha" como prop para o componente ListaCampanhas
-                botaoNovaCampanha={<button onClick={() => setIsModalOpen(true)}>Nova Campanha</button>}
+                // Passa a função de abrir o modal
+                onClickNovaCampanha={() => setIsModalOpen(true)}
             />
             <ModalCampanha
                 isOpen={isModalOpen}
@@ -53,7 +53,7 @@ export default function Campanhas() {
                 campanhaAtual={campanhaAtual}
                 onSaveCampanha={handleSaveCampanha}
             />
-            <CestaCompleta campanhaId={campanhaAtual?.id} />
+            {campanhaAtual && <CestaCompleta campanhaId={campanhaAtual.id} />}
         </div>
     );
 }
