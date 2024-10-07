@@ -39,7 +39,7 @@ export default function Campanhas() {
     };
 
     return (
-        <div className="">
+        <div>
             <ListaCampanhas
                 onEditCampanha={handleEditCampanha}
                 onIncluirProdutos={handleIncluirProdutos}
