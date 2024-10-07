@@ -7,8 +7,8 @@ export default function CadastraCampanha ({ onUpdateCampanhas }) {
     const [novaCampanha, setNovaCampanha] = useState({
         nomeCampanha: "",
         descricao: "",
-        dataInicio: "",
-        dataFim: ""
+        comecaEm: "",
+        terminaEm: ""
     });
 
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -18,17 +18,22 @@ export default function CadastraCampanha ({ onUpdateCampanhas }) {
         setNovaCampanha({
             nomeCampanha: "",
             descricao: "",
-            dataInicio: "",
-            dataFim: ""
+            comecaEm: "",
+            terminaEm: ""
         });
     };
 
     // Função para cadastrar nova campanha
     const handleSubmitCampanha = async (e) => {
         e.preventDefault();
-        const { nomeCampanha, descricao, dataInicio, dataFim } = novaCampanha;
+        const { 
+            nomeCampanha, 
+            descricao, 
+            comecaEm, 
+            terminaEm 
+        } = novaCampanha;
 
-        if (!nomeCampanha || !descricao || !dataInicio || !dataFim) {
+        if (!nomeCampanha || !descricao || !comecaEm || !terminaEm) {
             alert("Todos os campos da campanha são obrigatórios!");
             return;
         }
@@ -38,8 +43,8 @@ export default function CadastraCampanha ({ onUpdateCampanhas }) {
             await api.post("/cestas/cadastrarCesta", {
                 nomeCampanha,
                 descricao,
-                dataInicio,
-                dataFim,
+                comecaEm,
+                terminaEm,
             });
             
             // Exibir mensagem de sucesso ou limpar os campos após cadastro
@@ -74,17 +79,17 @@ export default function CadastraCampanha ({ onUpdateCampanhas }) {
                 />
                 <input
                     type="date"
-                    name="dataInicio"
+                    name="comecaEm"
                     placeholder="Data de Início"
-                    value={novaCampanha.dataInicio}
-                    onChange={(e) => setNovaCampanha({ ...novaCampanha, dataInicio: e.target.value })}
+                    value={novaCampanha.comecaEm}
+                    onChange={(e) => setNovaCampanha({ ...novaCampanha, comecaEm: e.target.value })}
                 />
                 <input
                     type="date"
-                    name="dataFim"
+                    name="terminaEm"
                     placeholder="Data de Término"
-                    value={novaCampanha.dataFim}
-                    onChange={(e) => setNovaCampanha({ ...novaCampanha, dataFim: e.target.value })}
+                    value={novaCampanha.terminaEm}
+                    onChange={(e) => setNovaCampanha({ ...novaCampanha, terminaEm: e.target.value })}
                 />
                 <button type="submit" disabled={isSubmitting}>
                     {isSubmitting ? "Aguarde..." : "Adicionar Campanha"}
