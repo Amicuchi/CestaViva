@@ -5,50 +5,65 @@ import ModalProduto from './ModalProduto';
 import PropTypes from 'prop-types';
 
 export default function ListaCampanhas({ campanhas }) {
-  const [expanded, setExpanded] = useState(null); // Estado para controlar qual linha está expandida
-  const [produtos, setProdutos] = useState('');
+  const [isModalOpenProduto, setModalOpenProduto] = useState(false); // Controla se o modal está aberto
+  const abrirModal = () => setModalOpenProduto(true);   // Abre o modal
+  const fecharModal = () => setModalOpenProduto(false); // Fecha o modal
 
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  // Função para abrir o modal
-  const abrirModal = () => setModalOpen(true);
-
-  // Função para fechar o modal
-  const fecharModal = () => setModalOpen(false);
-
+  const [expanded, setExpanded] = useState(null);  // Controla qual linha está expandida
   // Função para alternar entre expandir e recolher uma linha
   const toggleExpand = (id) => {
-    setExpanded(expanded === id ? null : id);
+    console.log("Expanding row for ID:", id);  // Log do ID da linha expandida
+    setExpanded(expanded === id ? null : id);  // Alterna a linha expandida
+    // setExpanded((prevExpanded) => (prevExpanded === id ? null : id));
   };
 
-  // Função para salvar uma nova campanha
-  const salvarProduto = (novoProduto) => {
-    setProdutos([...produtos, { ...novoProduto, id: produtos.length + 1 }]);
+  const [produtos, setProdutos] = useState(''); // Estado para produtos
+  // Função para salvar um novo produto
+  const salvarProduto = (novoProduto, index) => {
+    setProdutos([...produtos, { ...novoProduto, id: index }]);
     fecharModal();
+  };
+
+  const formatarData = (data) => {
+    const date = new Date(data);              // Cria um novo objeto Date a partir da string de data recebida
+    return date.toLocaleDateString('pt-BR');  // Formata a data para o formato 'dd/mm/aaaa'
   };
 
   return (
     <>
       <table border="1" width="100%">
+        <thead>
+          <tr>
+            <td>Nome da campanha</td>
+            <td>Data de Início</td>
+            <td>Data de Término</td>
+            <td>Ações</td>
+          </tr>
+        </thead>
         <tbody>
-          {campanhas.map((campanha) => (
-            <React.Fragment key={campanha.id}>
-              <tr onClick={() => toggleExpand(campanha.id)} style={{ cursor: 'pointer' }}>
-                <td>{campanha.nome}</td>
-                <td>{campanha.comecaEm}</td>
-                <td>{campanha.terminaEm}</td>
+          {campanhas.map((campanha, index) => (
+            <React.Fragment key={campanha._id || index}>
+              <tr onClick={() => toggleExpand(campanha._id)} style={{ cursor: 'pointer' }}>
+                <td>{campanha.nomeCampanha}</td>
+                <td>{formatarData(campanha.comecaEm)}</td>
+                <td>{formatarData(campanha.terminaEm)}</td>
                 <td>
-                  <Button variant="contained" color="primary" onClick={abrirModal}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={abrirModal}
+                  >
                     Novo Produto
                   </Button>
                 </td>
-
               </tr>
-              {expanded === campanha.id && (
+              {expanded === campanha._id && (
                 <tr>
                   <td colSpan="4">
                     {/* Renderiza a lista de produtos quando a linha é expandida */}
-                    <ListaProdutos produtos={campanha.produtos} />
+                    <div>
+                      <ListaProdutos produtos={campanha.produtos} />
+                    </div>
                   </td>
                 </tr>
               )}
@@ -57,10 +72,9 @@ export default function ListaCampanhas({ campanhas }) {
         </tbody>
       </table>
 
-      {/* Modal para cadastrar nova campanha */}
-      <ModalProduto isOpen={isModalOpen} onClose={fecharModal} onSave={salvarProduto} />
+      {/* Modal para cadastrar novo produto */}
+      <ModalProduto isOpen={isModalOpenProduto} onClose={fecharModal} onSave={salvarProduto} />
     </>
-
   );
 };
 
