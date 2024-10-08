@@ -1,74 +1,65 @@
-import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-export default function ListaProdutos({ produtos, onUpdateProduto }) {
-    const [quantidadeRecebida, setQuantidadeRecebida] = useState({}); // Estado para controlar as quantidades a serem recebidas
+const ListaProdutos = ({ produtos }) => {
+  // Estado local para armazenar a quantidade de baixa para cada produto
+  const [baixaQuantidades, setBaixaQuantidades] = useState({});
 
-    // Função para receber produtos
-    const handleReceberProduto = (produtoId) => {
-        const quantidade = quantidadeRecebida[produtoId] || 0; // Pega a quantidade a ser recebida ou 0
-        if (quantidade > 0) {
-            // Atualiza a quantidade recebida do produto
-            const produtoAtualizado = produtos.find(produto => produto.id === produtoId);
-            if (produtoAtualizado) {
-                produtoAtualizado.quantidadeRecebida += quantidade; // Atualiza a quantidade recebida
-                onUpdateProduto(produtoAtualizado); // Chama a função para atualizar o produto na API ou no estado pai
-            }
-            setQuantidadeRecebida(prev => ({ ...prev, [produtoId]: 0 })); // Limpa o campo após o recebimento
-        } else {
-            alert('Por favor, insira uma quantidade válida a ser recebida.'); // Mensagem de erro
-        }
-    };
+  // Função para lidar com mudanças no input de baixa
+  const handleBaixaChange = (id, value) => {
+    setBaixaQuantidades({
+      ...baixaQuantidades,
+      [id]: value,
+    });
+  };
 
-    return (
-        <div>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>Nome</TableCell>
-                        <TableCell>Tipo</TableCell>
-                        <TableCell>Qtd Necessária</TableCell>
-                        <TableCell>Qtd Recebida</TableCell>
-                        <TableCell>Qtd Faltante</TableCell>
-                        <TableCell>Receber Produtos</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {produtos.map((produto) => (
-                        <TableRow key={produto.id}>
-                            <TableCell>{produto.nomeProduto}</TableCell>
-                            <TableCell>{produto.tipoProduto}</TableCell>
-                            <TableCell>{produto.quantidadeNecessaria}</TableCell>
-                            <TableCell>{produto.quantidadeRecebida}</TableCell>
-                            <TableCell>{produto.quantidadeNecessaria - produto.quantidadeRecebida}</TableCell>
-                            <TableCell>
-                                <div>
-                                    <input
-                                        type="number"
-                                        placeholder="Qtd a Receber"
-                                        value={quantidadeRecebida[produto.id] || ''} // Exibe a quantidade a receber para o produto atual
-                                        onChange={(e) => setQuantidadeRecebida({ 
-                                            ...quantidadeRecebida, 
-                                            [produto.id]: Number(e.target.value) // Atualiza a quantidade a ser recebida
-                                        })}
-                                        min="0"
-                                    />
-                                    <Button onClick={() => handleReceberProduto(produto.id)}>
-                                        Receber
-                                    </Button>
-                                </div>
-                            </TableCell>
-                        </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </div>
-    );
-}
+  // Função para lidar com o clique no botão "Receber Produtos"
+  const handleReceberProdutos = (id) => {
+    const quantidadeBaixa = baixaQuantidades[id] || 0;
+    console.log(`Recebendo produtos para o produto com id ${id}. Quantidade de baixa: ${quantidadeBaixa}`);
+  };
+
+  return (
+    <table border="1" width="100%">
+      <thead>
+        <tr>
+          <th>Nome do Produto</th>
+          <th>Tipo</th>
+          <th>Qtd Necessária</th>
+          <th>Qtd Faltante</th>
+          <th>Baixa</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {produtos.map((produto) => (
+          <tr key={produto.id}>
+            <td>{produto.nome}</td>
+            <td>{produto.tipo}</td>
+            <td>{produto.qtdNecessaria}</td>
+            <td>{produto.qtdFaltante}</td>
+            <td>
+              <input
+                type="number"
+                min="0"
+                value={baixaQuantidades[produto.id] || ''}
+                onChange={(e) => handleBaixaChange(produto.id, e.target.value)}
+              />
+            </td>
+            <td>
+              <button onClick={() => handleReceberProdutos(produto.id)}>
+                Receber Produtos
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+};
+
+export default ListaProdutos;
 
 ListaProdutos.propTypes = {
     produtos: PropTypes.array.isRequired,
-    campanhaId: PropTypes.number.isRequired,
-    onUpdateProduto: PropTypes.func.isRequired,
 };
