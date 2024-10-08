@@ -1,88 +1,74 @@
-import { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import api from '../../../../../services/axiosConfig';
 import { Table, TableBody, TableCell, TableHead, TableRow, Button } from '@mui/material';
-import ModalProduto from './ModalProduto';
+import PropTypes from 'prop-types';
+import { useState } from 'react';
 
-export default function ListaProdutos({ campanhaId }) {
-    const [produtos, setProdutos] = useState([]);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [produtoAtual, setProdutoAtual] = useState(null);
+export default function ListaProdutos({ produtos, onUpdateProduto }) {
+    const [quantidadeRecebida, setQuantidadeRecebida] = useState({}); // Estado para controlar as quantidades a serem recebidas
 
-    // Função para buscar os produtos da campanha
-        const fetchProdutos = async () => {
-            try {
-                const response = await api.get(`/produtos/${campanhaId}`);
-                setProdutos(response.data);
-            } catch (error) {
-                console.error("Erro ao buscar produtos:", error.response);
-                alert("Erro ao buscar produtos.");
+    // Função para receber produtos
+    const handleReceberProduto = (produtoId) => {
+        const quantidade = quantidadeRecebida[produtoId] || 0; // Pega a quantidade a ser recebida ou 0
+        if (quantidade > 0) {
+            // Atualiza a quantidade recebida do produto
+            const produtoAtualizado = produtos.find(produto => produto.id === produtoId);
+            if (produtoAtualizado) {
+                produtoAtualizado.quantidadeRecebida += quantidade; // Atualiza a quantidade recebida
+                onUpdateProduto(produtoAtualizado); // Chama a função para atualizar o produto na API ou no estado pai
             }
-        };
-
-        useEffect(() => {
-                    fetchProdutos();
-    }, [campanhaId]);
-
-    // Função para dar baixa no produto
-    const handleDarBaixaProduto = async (produtoId, quantidadeRecebida) => {
-        if (quantidadeRecebida <= 0) return alert("Insira uma quantidade válida!");
-
-        try {
-            const produto = produtos.find((p) => p.id === produtoId);
-            const quantidadeRestante = produto.quantidadeNecessaria - produto.quantidadeRecebida;
-
-            if (quantidadeRecebida > quantidadeRestante) {
-                alert("Quantidade recebida excede a quantidade necessária.");
-                return;
-            }
-
-            const novaQuantidade = produto.quantidadeRecebida + quantidadeRecebida;
-            await api.put(`/produtos/${produtoId}`, { quantidadeRecebida: novaQuantidade });
-
-            // Atualizar a lista de produtos
-            setProdutos((prevProdutos) =>
-                prevProdutos.map((p) =>
-                    p.id === produtoId
-                        ? { ...p, quantidadeRecebida: novaQuantidade }
-                        : p
-                )
-            );
-        } catch (error) {
-            console.error('Erro ao dar baixa no produto:', error.response);
-            alert('Erro ao dar baixa no produto.');
+            setQuantidadeRecebida(prev => ({ ...prev, [produtoId]: 0 })); // Limpa o campo após o recebimento
+        } else {
+            alert('Por favor, insira uma quantidade válida a ser recebida.'); // Mensagem de erro
         }
     };
 
     return (
-        <div className="CEContainer cestas--listaProdutos">
-            <h3>Produtos da Campanha</h3>
-            <ul>
-                {produtos.map((produto) => (
-                    <li key={produto.id}>
-                        {produto.nome} - {produto.quantidadeNecessaria} unidades
-                        {produto.quantidadeRecebida < produto.quantidadeNecessaria ? (
-                            <>
-                                <span>
-                                    {produto.quantidadeRecebida} recebidos -{" "}
-                                    {produto.quantidadeNecessaria - produto.quantidadeRecebida} restantes
-                                </span>
-                                <input
-                                    type="number"
-                                    placeholder="Receber"
-                                    onChange={(e) => handleDarBaixaProduto(produto.id, Number(e.target.value))}
-                                />
-                            </>
-                        ) : (
-                            <span>Todos os produtos foram recebidos</span>
-                        )}
-                    </li>
-                ))}
-            </ul>
+        <div>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>Nome</TableCell>
+                        <TableCell>Tipo</TableCell>
+                        <TableCell>Qtd Necessária</TableCell>
+                        <TableCell>Qtd Recebida</TableCell>
+                        <TableCell>Qtd Faltante</TableCell>
+                        <TableCell>Receber Produtos</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {produtos.map((produto) => (
+                        <TableRow key={produto.id}>
+                            <TableCell>{produto.nomeProduto}</TableCell>
+                            <TableCell>{produto.tipoProduto}</TableCell>
+                            <TableCell>{produto.quantidadeNecessaria}</TableCell>
+                            <TableCell>{produto.quantidadeRecebida}</TableCell>
+                            <TableCell>{produto.quantidadeNecessaria - produto.quantidadeRecebida}</TableCell>
+                            <TableCell>
+                                <div>
+                                    <input
+                                        type="number"
+                                        placeholder="Qtd a Receber"
+                                        value={quantidadeRecebida[produto.id] || ''} // Exibe a quantidade a receber para o produto atual
+                                        onChange={(e) => setQuantidadeRecebida({ 
+                                            ...quantidadeRecebida, 
+                                            [produto.id]: Number(e.target.value) // Atualiza a quantidade a ser recebida
+                                        })}
+                                        min="0"
+                                    />
+                                    <Button onClick={() => handleReceberProduto(produto.id)}>
+                                        Receber
+                                    </Button>
+                                </div>
+                            </TableCell>
+                        </TableRow>
+                    ))}
+                </TableBody>
+            </Table>
         </div>
     );
-};
+}
 
 ListaProdutos.propTypes = {
+    produtos: PropTypes.array.isRequired,
     campanhaId: PropTypes.number.isRequired,
+    onUpdateProduto: PropTypes.func.isRequired,
 };

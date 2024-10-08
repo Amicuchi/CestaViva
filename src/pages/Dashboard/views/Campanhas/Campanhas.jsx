@@ -1,17 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Accordion, AccordionSummary, AccordionDetails } from '@mui/material';
+import { Accordion, AccordionSummary, AccordionDetails, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import api from '../../../../services/axiosConfig';
 
 import ListaCampanhas from './components/ListaCampanhas';
 import ModalCampanha from './components/ModalCampanha';
 import ListaProdutos from './components/ListaProdutos';
+import ModalProduto from './components/ModalProduto';
 
 export default function Campanhas() {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalProdutoOpen, setIsModalProdutoOpen] = useState(false); // Estado para controle do modal de produtos
     const [campanhas, setCampanhas] = useState([]);
     const [campanhaAtual, setCampanhaAtual] = useState(null);
     const [produtosVisiveis, setProdutosVisiveis] = useState(null);
+    const [produtosCampanha, setProdutosCampanha] = useState([]); // Estado para produtos da campanha
 
     const fetchCampanhas = async () => {
         try {
@@ -29,13 +32,22 @@ export default function Campanhas() {
     }, []);
 
     // Função para listar os produtos de uma campanha específica
-    const handleIncluirProdutos = (campanhaId) => {
-        setProdutosVisiveis(campanhaId === produtosVisiveis ? null : campanhaId);
+    const handleIncluirProdutos = async (campanhaId) => {
+        // Chama a API para buscar produtos da campanha
+        try {
+            const response = await api.get(`/produtos/${campanhaId}`);
+            setProdutosCampanha(response.data); // Armazena os produtos da campanha atual
+            setProdutosVisiveis(campanhaId === produtosVisiveis ? null : campanhaId);
+        } catch (error) {
+            console.error('Erro ao buscar produtos:', error);
+            alert('Erro ao buscar produtos.');
+        }
     };
 
     const handleEditCampanha = (id) => {
         // Carregar dados da campanha e setar campanhaAtual
-        setCampanhaAtual({ id });
+        const campanha = campanhas.find(c => c.id === id);
+        setCampanhaAtual(campanha); // Carregar a campanha atual e abrir o modal
         setIsModalOpen(true);
     };
 
@@ -54,7 +66,7 @@ export default function Campanhas() {
 
     const handleSaveCampanha = async (novaCampanha) => {
         try {
-            if (campanhaAtual) {
+            if (campanhaAtual?.id) {
                 // Atualiza a campanha existente
                 await api.put(`/cestas/${campanhaAtual.id}`, novaCampanha);
                 alert("Campanha atualizada com sucesso!");
@@ -65,9 +77,23 @@ export default function Campanhas() {
             }
             fetchCampanhas(); // Atualiza a lista de campanhas após salvar
             setIsModalOpen(false); // Fecha o modal
+            setCampanhaAtual(null);
         } catch (error) {
             console.error("Erro ao salvar campanha:", error);
             alert("Erro ao salvar campanha.");
+        }
+    };
+
+    const handleSaveProduto = async (novoProduto) => {
+        // Salva novo produto na API
+        try {
+            await api.post(`/produtos`, novoProduto);
+            alert("Produto cadastrado com sucesso!");
+            setIsModalProdutoOpen(false); // Fecha o modal
+            handleIncluirProdutos(campanhaAtual.id); // Atualiza a lista de produtos da campanha
+        } catch (error) {
+            console.error("Erro ao salvar produto:", error);
+            alert("Erro ao salvar produto.");
         }
     };
 
@@ -88,6 +114,13 @@ export default function Campanhas() {
                 onSaveCampanha={handleSaveCampanha}
             />
 
+            {/* Modal para cadastrar novos produtos */}
+            <ModalProduto
+                isOpen={isModalProdutoOpen}
+                onClose={() => setIsModalProdutoOpen(false)}
+                onSaveProduto={handleSaveProduto}
+            />
+
             {/* Renderiza a lista de produtos apenas quando a campanha é selecionada */}
             {campanhas.map((campanha) => (
                 <Accordion key={campanha.id} expanded={produtosVisiveis === campanha.id} onChange={() => handleIncluirProdutos(campanha.id)}>
@@ -95,7 +128,8 @@ export default function Campanhas() {
                         <h4>{campanha.nomeCampanha}</h4>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <ListaProdutos campanhaId={campanha.id} />
+                        <ListaProdutos produtos={produtosCampanha} campanhaId={campanha.id} />
+                        <Button onClick={() => { setIsModalProdutoOpen(true); setCampanhaAtual(campanha); }}>Cadastrar novo produto</Button>
                     </AccordionDetails>
                 </Accordion>
             ))}

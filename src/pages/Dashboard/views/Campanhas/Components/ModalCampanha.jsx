@@ -37,18 +37,18 @@ export default function ModalCampanha({ isOpen, onClose, campanhaAtual, onSaveCa
     };
 
     return (
-        <Modal 
-        open={isOpen} 
-        onClose={onClose}
-        aria-labelledby="modal-title"
+        <Modal
+            open={isOpen}
+            onClose={onClose}
+            aria-labelledby="modal-title"
             aria-describedby="modal-description"
         >
             <Box className="modal-box">
-                <h2  className="modal-title">{campanhaAtual ? "Editar Campanha" : "Cadastrar Nova Campanha"}</h2>
-                <form 
+                <h2 className="modal-title">{campanhaAtual ? "Editar Campanha" : "Cadastrar Nova Campanha"}</h2>
+                <form
                     onSubmit={handleSubmit}
-                className='modal-description'
-                    >
+                    className='modal-description'
+                >
                     <label htmlFor="nomeCampanha">Nome da campanha</label>
                     <input
                         type="text"
@@ -91,9 +91,9 @@ export default function ModalCampanha({ isOpen, onClose, campanhaAtual, onSaveCa
                     <div className="modal-buttons">
                         <Button
                             type="submit"
-                        variant="contained"
-                        sx={{ mt: 2, backgroundColor: 'var(--bg-terciario)' }}
-                        className='btn-modal'
+                            variant="contained"
+                            sx={{ mt: 2, backgroundColor: 'var(--bg-terciario)' }}
+                            className='btn-modal'
                         >
                             {campanhaAtual ? "Salvar Alterações" : "Salvar"}
                         </Button>

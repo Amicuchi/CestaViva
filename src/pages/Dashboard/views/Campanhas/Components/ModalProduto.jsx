@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 export default function ModalProduto({ isOpen, onClose, produtoAtual, onSaveProduto }) {
     const [produto, setProduto] = useState({
         nomeProduto: '',
-        quantidade: '',
-        preco: ''
+        tipo: '',
+        quantidade: ''
     });
 
     // Preenche os campos quando está editando um produto existente
@@ -14,15 +14,15 @@ export default function ModalProduto({ isOpen, onClose, produtoAtual, onSaveProd
         if (produtoAtual) {
             setProduto({
                 nomeProduto: produtoAtual.nomeProduto || '',
-                quantidade: produtoAtual.quantidade || '',
-                preco: produtoAtual.preco || ''
+                tipo: produtoAtual.tipo || '',
+                quantidade: produtoAtual.quantidade || ''
             });
         } else {
             // Limpa o formulário para o caso de um novo produto
             setProduto({
                 nomeProduto: '',
-                quantidade: '',
-                preco: ''
+                tipo: '',
+                quantidade: ''
             });
         }
     }, [produtoAtual]);
@@ -53,18 +53,18 @@ export default function ModalProduto({ isOpen, onClose, produtoAtual, onSaveProd
                     margin="dense"
                 />
                 <TextField
-                    label="Quantidade"
-                    name="quantidade"
-                    value={produto.quantidade}
+                    label="Tipo"
+                    name="tipo"
+                    value={produto.tipo}
                     onChange={handleChange}
                     fullWidth
                     margin="dense"
-                    type="number"
+                    type="text"
                 />
                 <TextField
-                    label="Preço"
-                    name="preco"
-                    value={produto.preco}
+                    label="Quantidade"
+                    name="quantidade"
+                    value={produto.quantidade}
                     onChange={handleChange}
                     fullWidth
                     margin="dense"
