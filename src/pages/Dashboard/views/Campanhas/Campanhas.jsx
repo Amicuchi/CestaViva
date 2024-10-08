@@ -1,52 +1,62 @@
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
+import { Button } from '@mui/material';
 import ListaCampanhas from './components/ListaCampanhas';
 import ModalCampanha from './components/ModalCampanha';
-import { Button } from '@mui/material';
+import api from "../../../../services/axiosConfig";
 
-const Campanhas = () => {
-  const [campanhas, setCampanhas] = useState([
-    { id: 1, nome: 'Campanha de Verão', produtos: [{ id: 1, nome: 'Produto A' }, { id: 2, nome: 'Produto B' }] },
-    { id: 2, nome: 'Campanha de Inverno', produtos: [{ id: 3, nome: 'Produto C' }, { id: 4, nome: 'Produto D' }] }
-  ]);
+export default function Campanhas() {
+    const [isModalOpen, setModalOpen] = useState(false);  // Estado para abrir e fechar o modal
+    const abrirModal = () => setModalOpen(true);          // Função para abrir o modal
+    const fecharModal = () => setModalOpen(false);        // Função para fechar o modal
 
-  const [isModalOpen, setModalOpen] = useState(false);
+    const [campanhas, setCampanhas] = useState([]);       // Estado para armazenar as campanhas
 
-  // Função para abrir o modal
-  const abrirModal = () => setModalOpen(true);
+    // Função para buscar as campanhas no backend
+    const fetchCampanhas = useCallback(async () => {
+        try {
+            const response = await api.get("/cestas");
+            setCampanhas(response.data);  // Atualiza o estado com os dados das campanhas
+        } catch (error) {
+            // setError("Erro ao buscar campanhas.");
+            console.error("Erro ao tentar buscar campanhas:", error.message);
+        }
+    }, []);
 
-  // Função para fechar o modal
-  const fecharModal = () => setModalOpen(false);
+    useEffect(() => {
+        fetchCampanhas();  // Carrega as campanhas ao montar o componente
+    }, [fetchCampanhas]);
 
-  // Função para salvar uma nova campanha
-  const salvarCampanha = (novaCampanha) => {
-    setCampanhas([...campanhas, { ...novaCampanha, id: campanhas.length + 1 }]);
-    fecharModal();
-  };
+    // Função para salvar uma nova campanha
+    const handleSave = async (novaCampanha) => {
+        try {
+            await api.post("/cestas/cadastrarCesta", novaCampanha);  // Salva a nova campanha
+      alert("Campanha cadastrada com sucesso!");
+            fetchCampanhas();  // Atualiza as campanhas após o salvamento
+        } catch (error) {
+            console.error("Erro ao salvar campanha:", error);
+            alert("Falha ao salvar a campanha.");
+        }
+        fecharModal();
+    };
 
-  return (
-    <div>
-      <h1>Gerenciador de Campanhas</h1>
+    return (
+        <div>
+            <h1>Gerenciador de Campanhas</h1>
 
-      <table border="1" width="100%">
-        <thead>
-          <tr>
-            <th>Lista de Campanhas</th>
-            <th>
-              <Button variant="contained" color="primary" onClick={abrirModal}>
+            {/* Botão para abrir o modal de nova campanha */}
+            <Button variant="contained" color="primary" onClick={abrirModal}>
                 Nova Campanha
-              </Button>
-            </th>
-          </tr>
-        </thead>
-      </table>
+            </Button>
 
-      {/* Lista de campanhas com acordeon */}
-      <ListaCampanhas campanhas={campanhas} />
+            {/* Lista de campanhas com acordeon */}
+            <ListaCampanhas campanhas={campanhas} />
 
-      {/* Modal para cadastrar nova campanha */}
-      <ModalCampanha isOpen={isModalOpen} onClose={fecharModal} onSave={salvarCampanha} />
-    </div>
-  );
+            {/* Modal para cadastrar nova campanha */}
+            <ModalCampanha 
+            isOpen={isModalOpen} 
+            onClose={fecharModal} 
+            onSave={handleSave} 
+            />
+        </div>
+    );
 };
-
-export default Campanhas;
