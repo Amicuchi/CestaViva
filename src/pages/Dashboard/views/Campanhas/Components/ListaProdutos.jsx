@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
-const ListaProdutos = ({ produtos }) => {
+export default function ListaProdutos({ produtos = [] }) {
   // Estado local para armazenar a quantidade de baixa para cada produto
   const [baixaQuantidades, setBaixaQuantidades] = useState({});
 
@@ -32,34 +32,38 @@ const ListaProdutos = ({ produtos }) => {
         </tr>
       </thead>
       <tbody>
-        {produtos.map((produto) => (
-          <tr key={produto.id}>
-            <td>{produto.nome}</td>
-            <td>{produto.tipo}</td>
-            <td>{produto.qtdNecessaria}</td>
-            <td>{produto.qtdFaltante}</td>
-            <td>
-              <input
-                type="number"
-                min="0"
-                value={baixaQuantidades[produto.id] || ''}
-                onChange={(e) => handleBaixaChange(produto.id, e.target.value)}
-              />
-            </td>
-            <td>
-              <button onClick={() => handleReceberProdutos(produto.id)}>
-                Receber Produtos
-              </button>
-            </td>
+        {produtos.length > 0 ? (
+          produtos.map((produto) => (
+            <tr key={produto.id}>
+              <td>{produto.nome}</td>
+              <td>{produto.tipo}</td>
+              <td>{produto.qtdNecessaria}</td>
+              <td>{produto.qtdFaltante}</td>
+              <td>
+                <input
+                  type="number"
+                  min="0"
+                  value={baixaQuantidades[produto.id] || ''}
+                  onChange={(e) => handleBaixaChange(produto.id, e.target.value)}
+                />
+              </td>
+              <td>
+                <button onClick={() => handleReceberProdutos(produto.id)}>
+                  Receber Produtos
+                </button>
+              </td>
+            </tr>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="6">Não há produtos disponíveis.</td>
           </tr>
-        ))}
+        )}
       </tbody>
     </table>
   );
 };
 
-export default ListaProdutos;
-
 ListaProdutos.propTypes = {
-    produtos: PropTypes.array.isRequired,
+  produtos: PropTypes.array,
 };
