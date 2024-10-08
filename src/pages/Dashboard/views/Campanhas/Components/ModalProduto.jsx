@@ -1,87 +1,79 @@
-import { useState, useEffect } from 'react';
-import { Dialog, DialogTitle, DialogContent, DialogActions, Button, TextField } from '@mui/material';
+import { useState } from 'react';
+import { Modal, Box, TextField, Button, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 
-export default function ModalProduto({ isOpen, onClose, produtoAtual, onSaveProduto }) {
-    const [produto, setProduto] = useState({
-        nomeProduto: '',
-        tipo: '',
-        quantidade: ''
-    });
+export default function ModalProduto({ isOpen, onClose, onSave }) {
+  // Estados para os dados da campanha
+  const [nomeProduto, setNomeProduto] = useState('');
+  const [qtdNecessaria, setQtdNecessaria] = useState('');
+  const [tipo, setTipo] = useState('');
 
-    // Preenche os campos quando está editando um produto existente
-    useEffect(() => {
-        if (produtoAtual) {
-            setProduto({
-                nomeProduto: produtoAtual.nomeProduto || '',
-                tipo: produtoAtual.tipo || '',
-                quantidade: produtoAtual.quantidade || ''
-            });
-        } else {
-            // Limpa o formulário para o caso de um novo produto
-            setProduto({
-                nomeProduto: '',
-                tipo: '',
-                quantidade: ''
-            });
-        }
-    }, [produtoAtual]);
+  // Função para submeter o formulário
+  const handleSubmit = () => {
+    const novoProduto = { nomeProduto, qtdNecessaria, tipo };
+    onSave(novoProduto);  // Chama a função onSave passada por props para salvar a nova campanha
+    limparFormulario();    // Limpa o formulário após o salvamento
+  };
 
-    // Atualiza os campos de entrada
-    const handleChange = (e) => {
-        setProduto({
-            ...produto,
-            [e.target.name]: e.target.value
-        });
-    };
+  // Função para limpar o formulário após salvar
+  const limparFormulario = () => {
+    setNomeProduto('');
+    setQtdNecessaria('');
+    setTipo('');
+  };
 
-    const handleSubmit = () => {
-        onSaveProduto(produto);
-        onClose(); // Fecha o modal após salvar
-    };
+  // Estilos personalizados do modal
+  const estiloModal = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    borderRadius: '8px',
+  };
 
-    return (
-        <Dialog open={isOpen} onClose={onClose}>
-            <DialogTitle>{produtoAtual ? 'Editar Produto' : 'Cadastrar Produto'}</DialogTitle>
-            <DialogContent>
-                <TextField
-                    label="Nome do Produto"
-                    name="nomeProduto"
-                    value={produto.nomeProduto}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="dense"
-                />
-                <TextField
-                    label="Tipo"
-                    name="tipo"
-                    value={produto.tipo}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="dense"
-                    type="text"
-                />
-                <TextField
-                    label="Quantidade"
-                    name="quantidade"
-                    value={produto.quantidade}
-                    onChange={handleChange}
-                    fullWidth
-                    margin="dense"
-                    type="number"
-                />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={onClose}>Cancelar</Button>
-                <Button onClick={handleSubmit}>{produtoAtual ? 'Salvar' : 'Cadastrar'}</Button>
-            </DialogActions>
-        </Dialog>
-    );
-}
+  return (
+    <Modal open={isOpen} onClose={onClose}>
+      <Box sx={estiloModal}>
+        <Typography variant="h6" component="h2" gutterBottom>Novo Produto</Typography>
+        <TextField
+          label="Nome do produto"
+          value={nomeProduto}
+          onChange={(e) => setNomeProduto(e.target.value)}
+          fullWidth
+          margin="normal"
+        />
+        <TextField
+          label="Tipo"
+          value={tipo}
+          onChange={(e) => setTipo(e.target.value)}
+          fullWidth
+          margin="normal"
+          type="text"
+        />
+        <TextField
+          label="Qtd Necessária"
+          value={qtdNecessaria}
+          onChange={(e) => setQtdNecessaria(e.target.value)}
+          fullWidth
+          margin="normal"
+          type="number"
+          InputLabelProps={{ shrink: true }}
+        />
+        <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
+          <Button variant="outlined" onClick={onClose}>Cancelar</Button>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>Salvar</Button>
+        </Box>
+      </Box>
+    </Modal>
+  );
+};
 
 ModalProduto.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    produtoAtual: PropTypes.object,
-    onSaveProduto: PropTypes.func.isRequired
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
 };
