@@ -106,7 +106,7 @@ export default function DashboardUser() {
             <h3>Biografia</h3>
             <textarea
               value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}  // Atualiza o estado da descrição
+              onChange={(e) => setDescricao(e.target.value)}
               placeholder="Digite a biografia"
             />
           </div>
