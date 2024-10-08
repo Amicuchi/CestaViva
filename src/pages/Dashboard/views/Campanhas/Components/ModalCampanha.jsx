@@ -2,28 +2,29 @@ import { useState } from 'react';
 import { Modal, Box, TextField, Button, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
 
-export default function ModalCampanha ({ isOpen, onClose, onSave }) {
-  // Estado local para armazenar os dados do formulário
-  const [nome, setNome] = useState('');
-  const [dataInicio, setDataInicio] = useState('');
-  const [dataFim, setDataFim] = useState('');
+export default function ModalCampanha({ isOpen, onClose, onSave }) {
+  // Estados para os dados da campanha
+  const [nomeCampanha, setNomeCampanha] = useState('');
+  const [comecaEm, setComecaEm] = useState('');
+  const [terminaEm, setTerminaEm] = useState('');
   const [descricao, setDescricao] = useState('');
 
-  // Função para lidar com o envio do formulário
+  // Função para submeter o formulário
   const handleSubmit = () => {
-    const novaCampanha = { nome, dataInicio, dataFim, descricao };
-    onSave(novaCampanha); // Salvar a nova campanha
-    limparFormulario();    // Limpar o formulário após o envio
+    const novaCampanha = { nomeCampanha, comecaEm, terminaEm, descricao };
+    onSave(novaCampanha);  // Chama a função onSave passada por props para salvar a nova campanha
+    limparFormulario();    // Limpa o formulário após o salvamento
   };
 
   // Função para limpar o formulário após salvar
   const limparFormulario = () => {
-    setNome('');
-    setDataInicio('');
-    setDataFim('');
+    setNomeCampanha('');
+    setComecaEm('');
+    setTerminaEm('');
     setDescricao('');
   };
 
+  // Estilos personalizados do modal
   const estiloModal = {
     position: 'absolute',
     top: '50%',
@@ -40,41 +41,41 @@ export default function ModalCampanha ({ isOpen, onClose, onSave }) {
     <Modal open={isOpen} onClose={onClose}>
       <Box sx={estiloModal}>
         <Typography variant="h6" component="h2" gutterBottom>
-          Cadastrar Nova Campanha
+          Nova Campanha
         </Typography>
         <TextField
-          fullWidth
-          margin="normal"
           label="Nome"
-          value={nome}
-          onChange={(e) => setNome(e.target.value)}
-        />
-        <TextField
+          value={nomeCampanha}
+          onChange={(e) => setNomeCampanha(e.target.value)}
           fullWidth
           margin="normal"
+        />
+        <TextField
           label="Data de Início"
-          type="date"
-          InputLabelProps={{ shrink: true }}
-          value={dataInicio}
-          onChange={(e) => setDataInicio(e.target.value)}
-        />
-        <TextField
+          value={comecaEm}
+          onChange={(e) => setComecaEm(e.target.value)}
           fullWidth
           margin="normal"
+          type="date"
+          InputLabelProps={{ shrink: true }}
+        />
+        <TextField
           label="Data de Fim"
-          type="date"
-          InputLabelProps={{ shrink: true }}
-          value={dataFim}
-          onChange={(e) => setDataFim(e.target.value)}
-        />
-        <TextField
+          value={terminaEm}
+          onChange={(e) => setTerminaEm(e.target.value)}
           fullWidth
           margin="normal"
+          type="date"
+          InputLabelProps={{ shrink: true }}
+        />
+        <TextField
           label="Descrição"
-          multiline
-          rows={3}
           value={descricao}
           onChange={(e) => setDescricao(e.target.value)}
+          fullWidth
+          margin="normal"
+          multiline
+          rows={3}
         />
         <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
           <Button variant="outlined" onClick={onClose}>
@@ -90,7 +91,7 @@ export default function ModalCampanha ({ isOpen, onClose, onSave }) {
 };
 
 ModalCampanha.propTypes = {
-    isOpen: PropTypes.bool.isRequired,
-    onClose: PropTypes.func.isRequired,
-    onSave: PropTypes.object,
+  isOpen: PropTypes.bool.isRequired,
+  onClose: PropTypes.func.isRequired,
+  onSave: PropTypes.func.isRequired,
 };
