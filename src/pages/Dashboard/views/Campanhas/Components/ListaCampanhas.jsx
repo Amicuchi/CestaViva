@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from '@mui/material';
 import ListaProdutos from './ListaProdutos';
 import ModalProduto from './ModalProduto';
 import PropTypes from 'prop-types';
@@ -48,13 +47,7 @@ export default function ListaCampanhas({ campanhas }) {
                 <td>{formatarData(campanha.comecaEm)}</td>
                 <td>{formatarData(campanha.terminaEm)}</td>
                 <td>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={abrirModal}
-                  >
-                    Novo Produto
-                  </Button>
+                  <button onClick={abrirModal}>Novo Produto</button>
                 </td>
               </tr>
               {expanded === campanha._id && (

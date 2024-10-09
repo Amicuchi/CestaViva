@@ -10,37 +10,42 @@
     border: 1px solid var(--bg-hover);
     box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.2);
     display: flex;
-    flex-direction: column; 
+    flex-direction: column;
 }
 
 .modal-description {
-    flex: 1;             /* Faz com que o conteúdo ocupe o espaço restante */
-    overflow-y: auto;    /* Adiciona barra de rolagem vertical se o conteúdo exceder a altura */
-    margin-top: 1rem;    /* Espaço superior do conteúdo */
-    padding-right: 1rem; /* Adiciona espaço à direita para evitar que o texto fique muito próximo da barra de rolagem */
-    gap: 4px;            /* Adiciona um espaço entre cada item do modal */
+    flex: 1;
+    /* Faz com que o conteúdo ocupe o espaço restante */
+    overflow-y: auto;
+    /* Adiciona barra de rolagem vertical se o conteúdo exceder a altura */
+    margin-top: 1rem;
+    /* Espaço superior do conteúdo */
+    padding-right: 1rem;
+    /* Adiciona espaço à direita para evitar que o texto fique muito próximo da barra de rolagem */
+    gap: 4px;
+    /* Adiciona um espaço entre cada item do modal */
 }
 
 .modal-description div {
     width: 100%;
 }
 
-.modal-description div label{
+.modal-description div label {
     font-size: .8rem;
     font-weight: 300;
 }
 
-.modal-description div input{
+.modal-description div input {
     text-align: center;
 }
 
-.modal-btns{
+.modal-btns {
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.btn-modal{
+.btn-modal {
     min-width: 150px;
     width: 45%;
 }

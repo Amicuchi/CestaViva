@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { Modal, Box, TextField, Button, Typography } from '@mui/material';
+import { Modal, Box, TextField, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
+import './Modal.modules.css';
 
 export default function ModalProduto({ isOpen, onClose, onSave }) {
   // Estados para os dados da campanha
@@ -61,11 +62,10 @@ export default function ModalProduto({ isOpen, onClose, onSave }) {
           fullWidth
           margin="normal"
           type="number"
-          InputLabelProps={{ shrink: true }}
         />
         <Box sx={{ display: 'flex', justifyContent: 'space-between', marginTop: 2 }}>
-          <Button variant="outlined" onClick={onClose}>Cancelar</Button>
-          <Button variant="contained" color="primary" onClick={handleSubmit}>Salvar</Button>
+          <button onClick={onClose} className='btn-modal'>Cancelar</button>
+          <button onClick={handleSubmit} className='btn-modal'>Salvar</button>
         </Box>
       </Box>
     </Modal>

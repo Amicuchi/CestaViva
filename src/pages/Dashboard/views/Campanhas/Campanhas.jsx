@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Button } from '@mui/material';
 import ListaCampanhas from './components/ListaCampanhas';
 import ModalCampanha from './components/ModalCampanha';
 import api from "../../../../services/axiosConfig";
+import './components/ListaCampanhas.modules.css';
 
 export default function Campanhas() {
     const [isModalOpen, setModalOpen] = useState(false);  // Estado para abrir e fechar o modal
@@ -30,7 +30,7 @@ export default function Campanhas() {
     const handleSave = async (novaCampanha) => {
         try {
             await api.post("/cestas/cadastrarCesta", novaCampanha);  // Salva a nova campanha
-      alert("Campanha cadastrada com sucesso!");
+            alert("Campanha cadastrada com sucesso!");
             fetchCampanhas();  // Atualiza as campanhas após o salvamento
         } catch (error) {
             console.error("Erro ao salvar campanha:", error);
@@ -41,21 +41,22 @@ export default function Campanhas() {
 
     return (
         <div>
-            <h1>Gerenciador de Campanhas</h1>
+            <div className='table-header'>
+                <h1>Gerenciador de Campanhas</h1>
 
-            {/* Botão para abrir o modal de nova campanha */}
-            <Button variant="contained" color="primary" onClick={abrirModal}>
-                Nova Campanha
-            </Button>
+                {/* Botão para abrir o modal de nova campanha */}
+                <button onClick={abrirModal}>Nova Campanha</button>
+            </div>
+
 
             {/* Lista de campanhas com acordeon */}
             <ListaCampanhas campanhas={campanhas} />
 
             {/* Modal para cadastrar nova campanha */}
-            <ModalCampanha 
-            isOpen={isModalOpen} 
-            onClose={fecharModal} 
-            onSave={handleSave} 
+            <ModalCampanha
+                isOpen={isModalOpen}
+                onClose={fecharModal}
+                onSave={handleSave}
             />
         </div>
     );
