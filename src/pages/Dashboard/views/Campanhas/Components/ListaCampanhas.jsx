@@ -55,7 +55,7 @@ export default function ListaCampanhas({ campanhas }) {
                   <td colSpan="4">
                     {/* Renderiza a lista de produtos quando a linha é expandida */}
                     <div>
-                      <ListaProdutos produtos={campanha.produtos} />
+                      <ListaProdutos campanhaId={campanha._id} />
                     </div>
                   </td>
                 </tr>

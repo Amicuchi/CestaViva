@@ -1,9 +1,24 @@
-import PropTypes from 'prop-types';
-import { useState } from 'react';
+import PropTypes from "prop-types";
+import { useCallback, useEffect, useState } from "react";
+import api from "../../../../../services/axiosConfig";
 
-export default function ListaProdutos({ produtos = [] }) {
+export default function ListaProdutos({ campanhaId }) {
   // Estado local para armazenar a quantidade de baixa para cada produto
   const [baixaQuantidades, setBaixaQuantidades] = useState({});
+  const [produtos, setProdutos] = useState([]);
+
+  const fetchProdutos = useCallback(async () => {
+    try {
+      const response = await api.get(`/cestas/${campanhaId}/produtos`);
+      setProdutos(response.data); // Atualiza o estado com os dados das campanhas
+    } catch (error) {
+      console.error("Erro ao tentar buscar produtos:", error.message);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchProdutos(); // Carrega as campanhas ao montar o componente
+  }, [fetchProdutos]);
 
   // Função para lidar com mudanças no input de baixa
   const handleBaixaChange = (id, value) => {
@@ -16,7 +31,9 @@ export default function ListaProdutos({ produtos = [] }) {
   // Função para lidar com o clique no botão "Receber Produtos"
   const handleReceberProdutos = (id) => {
     const quantidadeBaixa = baixaQuantidades[id] || 0;
-    console.log(`Recebendo produtos para o produto com id ${id}. Quantidade de baixa: ${quantidadeBaixa}`);
+    console.log(
+      `Recebendo produtos para o produto com id ${id}. Quantidade de baixa: ${quantidadeBaixa}`
+    );
   };
 
   return (
@@ -24,9 +41,9 @@ export default function ListaProdutos({ produtos = [] }) {
       <thead>
         <tr>
           <th>Nome do Produto</th>
-          <th>Tipo</th>
+          <th>Kg/L</th>
           <th>Qtd Necessária</th>
-          <th>Qtd Faltante</th>
+          <th>Qtd Recebida</th>
           <th>Baixa</th>
           <th>Ações</th>
         </tr>
@@ -35,16 +52,18 @@ export default function ListaProdutos({ produtos = [] }) {
         {produtos.length > 0 ? (
           produtos.map((produto) => (
             <tr key={produto.id}>
-              <td>{produto.nome}</td>
-              <td>{produto.tipo}</td>
-              <td>{produto.qtdNecessaria}</td>
-              <td>{produto.qtdFaltante}</td>
+              <td>{produto.nomeProduto}</td>
+              <td>{produto.unidadeMedida}</td>
+              <td>{produto.metaProduto}</td>
+              <td>{produto.quantidadeRecebida}</td>
               <td>
                 <input
                   type="number"
                   min="0"
-                  value={baixaQuantidades[produto.id] || ''}
-                  onChange={(e) => handleBaixaChange(produto.id, e.target.value)}
+                  value={baixaQuantidades[produto.id] || ""}
+                  onChange={(e) =>
+                    handleBaixaChange(produto.id, e.target.value)
+                  }
                 />
               </td>
               <td>
@@ -62,8 +81,8 @@ export default function ListaProdutos({ produtos = [] }) {
       </tbody>
     </table>
   );
-};
+}
 
 ListaProdutos.propTypes = {
-  produtos: PropTypes.array,
+  campanhaId: PropTypes.string,
 };

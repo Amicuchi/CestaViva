@@ -1,8 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import ListaCampanhas from './components/ListaCampanhas';
+
 import ModalCampanha from './components/ModalCampanha';
 import api from "../../../../services/axiosConfig";
 import './components/ListaCampanhas.modules.css';
+import ListaCampanhas from './Components/ListaCampanhas';
 
 export default function Campanhas() {
     const [isModalOpen, setModalOpen] = useState(false);  // Estado para abrir e fechar o modal
