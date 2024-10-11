@@ -66,7 +66,7 @@ export default function ListaCampanhas({ campanhas }) {
       </table>
 
       {/* Modal para cadastrar novo produto */}
-      <ModalProduto isOpen={isModalOpenProduto} onClose={fecharModal} onSave={salvarProduto} />
+     {expanded ? <ModalProduto isOpen={isModalOpenProduto} onClose={fecharModal} onSave={salvarProduto} campanhaId={expanded} /> : null} 
     </>
   );
 };

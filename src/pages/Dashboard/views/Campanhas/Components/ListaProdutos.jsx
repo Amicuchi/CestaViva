@@ -10,14 +10,14 @@ export default function ListaProdutos({ campanhaId }) {
   const fetchProdutos = useCallback(async () => {
     try {
       const response = await api.get(`/cestas/${campanhaId}/produtos`);
-      setProdutos(response.data); // Atualiza o estado com os dados das campanhas
+      setProdutos(response.data); // Atualiza o estado com os dados do produto
     } catch (error) {
       console.error("Erro ao tentar buscar produtos:", error.message);
     }
-  }, []);
+  }, [campanhaId]);
 
   useEffect(() => {
-    fetchProdutos(); // Carrega as campanhas ao montar o componente
+    fetchProdutos(); // Carrega os produtos ao montar o componente
   }, [fetchProdutos]);
 
   // Função para lidar com mudanças no input de baixa
