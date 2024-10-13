@@ -7,6 +7,7 @@ export default function ListaProdutos({ campanhaId }) {
   const [baixaQuantidades, setBaixaQuantidades] = useState({});
   const [produtos, setProdutos] = useState([]);
 
+  // Função para buscar produtos da campanha
   const fetchProdutos = useCallback(async () => {
     try {
       const response = await api.get(`/cestas/${campanhaId}/produtos`);
@@ -22,10 +23,10 @@ export default function ListaProdutos({ campanhaId }) {
 
   // Função para lidar com mudanças no input de baixa
   const handleBaixaChange = (id, value) => {
-    setBaixaQuantidades({
-      ...baixaQuantidades,
-      [id]: value,
-    });
+    setBaixaQuantidades((prevQuantidades) => ({
+      ...prevQuantidades,
+      [id]: value, // Atualiza a quantidade para o produto correspondente
+    }));
   };
 
   // Função para lidar com o clique no botão "Receber Produtos"
@@ -35,6 +36,8 @@ export default function ListaProdutos({ campanhaId }) {
       `Recebendo produtos para o produto com id ${id}. Quantidade de baixa: ${quantidadeBaixa}`
     );
   };
+
+  console.log(baixaQuantidades); // Verifique os valores de baixaQuantidades
 
   return (
     <table border="1" width="100%">
@@ -51,7 +54,7 @@ export default function ListaProdutos({ campanhaId }) {
       <tbody>
         {produtos.length > 0 ? (
           produtos.map((produto) => (
-            <tr key={produto.id}>
+            <tr key={produto._id || produto.id}>
               <td>{produto.nomeProduto}</td>
               <td>{produto.unidadeMedida}</td>
               <td>{produto.metaProduto}</td>
@@ -60,14 +63,18 @@ export default function ListaProdutos({ campanhaId }) {
                 <input
                   type="number"
                   min="0"
-                  value={baixaQuantidades[produto.id] || ""}
+                  value={baixaQuantidades[produto._id || produto.id] || ""}
                   onChange={(e) =>
-                    handleBaixaChange(produto.id, e.target.value)
+                    handleBaixaChange(produto._id || produto.id, e.target.value)
                   }
                 />
               </td>
               <td>
-                <button onClick={() => handleReceberProdutos(produto.id)}>
+                <button
+                  onClick={() =>
+                    handleReceberProdutos(produto._id || produto.id)
+                  }
+                >
                   Receber Produtos
                 </button>
               </td>
