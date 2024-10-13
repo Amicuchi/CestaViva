@@ -29,12 +29,20 @@ export default function ListaProdutos({ campanhaId }) {
     }));
   };
 
-  // Função para lidar com o clique no botão "Receber Produtos"
-  const handleReceberProdutos = (id) => {
+  const handleReceberProdutos = async (id) => {
     const quantidadeBaixa = baixaQuantidades[id] || 0;
-    console.log(
-      `Recebendo produtos para o produto com id ${id}. Quantidade de baixa: ${quantidadeBaixa}`
-    );
+
+    try {
+      const response = await api.post(
+        `/cestas/${campanhaId}/produtos/${id}/baixa`,
+        {
+          quantidadeBaixa: Number(quantidadeBaixa),
+        }
+      );
+      console.log(response.data.msg); // Exibe a mensagem de sucesso
+    } catch (error) {
+      console.error("Erro ao registrar a baixa do produto:", error.message);
+    }
   };
 
   console.log(baixaQuantidades); // Verifique os valores de baixaQuantidades
