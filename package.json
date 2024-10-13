@@ -1,6 +1,5 @@
-// <nome_do_usuario>.github.io/<nome_do_repositorio>
 {
-  "homepage": "https://"Amicuchi.github.io/CestaViva",
+  "homepage": "https://Amicuchi.github.io/CestaViva",
   "name": "cestaviva",
   "private": true,
   "version": "0.0.0",
@@ -9,7 +8,7 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
