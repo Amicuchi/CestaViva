@@ -117,5 +117,5 @@ ModalProduto.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onClose: PropTypes.func.isRequired,
   onSave: PropTypes.func.isRequired,
-  campanhaId: PropTypes.func.isRequired,
+  campanhaId: PropTypes.string.isRequired,
 };
