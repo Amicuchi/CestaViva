@@ -1,4 +1,6 @@
+// <nome_do_usuario>.github.io/<nome_do_repositorio>
 {
+  "homepage": "https://"Amicuchi.github.io/CestaViva",
   "name": "cestaviva",
   "private": true,
   "version": "0.0.0",
@@ -6,8 +8,11 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+   // "lint": "eslint .",
     "preview": "vite preview"
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
