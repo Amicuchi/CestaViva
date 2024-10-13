@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { useCallback, useEffect, useState } from "react";
 import api from "../../../../../services/axiosConfig";
+import BarraDeProgresso from "./BarraProgresso";
 
 export default function ListaProdutos({ campanhaId }) {
   // Estado local para armazenar a quantidade de baixa para cada produto
@@ -52,10 +53,10 @@ export default function ListaProdutos({ campanhaId }) {
       <thead>
         <tr>
           <th>Nome do Produto</th>
-          <th>Kg/L</th>
           <th>Qtd Necessária</th>
           <th>Qtd Recebida</th>
-          <th>Baixa</th>
+          <th>Qtd Baixa</th>
+          <th>META</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -64,17 +65,28 @@ export default function ListaProdutos({ campanhaId }) {
           produtos.map((produto) => (
             <tr key={produto._id || produto.id}>
               <td>{produto.nomeProduto}</td>
-              <td>{produto.unidadeMedida}</td>
-              <td>{produto.metaProduto}</td>
-              <td>{produto.quantidadeRecebida}</td>
+              <td>
+                {produto.metaProduto} {produto.unidadeMedida}
+              </td>
+              <td>
+                {produto.quantidadeRecebida} {produto.unidadeMedida}
+              </td>
               <td>
                 <input
+                  className="baixainput"
                   type="number"
                   min="0"
                   value={baixaQuantidades[produto._id || produto.id] || ""}
                   onChange={(e) =>
                     handleBaixaChange(produto._id || produto.id, e.target.value)
                   }
+                />
+                {` ${produto.unidadeMedida}`}
+              </td>
+              <td>
+                <BarraDeProgresso
+                  quantidadeRecebida={produto.quantidadeRecebida}
+                  metaProduto={produto.metaProduto}
                 />
               </td>
               <td>
@@ -83,7 +95,7 @@ export default function ListaProdutos({ campanhaId }) {
                     handleReceberProdutos(produto._id || produto.id)
                   }
                 >
-                  Receber Produtos
+                  Dar Baixa
                 </button>
               </td>
             </tr>
