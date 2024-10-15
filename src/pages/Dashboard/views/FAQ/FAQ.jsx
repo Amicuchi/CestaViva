@@ -8,7 +8,6 @@ export default function DashboardFAQ() {
         <>
             <div className="card--container lastOne">
                 <div className="perguntas">
-                    <h2>Perguntas Frequentes</h2>
                     <Questions />
                     <hr />
                 </div>
