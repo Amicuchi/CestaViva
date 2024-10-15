@@ -5,15 +5,23 @@ import PropTypes from 'prop-types';
 
 export default function ListaCampanhas({ campanhas }) {
   const [isModalOpenProduto, setModalOpenProduto] = useState(false); // Controla se o modal está aberto
-  const abrirModal = () => setModalOpenProduto(true);   // Abre o modal
-  const fecharModal = () => setModalOpenProduto(false); // Fecha o modal
+  const [selectedCampanha, setSelectedCampanha] = useState(null);    // Controla a campanha para cadastro de produto
+  
+  const abrirModal = (e, campanhaId) => {
+    e.stopPropagation();              // Impede que o clique no botão afete a linha
+    setSelectedCampanha(campanhaId);  // Define a campanha selecionada para cadastro de produto
+    setModalOpenProduto(true);        // Abre o modal
+  };
+  const fecharModal = () => {
+    setModalOpenProduto(false); // Fecha o modal
+    setSelectedCampanha(null);  // Reseta a campanha selecionada
+  };
 
   const [expanded, setExpanded] = useState(null);  // Controla qual linha está expandida
   // Função para alternar entre expandir e recolher uma linha
   const toggleExpand = (id) => {
     console.log("Expanding row for ID:", id);  // Log do ID da linha expandida
     setExpanded(expanded === id ? null : id);  // Alterna a linha expandida
-    // setExpanded((prevExpanded) => (prevExpanded === id ? null : id));
   };
 
   const [produtos, setProdutos] = useState(''); // Estado para produtos
@@ -29,7 +37,7 @@ export default function ListaCampanhas({ campanhas }) {
   };
 
   return (
-    <>
+    <div className="card--container lastOne">
       <table border="1" width="100%">
         <thead>
           <tr>
@@ -47,7 +55,7 @@ export default function ListaCampanhas({ campanhas }) {
                 <td>{formatarData(campanha.comecaEm)}</td>
                 <td>{formatarData(campanha.terminaEm)}</td>
                 <td>
-                  <button onClick={abrirModal}>Novo Produto</button>
+                  <button onClick={(e) => abrirModal(e, campanha._id)}>Novo Produto</button>
                 </td>
               </tr>
               {expanded === campanha._id && (
@@ -66,10 +74,17 @@ export default function ListaCampanhas({ campanhas }) {
       </table>
 
       {/* Modal para cadastrar novo produto */}
-     {expanded ? <ModalProduto isOpen={isModalOpenProduto} onClose={fecharModal} onSave={salvarProduto} campanhaId={expanded} /> : null} 
-    </>
+      {isModalOpenProduto && (
+        <ModalProduto 
+          isOpen={isModalOpenProduto} 
+          onClose={fecharModal} 
+          onSave={salvarProduto} 
+          campanhaId={selectedCampanha} 
+        />
+      )}
+    </div>
   );
-};
+}
 
 ListaCampanhas.propTypes = {
   campanhas: PropTypes.array.isRequired,
