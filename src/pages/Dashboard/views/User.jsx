@@ -55,7 +55,6 @@ export default function DashboardUser() {
   return (
     <div className="card--container lastOne">
       <div className="card--content">
-        <h2>Perfil da Entidade</h2>
         <div className="user--container">
           <img
             src={getImageToDisplay()}
