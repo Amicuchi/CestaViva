@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import ModalCampanha from './components/ModalCampanha';
 import api from "../../../../services/axiosConfig";
 import './components/ListaCampanhas.modules.css';
-import ListaCampanhas from './Components/ListaCampanhas';
+import ListaCampanhas from './components/ListaCampanhas';
 
 export default function Campanhas() {
     const [isModalOpen, setModalOpen] = useState(false);  // Estado para abrir e fechar o modal
@@ -42,7 +42,7 @@ export default function Campanhas() {
 
     return (
         <div>
-            <div className='table-header'>
+            <div className='table-header header--wrapper'>
                 <h1>Gerenciador de Campanhas</h1>
 
                 {/* Botão para abrir o modal de nova campanha */}
