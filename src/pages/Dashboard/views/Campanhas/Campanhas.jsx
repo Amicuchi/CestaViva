@@ -46,6 +46,14 @@ export default function Campanhas({ isModalOpen, setIsModalOpen }) {
 
     return (
         <div>
+            <div className='table-header'>
+                <h1>Gerenciador de Campanhas</h1>
+
+                {/* Botão para abrir o modal de nova campanha */}
+                <button onClick={abrirModal}>Nova Campanha</button>
+            </div>
+
+
             {/* Lista de campanhas com acordeon */}
             <ListaCampanhas campanhas={campanhas} />
 
