@@ -26,13 +26,13 @@ cestaViva
 |  |- pages
 |  |  |- Busca
 |  |  |  |- Busca.jsx
-|  |  |  |- Busca.module.css
+|  |  |  |- Busca.css
 |  |  |- CadastroEntidade
 |  |  |  |- Components
 |  |  |  |  |- ModalTermo.jsx
-|  |  |  |  |- ModalTermo.module.css
+|  |  |  |  |- ModalTermo.css
 |  |  |  |- CadastroEntidade.jsx
-|  |  |  |- CadastroEntidade.module.css
+|  |  |  |- CadastroEntidade.css
 |  |  |- Dashboard
 |  |  |  |- components
 |  |  |  |  |- Header.jsx
@@ -42,7 +42,9 @@ cestaViva
 |  |  |  |  |  |- components
 |  |  |  |  |  |  |- ListaCampanhas.jsx
 |  |  |  |  |  |  |- ListaProdutos.jsx
-|  |  |  |  |  |- Cestas.jsx
+|  |  |  |  |  |  |- ModalCampanha.jsx
+|  |  |  |  |  |  |- ModalProduto.jsx
+|  |  |  |  |  |- Campanhas.jsx
 |  |  |  |  |- DashboardHome
 |  |  |  |  |  |- components
 |  |  |  |  |  |  |- Cards.jsx
@@ -54,6 +56,8 @@ cestaViva
 |  |  |  |  |  |  |- Support.jsx
 |  |  |  |  |- FAQ.jsx
 |  |  |  |  |- Settings
+|  |  |  |  |  |- Components
+|  |  |  |  |  |  |- TrocaSenha.jsx
 |  |  |  |  |  |- Settings.jsx
 |  |  |  |  |- User.jsx
 |  |  |  |- Dashboard.jsx
