@@ -1,12 +1,16 @@
-//Campanhas
+// Campanhas.jsx
 import { useState, useEffect, useCallback } from 'react';
+import { useOutletContext } from 'react-router-dom';  // Importa o hook para acessar o contexto
 import api from "../../../../services/axiosConfig";
 import PropTypes from "prop-types";
 import ModalCampanha from './components/ModalCampanha';
 import ListaCampanhas from './components/ListaCampanhas';
 import './components/ListaCampanhas.modules.css';
 
-export default function Campanhas({ isModalOpen, setIsModalOpen }) {
+export default function Campanhas() {
+    // Utiliza o contexto para acessar isModalOpen e setIsModalOpen
+    const { isModalOpen, setIsModalOpen } = useOutletContext();
+    
     // Estado para armazenar as campanhas
     const [campanhas, setCampanhas] = useState([]);
 
@@ -22,7 +26,6 @@ export default function Campanhas({ isModalOpen, setIsModalOpen }) {
 
     // Efeito colateral para buscar campanhas ao montar o componente
     useEffect(() => {
-        // console.log("Buscando campanhas...");  // 
         fetchCampanhas();  // Carrega as campanhas ao montar o componente
     }, [fetchCampanhas]);
     

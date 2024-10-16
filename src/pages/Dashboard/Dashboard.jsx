@@ -3,7 +3,6 @@ import { Outlet, useLocation } from 'react-router-dom';
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import { useState } from 'react';
-import Campanhas from './views/Campanhas/Campanhas';
 
 export default function Dashboard() {
     const location = useLocation(); // Hook para pegar a rota atual
@@ -39,12 +38,7 @@ export default function Dashboard() {
             <Sidebar />
             <div className="dashboard-content">
                 <Header title={getTitle()} abrirModal={abrirModal} />
-                {/* Passando a função abrirModal como prop para Campanhas */}
-                <Campanhas
-                    isModalOpen={isModalOpen}
-                    setIsModalOpen={setIsModalOpen}
-                />
-                <Outlet />
+                <Outlet context={{ isModalOpen, setIsModalOpen }} />
             </div>
         </div>
     );
