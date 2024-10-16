@@ -1,4 +1,4 @@
-# React + Vite
+# React.js + Vite - para criar uma aplicação React com TypeScript
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
