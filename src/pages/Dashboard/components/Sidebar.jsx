@@ -26,12 +26,6 @@ export default function Sidebar() {
                         <span>Perfil</span>
                     </Link>
                 </li>
-                {/* <li>
-                    <Link to="estatisticas">
-                        <FontAwesomeIcon icon={faChartBar} className="fas" />
-                        <span>Estatísticas</span>
-                    </Link>
-                </li> */}
                 <li>
                     <Link to="campanhas">
                         <FontAwesomeIcon icon={faBriefcase} className="fas" />
@@ -44,16 +38,10 @@ export default function Sidebar() {
                         <span>Configurações</span>
                     </Link>
                 </li>
-                {/* <li>
-                    <Link to="suporte">
-                        <FontAwesomeIcon icon={faHeadset} className="fas" />
-                        <span>Suporte</span>
-                    </Link>
-                </li> */}
                 <li>
                     <Link to="faq">
                         <FontAwesomeIcon icon={faCircleQuestion} className="fas" />
-                        <span>FAQ</span>
+                        <span>Ajuda</span>
                     </Link>
                 </li>
                 <li className='logout'>
