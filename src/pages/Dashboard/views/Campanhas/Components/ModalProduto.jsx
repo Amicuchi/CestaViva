@@ -1,8 +1,8 @@
 import { useCallback, useState } from "react";
 import { Modal, Box, TextField, Typography } from "@mui/material";
 import PropTypes from "prop-types";
-import "./Modal.modules.css";
 import api from "../../../../../services/axiosConfig";
+import "./Modal.modules.css";
 
 export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
   // Estados para os dados da campanha
