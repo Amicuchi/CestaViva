@@ -5,7 +5,7 @@ import api from "../../../../../services/axiosConfig";
 import "./Modal.modules.css";
 
 export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
-  // Estados para os dados da campanha
+  // Estados para os dados do produto
   const [nomeProduto, setNomeProduto] = useState("");
   const [metaProduto, setMetaProduto] = useState("");
   const [quantidadeRecebida, setQuantidadeRecebida] = useState("");
@@ -19,9 +19,14 @@ export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
         quantidadeRecebida,
         unidadeMedida,
       };
+
+      // Realiza a requisição POST para cadastrar o produto
       await api.post(`/cestas/${campanhaId}/cadastrarProduto`, novoProduto); // Usando POST para enviar o produto
-      onSave(novoProduto); // Atualiza o estado com o novo produto salvo
+
+      onSave(novoProduto); // Atualiza a lista de produtos no componente pai
+
       limparFormulario(); // Limpa o formulário após o cadastro
+
     } catch (error) {
       console.error("Erro ao tentar cadastrar produto:", error.message);
     }
@@ -38,6 +43,7 @@ export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
   const handleSubmit = () => {
     fetchCadastrarProduto();
   };
+
   // Função para limpar o formulário após salvar
   const limparFormulario = () => {
     setNomeProduto("");
