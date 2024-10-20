@@ -41,6 +41,15 @@ export default function ListaProdutos({ campanhaId }) {
         }
       );
       console.log(response.data.msg); // Exibe a mensagem de sucesso
+      
+      fetchProdutos();  // Atualiza a lista de produtos após registrar a baixa
+
+      // Limpa o input de baixa para o produto
+      setBaixaQuantidades((prevQuantidades) => ({
+        ...prevQuantidades,
+        [id]: '' // Reseta o valor do input para esse produto
+    }));
+
     } catch (error) {
       console.error("Erro ao registrar a baixa do produto:", error.message);
     }
