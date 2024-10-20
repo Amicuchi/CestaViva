@@ -4,7 +4,7 @@ import { useOutletContext } from 'react-router-dom';  // Importa o hook para ace
 import api from "../../../../services/axiosConfig";
 import PropTypes from "prop-types";
 import ModalCampanha from './components/ModalCampanha';
-import ListaCampanhas from './components/ListaCampanhas';
+import ListaCampanhas from './Components/ListaCampanhas';
 import './components/ListaCampanhas.modules.css';
 
 export default function Campanhas() {
