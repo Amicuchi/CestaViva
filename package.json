@@ -9,8 +9,7 @@
     "build": "vite build",
     "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "start": "serve -d dist"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -30,6 +29,7 @@
     "react-imask": "^7.6.1",
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.26.1",
+    "serve": "^14.2.4",
     "swiper": "^11.1.9"
   },
   "devDependencies": {
