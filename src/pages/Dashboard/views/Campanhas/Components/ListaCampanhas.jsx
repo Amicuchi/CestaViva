@@ -6,29 +6,31 @@ import PropTypes from 'prop-types';
 export default function ListaCampanhas({ campanhas }) {
   const [isModalOpenProduto, setModalOpenProduto] = useState(false); // Controla se o modal está aberto
   const [selectedCampanha, setSelectedCampanha] = useState(null);    // Controla a campanha para cadastro de produto
-  
+  const [produtos, setProdutos] = useState([]);                      // Estado para produtos como array vazio
+
   const abrirModal = (e, campanhaId) => {
     e.stopPropagation();              // Impede que o clique no botão afete a linha
     setSelectedCampanha(campanhaId);  // Define a campanha selecionada para cadastro de produto
     setModalOpenProduto(true);        // Abre o modal
   };
+
   const fecharModal = () => {
-    setModalOpenProduto(false); // Fecha o modal
-    setSelectedCampanha(null);  // Reseta a campanha selecionada
+    setModalOpenProduto(false);       // Fecha o modal
+    setSelectedCampanha(null);        // Reseta a campanha selecionada
   };
 
-  const [expanded, setExpanded] = useState(null);  // Controla qual linha está expandida
+  const [expanded, setExpanded] = useState(null);  // Controla qual linha da tabela está expandida
+
   // Função para alternar entre expandir e recolher uma linha
   const toggleExpand = (id) => {
-    console.log("Expanding row for ID:", id);  // Log do ID da linha expandida
+    // console.log("Expanding row for ID:", id);  // Log do ID da linha expandida
     setExpanded(expanded === id ? null : id);  // Alterna a linha expandida
   };
 
-  const [produtos, setProdutos] = useState(''); // Estado para produtos
-  // Função para salvar um novo produto
   const salvarProduto = (novoProduto, index) => {
-    setProdutos([...produtos, { ...novoProduto, id: index }]);
-    fecharModal();
+    setProdutos([...produtos, { ...novoProduto, id: index }]); // Adiciona o novo produto à lista de produtos
+
+    fecharModal();  // Fecha o modal após salvar
   };
 
   const formatarData = (data) => {
@@ -75,11 +77,11 @@ export default function ListaCampanhas({ campanhas }) {
 
       {/* Modal para cadastrar novo produto */}
       {isModalOpenProduto && (
-        <ModalProduto 
-          isOpen={isModalOpenProduto} 
-          onClose={fecharModal} 
-          onSave={salvarProduto} 
-          campanhaId={selectedCampanha} 
+        <ModalProduto
+          isOpen={isModalOpenProduto}
+          onClose={fecharModal}
+          onSave={salvarProduto}
+          campanhaId={selectedCampanha}
         />
       )}
     </div>
