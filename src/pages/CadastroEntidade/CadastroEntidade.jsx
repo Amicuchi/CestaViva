@@ -279,7 +279,10 @@ export default function CadastroEntidade() {
         </button>
       </form>
 
-      <ModalTermo open={open} handleClose={handleClose} />
+      <ModalTermo 
+        open={open} 
+        handleClose={handleClose} 
+      />
     </main>
   );
 }
