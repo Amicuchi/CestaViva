@@ -33,3 +33,19 @@
 .modal-description hr{
     margin-bottom: 2rem;
 }
+
+/* Responsividade */
+
+/* Mobile */
+@media (max-width: 480px) {
+    .modal-box{
+        width: 95% !important;
+    }
+}
+
+/* Extra small devices to medium devices*/
+@media (min-width: 481px) and (max-width: 1023px) {
+    .modal-box{
+        width: 80% !important;
+    }
+}

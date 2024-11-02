@@ -3,6 +3,7 @@
 }
 
 .CEForm {
+    width: 820px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
@@ -70,4 +71,23 @@ button[name="CEbutton"] { grid-area: button; }
     width: 1rem;
     margin-left: 1rem;
     margin-right: 1rem;
+}
+
+/* Responsividade */
+
+/* Mobile */
+@media (max-width: 480px) {
+    .CEForm{
+        width: 100%;
+    }
+    input{
+        font-size: 0.9rem !important;
+    }
+}
+
+/* Extra small devices to medium devices*/
+@media (min-width: 481px) and (max-width: 1023px) {
+    .CEForm{
+        width: 80%;
+    }
 }

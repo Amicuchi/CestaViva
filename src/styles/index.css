@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
-:root{
+:root {
     --bg-principal: #EBF0FA;
     --bg-secundario: #dbc08e;
     --bg-terciario: #b0722b;
@@ -9,7 +9,7 @@
 }
 
 /* Configuração geral */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -23,18 +23,18 @@ body {
     background-color: var(--bg-principal);
 }
 
-h1, 
-h2{
+h1,
+h2 {
     margin-top: 20px;
     margin-bottom: 20px;
     color: var(--bg-hover);
 }
 
-h3{
+h3 {
     color: var(--bg-hover);
 }
 
-main{
+main {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -71,12 +71,12 @@ nav ul li a:hover {
 
 
 /* Forms, Botões e Inputs */
-form{
+form {
     display: flex;
     flex-direction: column;
     align-items: center;
     max-width: 1000px;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     padding: 20px;
     background-color: var(--bg-form);
@@ -87,23 +87,22 @@ form{
 
 .BELi,
 textarea,
-input{
+input {
     width: 100%;
     padding: 5px;
-    padding-left: 2rem;
+    padding-left: 1rem;
     border: 1px solid var(--bg-terciario);
     border-radius: 10px;
     font-size: 1rem;
     text-align: left;
-    /* box-sizing: border-box; */
-    box-shadow: 
-        0 4px 8px rgba(199, 199, 199, 0.1), 
+    box-shadow:
+        0 4px 8px rgba(199, 199, 199, 0.1),
         0 6px 20px rgba(199, 199, 199, 0.1);
 }
 
 .BELi,
 textarea:focus,
-input:focus{
+input:focus {
     border-color: var(--bg-hover);
     outline: none;
     box-shadow: 0 0 5px rgba(58, 119, 255, 0.3);
@@ -125,7 +124,7 @@ button:hover {
     background-color: var(--bg-hover);
 }
 
-.ButtonTotal{
+.ButtonTotal {
     width: 100%;
 }
 
@@ -139,4 +138,26 @@ footer {
     padding: .5rem;
     position: fixed;
     bottom: 0;
+}
+
+
+
+/* Responsividade */
+
+/* Mobile */
+@media (max-width: 480px) {
+    form {
+        width: 90%;
+    }
+
+    .LoginForm {
+        width: 100%;
+    }
+}
+
+/* Extra small devices to medium devices*/
+@media (min-width: 481px) and (max-width: 767px) {
+    form {
+        width: 80%;
+    }
 }

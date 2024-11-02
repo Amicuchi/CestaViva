@@ -90,7 +90,6 @@
     box-shadow:
         0 4px 8px rgba(0, 0, 0, 0.1),
         0 6px 20px rgba(0, 0, 0, 0.1);
-    /* overflow: visible; */
     transition: transform 0.3s ease-in-out;
 }
 
@@ -147,7 +146,8 @@
 .ContatoForm {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    max-width: 1000px;
+
+    width: 800px;
 
     grid-template-rows: auto auto auto;
     grid-template-areas:
@@ -182,4 +182,126 @@ textarea {
 
 button[name="contatoBtn"] {
     grid-area: contatoBtn;
+}
+
+/* Responsividade */
+
+/* Mobile */
+@media (max-width: 480px) {
+
+    .BEContainer {
+        padding-top: 0.1rem;
+    }
+
+    .BEContainer {
+        margin-top: 0;
+    }
+
+    .BEButton,
+    .BEInput {
+        margin: 0 30px;
+        width: 350px;
+    }
+
+    .BEContainer form {
+        margin-top: 2rem;
+        width: 100%;
+    }
+
+    .sobreNosContainer,
+    .sobreContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .sobreContainer .SobreNosImg {
+        margin-bottom: 1rem;
+    }
+
+    .sobreContainer div{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .ContatoForm{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .BEContainer {
+        padding-top: 0.1rem;
+    }
+
+    .BEContainer {
+        margin-top: 0;
+    }
+
+    .BEContainer form {
+        margin-top: 2rem;
+        width: 415px;
+    }
+
+    .BEButton,
+    .BEInput {
+        margin: 0 30px;
+        width: 350px;
+    }
+
+    .sobreNosContainer,
+    .sobreContainer{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .sobreContainer .SobreNosImg {
+        margin-bottom: 1rem;
+    }
+
+    .sobreContainer div{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .ContatoForm{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Extra small devices to medium devices*/
+@media (min-width: 768px) and (max-width: 1023px) {
+    
+    .BEContainer {
+        padding-top: 0.1rem;
+    }
+
+    .BEContainer {
+        margin-top: 0;
+    }
+
+    .BEContainer form {
+        margin-top: 2rem;
+        width: 415px;
+    }
+
+    .BEButton,
+    .BEInput {
+        margin: 0 30px;
+        width: 350px;
+    }
+
+    .ContatoForm{
+        width: 70%;
+        display: flex;
+        flex-direction: column;
+    }
 }
