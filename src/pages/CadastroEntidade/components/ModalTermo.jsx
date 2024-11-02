@@ -9,6 +9,7 @@ export default function ModalTermo({ open, handleClose }) {
             onClose={handleClose}
             aria-labelledby="modal-title"
             aria-describedby="modal-description"
+             className="modal-box-container"
         >
             <Box className="modal-box">
                 <h2 id="modal-title" className="modal-title">
