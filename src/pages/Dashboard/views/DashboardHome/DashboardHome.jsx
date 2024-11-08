@@ -4,7 +4,10 @@
 export default function DashboardHome() {
     return (
         <div className="dashboard-content">
-            <h2>Olá!</h2>
+            <div className="card--container">
+                <h2>Olá!</h2>
+                <p>Você está no Painel de Controle</p>
+            </div>
         </div>
     );
 }
