@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../services/AuthContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [error, setError] = useState(null); // Estado para armazenar erros, se houver
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +24,8 @@ export default function Login() {
       );
 
       // Se a autenticação for bem-sucedida, armazenar o token no localStorage
-      localStorage.setItem("token", response.data.token);
+      // localStorage.setItem("token", response.data.token);
+      login(response.data.token); // Usa a função do contexto
 
       // Redirecionar o usuário autenticado
       navigate("/dashboard/dashboardHome");
