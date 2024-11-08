@@ -146,6 +146,11 @@ footer {
 
 /* Mobile */
 @media (max-width: 480px) {
+    h2 {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
     form {
         width: 90%;
     }
