@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
     faTachographDigital, 
@@ -9,8 +9,17 @@ import {
     faArrowRightFromBracket
 } from '@fortawesome/free-solid-svg-icons';
 import '../Dashboard.css';
+import { useAuth } from '../../../services/AuthContext';
 
 export default function Sidebar() {
+    const { logout } = useAuth();
+    const navigate = useNavigate();
+    
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
+
     return (
         <aside className="sidebar">
             <ul className="menu">
@@ -45,7 +54,7 @@ export default function Sidebar() {
                     </Link>
                 </li>
                 <li className='logout'>
-                    <Link to="/">
+                    <Link to="/" onClick={handleLogout}>
                         <FontAwesomeIcon icon={faArrowRightFromBracket} className="fas" />
                         <span className="menu-text">Sair</span>
                     </Link>
