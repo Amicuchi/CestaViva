@@ -3,6 +3,12 @@ import { useCallback, useEffect, useState } from "react";
 import api from "../../../../../services/axiosConfig";
 import BarraDeProgresso from "./BarraProgresso";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFileCirclePlus,
+  faTrashCan
+} from '@fortawesome/free-solid-svg-icons';
+
 export default function ListaProdutos({ campanhaId }) {
   // Estado local para armazenar a quantidade de baixa para cada produto
   const [baixaQuantidades, setBaixaQuantidades] = useState({});
@@ -41,14 +47,14 @@ export default function ListaProdutos({ campanhaId }) {
         }
       );
       console.log(response.data.msg); // Exibe a mensagem de sucesso
-      
+
       fetchProdutos();  // Atualiza a lista de produtos após registrar a baixa
 
       // Limpa o input de baixa para o produto
       setBaixaQuantidades((prevQuantidades) => ({
         ...prevQuantidades,
         [id]: '' // Reseta o valor do input para esse produto
-    }));
+      }));
 
     } catch (error) {
       console.error("Erro ao registrar a baixa do produto:", error.message);
@@ -61,7 +67,7 @@ export default function ListaProdutos({ campanhaId }) {
     <table border="1" width="100%">
       <thead>
         <tr>
-          <th>Nome do Produto</th>
+          <th>Produto</th>
           <th>Qtd Necessária</th>
           <th>Qtd Recebida</th>
           <th>Qtd Baixa</th>
@@ -100,11 +106,23 @@ export default function ListaProdutos({ campanhaId }) {
               </td>
               <td>
                 <button
-                  onClick={() =>
-                    handleReceberProdutos(produto._id || produto.id)
-                  }
+                  className="btn--icon"
+                  onClick={() => handleReceberProdutos(produto._id || produto.id)}
                 >
                   Dar Baixa
+                </button>
+
+                <button
+                  className="btn--icon"
+                  onClick={() => handleReceberProdutos(produto._id || produto.id)}
+                >
+                  <FontAwesomeIcon icon={faFileCirclePlus} />
+                </button>
+                <button
+                  className="btn--icon"
+                  onClick={() => handleReceberProdutos(produto._id || produto.id)}
+                >
+                  <FontAwesomeIcon icon={faTrashCan} />
                 </button>
               </td>
             </tr>

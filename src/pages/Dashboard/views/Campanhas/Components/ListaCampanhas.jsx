@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
-import ListaProdutos from './ListaProdutos';
-import ModalProduto from './ModalProduto';
 import PropTypes from 'prop-types';
+import ModalProduto from './ModalProduto';
+import ListaProdutos from './ListaProdutos';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faFileCirclePlus,
+  faTrashCan
+} from '@fortawesome/free-solid-svg-icons';
 
 export default function ListaCampanhas({ campanhas }) {
   const [isModalOpenProduto, setModalOpenProduto] = useState(false); // Controla se o modal está aberto
@@ -43,9 +49,9 @@ export default function ListaCampanhas({ campanhas }) {
       <table border="1" width="100%">
         <thead>
           <tr>
-            <td>Nome da campanha</td>
-            <td>Data de Início</td>
-            <td>Data de Término</td>
+            <td>Campanha</td>
+            <td>Início</td>
+            <td>Término</td>
             <td>Ações</td>
           </tr>
         </thead>
@@ -56,8 +62,13 @@ export default function ListaCampanhas({ campanhas }) {
                 <td>{campanha.nomeCampanha}</td>
                 <td>{formatarData(campanha.comecaEm)}</td>
                 <td>{formatarData(campanha.terminaEm)}</td>
-                <td>
-                  <button onClick={(e) => abrirModal(e, campanha._id)}>Novo Produto</button>
+                <td className="btn--icon--container">
+                  <button className="btn--icon" onClick={(e) => abrirModal(e, campanha._id)}>
+                    <FontAwesomeIcon icon={faFileCirclePlus} />
+                  </button>
+                  <button className="btn--icon" onClick={(e) => abrirModal(e, campanha._id)}>
+                    <FontAwesomeIcon icon={faTrashCan} />
+                  </button>
                 </td>
               </tr>
               {expanded === campanha._id && (
