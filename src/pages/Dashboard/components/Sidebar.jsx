@@ -17,37 +17,37 @@ export default function Sidebar() {
                 <li className='active'>
                     <Link to="dashboardhome">
                         <FontAwesomeIcon icon={faTachographDigital} className="fas" />
-                        <span>Dashboard</span>
+                        <span className="menu-text">Dashboard</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="perfil">
                         <FontAwesomeIcon icon={faUser} className="fas" />
-                        <span>Perfil</span>
+                        <span className="menu-text">Perfil</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="campanhas">
                         <FontAwesomeIcon icon={faBriefcase} className="fas" />
-                        <span>Campanhas</span>
+                        <span className="menu-text">Campanhas</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="configuracoes">
                         <FontAwesomeIcon icon={faGear} className="fas" />
-                        <span>Configurações</span>
+                        <span className="menu-text">Configurações</span>
                     </Link>
                 </li>
                 <li>
                     <Link to="faq">
                         <FontAwesomeIcon icon={faCircleQuestion} className="fas" />
-                        <span>Ajuda</span>
+                        <span className="menu-text">Ajuda</span>
                     </Link>
                 </li>
                 <li className='logout'>
                     <Link to="/">
                         <FontAwesomeIcon icon={faArrowRightFromBracket} className="fas" />
-                        <span>Sair</span>
+                        <span className="menu-text">Sair</span>
                     </Link>
                 </li>
             </ul>
