@@ -5,8 +5,9 @@ import BarraDeProgresso from "./BarraProgresso";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faTrashCan,
   faPenToSquare,
-  faTrashCan
+  faArrowDown
 } from '@fortawesome/free-solid-svg-icons';
 
 export default function ListaProdutos({ campanhaId }) {
@@ -107,19 +108,22 @@ export default function ListaProdutos({ campanhaId }) {
               <td className="btn--container">
                 <button
                   className="btn--icon"
+                  title="Dar Baixa"
                   onClick={() => handleReceberProdutos(produto._id || produto.id)}
                 >
-                  Dar Baixa
+                  <FontAwesomeIcon icon={faArrowDown} />
                 </button>
 
                 <button
                   className="btn--icon"
+                  title="Editar Produto"
                   onClick={() => handleReceberProdutos(produto._id || produto.id)}
                 >
                   <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
                 <button
                   className="btn--icon"
+                  title="Excluir Produto"
                   onClick={() => handleReceberProdutos(produto._id || produto.id)}
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
