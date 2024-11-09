@@ -188,26 +188,26 @@
 
 
 /* Dashboard Section Table */
-.table--container {
-    width: 100%;
-}
 
 table {
     width: 100%;
     border-collapse: collapse;
+    width: 100%;
+    border: "1";
 }
 
 thead {
     background-color: var(--bg-principal);
     color: var(--bg-hover);
-    font-weight: bold;
+    font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
+    font-size: 0.8rem;
 }
 
 th, 
 td {
-    padding: 1rem 0;
+    padding: 0.3rem 0;
     border-bottom: 1px solid #ddd;
 }
 
@@ -221,7 +221,6 @@ tbody tr:hover {
 }
 
 td {
-    padding: 0.3rem 0;
     font-size: 0.9rem;
     color: var(--bg-terciario);
 }
@@ -230,23 +229,49 @@ tr:nth-child(even) {
     background-color: var(--bg-principal);
 }
 
-.iconEditTrash {
+.btn--container{
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    min-width: 30px;
-    gap: 10px;
+    gap: 0.7rem;
+    justify-content: center;
 }
 
-tfoot {
-    background-color: var(--bg-secundario);
-    font-weight: bold;
-    color: red;
+.btn--icon {
+    display: flex;            /* Torna o botão um contêiner flexível */
+    justify-content: center;  /* Centraliza horizontalmente */
+    align-items: center;      /* Centraliza verticalmente */
+    padding: 8px;             /* Controle o espaçamento interno do botão */
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
 }
 
-tfoot td {
-    padding: 1rem;
+.tabela-produtos th:nth-child(1) {
+    width: 20%; /* Produto */
 }
+
+.tabela-produtos th:nth-child(2) {
+    width: 15%; /* Necessário */
+}
+
+.tabela-produtos th:nth-child(3) {
+    width: 15%; /* Recebido */
+}
+
+.tabela-produtos th:nth-child(4),
+.tabela-produtos td:nth-child(4) {
+    width: 20%; /* Qtd Baixa */
+}
+
+
+
+.tabela-produtos th:nth-child(5) {
+    width: 10%; /* Meta */
+}
+
+.tabela-produtos th:nth-child(6) {
+    width: 20%; /* Ações */
+}
+
 
 /* Dashboard User */
 .user--container {
@@ -448,7 +473,18 @@ tfoot td {
         margin-top: -10px;
         width: 100%;
     }
-        
+    
+    .btn--container{
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn--icon{
+        width: 30px;
+        height: 30px;
+        font-size: 0.8rem;
+        padding: 0;
+    }
 }
 
 /* Extra small devices to medium devices*/
