@@ -158,18 +158,6 @@ footer {
     .LoginForm {
         width: 100%;
     }
-
-    .btn--icon--container{
-        display: flex;
-        gap: 10px;
-    }
-
-    .btn--icon{
-        width: 30px;
-        height: 30px;
-        font-size: 0.8rem;
-        padding: 0;
-    }
 }
 
 /* Small devices to medium devices*/
