@@ -1,24 +1,25 @@
 /* Estilo para o contêiner da barra de progresso */
 .progress-bar-container {
-  width: 100%;
-  background-color: #e9e9e9; /* Cor de fundo cinza */
-  border-radius: 12px;
+  width: 90%;
   height: 24px;
   overflow: hidden;
+  border-radius: 12px;
   border: 1px solid var(--bg-secundario);
+  background-color: #e9e9e9;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* Estilo para a barra de progresso preenchida */
 .progress-bar-fill {
-  height: 100%;
-  background-color: #22c55e; /* Cor de preenchimento verde */
-  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  height: 100%;
+  border-radius: 12px;
   padding-left: 8px;
   color: white;
   font-size: 12px;
-  font-weight: bold;
   transition: width 0.4s ease;
+  background-color: #22c55e; /* Cor de preenchimento verde */
 }
