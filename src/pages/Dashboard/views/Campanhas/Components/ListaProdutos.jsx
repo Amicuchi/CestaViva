@@ -64,10 +64,7 @@ export default function ListaProdutos({ campanhaId }) {
   console.log(baixaQuantidades); // Verifique os valores de baixaQuantidades
 
   return (
-    <table 
-      border="1" 
-      width="100%"
-    >
+    <table className="tabela-produtos">
       <thead>
         <tr>
           <th>Produto</th>
@@ -107,7 +104,7 @@ export default function ListaProdutos({ campanhaId }) {
                   metaProduto={produto.metaProduto}
                 />
               </td>
-              <td className="btn-container">
+              <td className="btn--container">
                 <button
                   className="btn--icon"
                   onClick={() => handleReceberProdutos(produto._id || produto.id)}

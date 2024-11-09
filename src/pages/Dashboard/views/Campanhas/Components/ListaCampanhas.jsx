@@ -46,7 +46,7 @@ export default function ListaCampanhas({ campanhas }) {
 
   return (
     <div className="card--container lastOne">
-      <table border="1" width="100%">
+      <table className="tabela-campanhas">
         <thead>
           <tr>
             <td>Campanha</td>
@@ -62,7 +62,7 @@ export default function ListaCampanhas({ campanhas }) {
                 <td>{campanha.nomeCampanha}</td>
                 <td>{formatarData(campanha.comecaEm)}</td>
                 <td>{formatarData(campanha.terminaEm)}</td>
-                <td className="btn--icon--container">
+                <td className="btn--container">
                   <button className="btn--icon" onClick={(e) => abrirModal(e, campanha._id)}>
                     <FontAwesomeIcon icon={faFileCirclePlus} />
                   </button>
