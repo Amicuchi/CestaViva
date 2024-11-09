@@ -5,7 +5,7 @@ import BarraDeProgresso from "./BarraProgresso";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faFileCirclePlus,
+  faPenToSquare,
   faTrashCan
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -64,14 +64,17 @@ export default function ListaProdutos({ campanhaId }) {
   console.log(baixaQuantidades); // Verifique os valores de baixaQuantidades
 
   return (
-    <table border="1" width="100%">
+    <table 
+      border="1" 
+      width="100%"
+    >
       <thead>
         <tr>
           <th>Produto</th>
-          <th>Qtd Necessária</th>
-          <th>Qtd Recebida</th>
+          <th>Necessário</th>
+          <th>Recebido</th>
           <th>Qtd Baixa</th>
-          <th>META</th>
+          <th>Meta</th>
           <th>Ações</th>
         </tr>
       </thead>
@@ -104,7 +107,7 @@ export default function ListaProdutos({ campanhaId }) {
                   metaProduto={produto.metaProduto}
                 />
               </td>
-              <td>
+              <td className="btn-container">
                 <button
                   className="btn--icon"
                   onClick={() => handleReceberProdutos(produto._id || produto.id)}
@@ -116,7 +119,7 @@ export default function ListaProdutos({ campanhaId }) {
                   className="btn--icon"
                   onClick={() => handleReceberProdutos(produto._id || produto.id)}
                 >
-                  <FontAwesomeIcon icon={faFileCirclePlus} />
+                  <FontAwesomeIcon icon={faPenToSquare} />
                 </button>
                 <button
                   className="btn--icon"
