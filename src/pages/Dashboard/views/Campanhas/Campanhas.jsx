@@ -5,7 +5,6 @@ import api from "../../../../services/axiosConfig";
 import PropTypes from "prop-types";
 import ModalCampanha from "./Components/ModalCampanha";
 import ListaCampanhas from "./Components/ListaCampanhas";
-import "./Components/ListaCampanhas.modules.css";
 
 export default function Campanhas() {
   // Utiliza o contexto para acessar isModalOpen e setIsModalOpen
