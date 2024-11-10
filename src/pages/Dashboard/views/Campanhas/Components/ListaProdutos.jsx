@@ -1,7 +1,7 @@
-import PropTypes from "prop-types";
 import { useCallback, useEffect, useState } from "react";
-import api from "../../../../../services/axiosConfig";
 import BarraDeProgresso from "./BarraProgresso";
+import api from "../../../../../services/axiosConfig";
+import PropTypes from "prop-types";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -97,7 +97,7 @@ export default function ListaProdutos({ campanhaId }) {
                     handleBaixaChange(produto._id || produto.id, e.target.value)
                   }
                 />
-                {` ${produto.unidadeMedida}`}
+                <span className="baixaInput--unidade">{` ${produto.unidadeMedida}`}</span>
               </td>
               <td>
                 <BarraDeProgresso
