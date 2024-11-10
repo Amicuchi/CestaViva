@@ -3,10 +3,12 @@
     display: flex;
 }
 
-.dashboard-content {    
+.dashboard-content {
     flex-direction: column;
-    flex: 1;        /* Ocupa todo o espaço restante */
-    overflow: auto; /* Permite rolagem se o conteúdo for maior que a tela */
+    flex: 1;
+    /* Ocupa todo o espaço restante */
+    overflow: auto;
+    /* Permite rolagem se o conteúdo for maior que a tela */
 }
 
 /* Sidebar */
@@ -98,7 +100,7 @@
     margin-bottom: 1rem;
 }
 
-.lastOne{
+.lastOne {
     margin-bottom: 4rem;
 }
 
@@ -205,7 +207,7 @@ thead {
     font-size: 0.8rem;
 }
 
-th, 
+th,
 td {
     padding: 0.3rem 0;
     border-bottom: 1px solid #ddd;
@@ -216,7 +218,8 @@ tbody {
 }
 
 tbody tr:hover {
-    background-color: #e0f7fa; /* Efeito hover para realçar a linha */
+    background-color: #e0f7fa;
+    /* Efeito hover para realçar a linha */
     cursor: pointer;
 }
 
@@ -229,49 +232,71 @@ tr:nth-child(even) {
     background-color: var(--bg-principal);
 }
 
-.btn--container{
+.btn--container {
     display: flex;
     gap: 0.7rem;
     justify-content: center;
 }
 
 .btn--icon {
-    display: flex;            /* Torna o botão um contêiner flexível */
-    justify-content: center;  /* Centraliza horizontalmente */
-    align-items: center;      /* Centraliza verticalmente */
-    padding: 8px;             /* Controle o espaçamento interno do botão */
+    display: flex;
+    /* Torna o botão um contêiner flexível */
+    justify-content: center;
+    /* Centraliza horizontalmente */
+    align-items: center;
+    /* Centraliza verticalmente */
+    padding: 8px;
+    /* Controle o espaçamento interno do botão */
     width: 40px;
     height: 40px;
     font-size: 0.8rem;
 }
 
 .tabela-produtos th:nth-child(1) {
-    width: 20%; /* Produto */
+    width: 20%;
+    /* Produto */
 }
 
 .tabela-produtos th:nth-child(2) {
-    width: 15%; /* Necessário */
+    width: 15%;
+    /* Necessário */
 }
 
 .tabela-produtos th:nth-child(3) {
-    width: 15%; /* Recebido */
+    width: 15%;
+    /* Recebido */
 }
 
-.tabela-produtos th:nth-child(4),
-.tabela-produtos td:nth-child(4) {
-    width: 20%; /* Qtd Baixa */
+.tabela-produtos th:nth-child(4){
+    width: 20%;
+    /* Qtd Baixa */
 }
-
-
 
 .tabela-produtos th:nth-child(5) {
-    width: 10%; /* Meta */
+    width: 10%;
+    /* Meta */
 }
 
 .tabela-produtos th:nth-child(6) {
-    width: 20%; /* Ações */
+    width: 20%;
+    /* Ações */
 }
 
+.tabela-produtos th {
+    font-weight: 500;
+}
+
+.tabela-produtos td {
+    border-right: 1px solid rgb(150, 150, 150);
+}
+
+.tabela-produtos td:nth-child(6) {
+    border-right: none
+}
+
+.baixainput {
+    width: 40%;
+}
 
 /* Dashboard User */
 .user--container {
@@ -298,7 +323,7 @@ tr:nth-child(even) {
     margin-bottom: 2rem;
 }
 
-.user--container h3{
+.user--container h3 {
     margin-top: 2rem;
 }
 
@@ -349,40 +374,41 @@ tr:nth-child(even) {
 }
 
 /* Dashboard Cestas */
-.cestas-flex{
+.cestas-flex {
     display: flex;
     justify-content: center;
     gap: 1rem;
 }
 
-.cestas--cadastroProduto{
+.cestas--cadastroProduto {
     width: 35%;
 }
 
-.form-container{
+.form-container {
     width: 100%;
 }
 
-.lista-produtos{
+.lista-produtos {
     width: 65%;
     padding: 20px;
     background: var(--bg-principal);
 }
 
-.lista-produtos table{
+.lista-produtos table {
     font-size: 0.8rem;
 }
 
-.btnQtd{
+.btnQtd {
     width: 100px;
     padding: 2px;
     font-size: 0.8rem;
 }
-.btnQtd.left{
+
+.btnQtd.left {
     margin-left: 1rem;
 }
 
-.inputQtd{
+.inputQtd {
     padding-left: 1rem;
     margin-right: 10px;
 }
@@ -390,7 +416,7 @@ tr:nth-child(even) {
 
 /* Suporte */
 
-.form--span{
+.form--span {
     display: flex;
     flex: 1;
     width: 100%;
@@ -399,28 +425,28 @@ tr:nth-child(even) {
     justify-content: space-between;
 }
 
-.form--span button{
+.form--span button {
     min-width: 220px;
     width: 45%;
 }
 
-.form--span select{
+.form--span select {
     flex: 1;
 }
 
-.form--support div{
+.form--support div {
     width: 100%;
 }
 
 
 /* FAQ */
-.perguntas{
+.perguntas {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
 
-.marginBotton{
+.marginBotton {
     margin-bottom: 0;
 }
 
@@ -437,7 +463,7 @@ tr:nth-child(even) {
         height: fit-content;
     }
 
-    .header--wrapper button{
+    .header--wrapper button {
         margin-bottom: 1rem;
         width: 100%;
     }
@@ -455,7 +481,7 @@ tr:nth-child(even) {
         border: 1px solid var(--bg-secundario);
     }
 
-    .form--span{
+    .form--span {
         flex-direction: column;
         padding: 0;
     }
@@ -464,22 +490,22 @@ tr:nth-child(even) {
         width: 100%
     }
 
-    .form--support{
+    .form--support {
         width: 100%;
         font-size: .8rem;
     }
 
-    .form--span select{
+    .form--span select {
         margin-top: -10px;
         width: 100%;
     }
-    
-    .btn--container{
+
+    .btn--container {
         display: flex;
         gap: 10px;
     }
 
-    .btn--icon{
+    .btn--icon {
         width: 30px;
         height: 30px;
         font-size: 0.8rem;
@@ -489,15 +515,15 @@ tr:nth-child(even) {
 
 /* Extra small devices to medium devices*/
 /* @media (min-width: 481px) and (max-width: 767px) { */
-    /* Responsividade */
+/* Responsividade */
 
 /* Mobile (max-width: 767px) */
 @media (max-width: 767px) {
     .dashboard-container {
         flex-direction: column;
     }
-    
-    .fas{
+
+    .fas {
         width: 16px;
         height: 16px;
     }
@@ -513,7 +539,7 @@ tr:nth-child(even) {
         padding: 0;
         background-color: var(--bg-terciario);
     }
-    
+
     .menu {
         display: flex;
         flex-direction: row;
@@ -522,12 +548,12 @@ tr:nth-child(even) {
         padding: 0;
         margin-top: 2px;
     }
-    
+
     .menu li {
         margin: 0;
         padding: 1rem;
     }
-    
+
     .menu a {
         flex-direction: column;
         gap: 0;
@@ -539,9 +565,41 @@ tr:nth-child(even) {
         display: none;
     }
 
+    .tabela-produtos th {
+        border-right: 1px solid rgb(150, 150, 150);
+    }
+
+    .tabela-produtos th:nth-child(2),
+    .tabela-produtos td:nth-child(2) {
+        display: none;
+        /* Ações */
+    }
+
+    .tabela-produtos th:nth-child(6) {
+        border-right: none
+        /* Ações */
+    }
+
+    .baixainput{
+        width: 80%;
+    }
+
+    .baixaInput--unidade{
+        display: none;
+        /* Qtd Baixa */
+    }
 }
 
 /* Medium devices */
 @media (min-width: 768px) and (max-width: 1023px) {
+    
+    .baixainput{
+        width: 60%;
+    }
 
+    .baixaInput--unidade{
+        display: none;
+        /* Qtd Baixa */
+    }
+    
 }
