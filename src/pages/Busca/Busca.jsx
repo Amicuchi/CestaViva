@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom'; // useLocation: Obtém a localização atual para acessar os parâmetros da URL
 import api from '../../services/axiosConfig';
+import ModalEntidade from './components/ModalEntidade';
 import './Busca.css';
 
 export default function Busca() {
@@ -9,6 +10,11 @@ export default function Busca() {
     const [itens, setItens] = useState([]);
     const [filtroCidade, setFiltroCidade] = useState('');
     const [filtroItem, setFiltroItem] = useState('');
+
+    // Estados para o modal
+    const [modalOpen, setModalOpen] = useState(false);
+    const [entidadeSelecionada, setEntidadeSelecionada] = useState(null);
+
     const location = useLocation();
 
     // Fetch de entidades e suas necessidades quando o componente é montado
@@ -47,20 +53,32 @@ export default function Busca() {
     const entidadesFiltradas = entidades.filter(entidade => {
         // Aplica filtro de cidade
         const filtroCidadeAplicado = filtroCidade === '' || entidade.cidade.toLowerCase() === filtroCidade.toLowerCase();
-        
+
         // Aplica filtro de item
         // const filtroItemAplicado = filtroItem === '' || (entidade.necessidades && entidade.necessidades.includes(filtroItem));
-            // Aqui, verifica se o filtroItem (que é o valor selecionado no filtro) está presente diretamente na lista entidade.necessidades. 
-            // No entanto, o método .includes() funciona bem apenas para arrays que contêm valores primitivos (como strings e números). 
-            // Portanto, se entidade.necessidades é um array de objetos e não um array de strings, .includes() não funcionará como esperado para verificar a presença de um item com base em uma propriedade de objeto.
+        // Aqui, verifica se o filtroItem (que é o valor selecionado no filtro) está presente diretamente na lista entidade.necessidades. 
+        // No entanto, o método .includes() funciona bem apenas para arrays que contêm valores primitivos (como strings e números). 
+        // Portanto, se entidade.necessidades é um array de objetos e não um array de strings, .includes() não funcionará como esperado para verificar a presença de um item com base em uma propriedade de objeto.
 
         const filtroItemAplicado = filtroItem === '' || (entidade.necessidades && entidade.necessidades.some(necessidade => necessidade.nomeProduto === filtroItem));
-            // Aqui, o método .some() verifica se pelo menos um item em entidade.necessidades atende à condição fornecida. 
-            // Especificamente, ele verifica se algum dos objetos em entidade.necessidades tem o nomeProduto igual ao filtroItem. 
-            // Isso é necessário se entidade.necessidades for um array de objetos e filtrar com base em uma propriedade desses objetos.
+        // Aqui, o método .some() verifica se pelo menos um item em entidade.necessidades atende à condição fornecida. 
+        // Especificamente, ele verifica se algum dos objetos em entidade.necessidades tem o nomeProduto igual ao filtroItem. 
+        // Isso é necessário se entidade.necessidades for um array de objetos e filtrar com base em uma propriedade desses objetos.
 
         return filtroCidadeAplicado && filtroItemAplicado;
     });
+
+    // Função para abrir o modal e definir a entidade selecionada
+    const handleOpenModal = (entidade) => {
+        setEntidadeSelecionada(entidade);
+        setModalOpen(true);
+    };
+
+    // Função para fechar o modal
+    const handleCloseModal = () => {
+        setModalOpen(false);
+        setEntidadeSelecionada(null);
+    };
 
     return (
         <main className='buscaContainer'>
@@ -86,7 +104,7 @@ export default function Busca() {
                     <li className='BELi'>Nenhuma entidade encontrada.</li>
                 ) : (
                     entidadesFiltradas.map((entidade) => (
-                        <li className="BELi card" key={entidade._id}>
+                        <li className="BELi card" key={entidade._id} onClick={() => handleOpenModal(entidade)}>
                             <h2 className="entidadeNome">{entidade.nomeFantasia}</h2>
                             <p className="entidadeEndereco">{entidade.endereco}, {entidade.numero}, {entidade.complemento}</p>
                             <p className="entidadeEndereco">{entidade.bairro}</p>
@@ -107,6 +125,15 @@ export default function Busca() {
                     ))
                 )}
             </ul>
+
+            {/* Modal para exibir os detalhes da entidade */}
+            {entidadeSelecionada && (
+                <ModalEntidade
+                    open={modalOpen}
+                    handleClose={handleCloseModal}
+                    entidade={entidadeSelecionada} // Passar entidade selecionada como prop
+                />
+            )}
         </main>
     );
 }
