@@ -218,8 +218,8 @@ tbody {
 }
 
 tbody tr:hover {
-    background-color: #e0f7fa;
     /* Efeito hover para realçar a linha */
+    background-color: #e0f7fa;
     cursor: pointer;
 }
 
@@ -510,6 +510,12 @@ tr:nth-child(even) {
         height: 30px;
         font-size: 0.8rem;
         padding: 0;
+    }
+
+    .tabela-produtos td:nth-child(5),
+    .tabela-produtos th:nth-child(5) {
+        display: none;
+        /* Meta */
     }
 }
 
