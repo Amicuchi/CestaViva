@@ -26,7 +26,7 @@ export default function Campanhas() {
   // Efeito colateral para buscar campanhas ao montar o componente
   useEffect(() => {
     fetchCampanhas(); // Carrega as campanhas ao montar o componente
-  }, [fetchCampanhas]);
+  }, [fetchCampanhas]); // Atualiza quando campanhas ou fetchCampanhas mudarem
 
   // Log para monitorar o estado e tentar encontrar a dupla renderização
   // useEffect(() => {
@@ -49,7 +49,7 @@ export default function Campanhas() {
   return (
     <div>
       {/* Lista de campanhas com acordeon */}
-      <ListaCampanhas campanhas={campanhas} />
+      <ListaCampanhas campanhas={campanhas} fetchCampanhas={fetchCampanhas} />
 
       {/* Modal para cadastrar nova campanha */}
       <ModalCampanha
