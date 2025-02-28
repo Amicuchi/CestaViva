@@ -1,0 +1,83 @@
+.carrosselContainer {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.carrosselViewport {
+    position: relative;
+    width: 100%;
+    height: 220px; /* Ajuste conforme necessário */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cardWrapper {
+    position: absolute;
+    transition: all 0.5s ease;
+}
+
+/* Posicionamento das cartas */
+.position0 {
+    z-index: 5;
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.positionMinus1 {
+    z-index: 4;
+    transform: translateX(-220px); /* Aumentado para dar mais espaço */
+    opacity: 0.8;
+}
+
+.positionMinus2 {
+    z-index: 3;
+    transform: translateX(-400px); /* Aumentado para dar mais espaço */
+    opacity: 0.6;
+}
+
+.position1 {
+    z-index: 4;
+    transform: translateX(220px); /* Aumentado para dar mais espaço */
+    opacity: 0.8;
+}
+
+.position2 {
+    z-index: 3;
+    transform: translateX(400px); /* Aumentado para dar mais espaço */
+    opacity: 0.6;
+}
+
+.carouselButton {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.carouselButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.prev {
+    left: 10px;
+}
+
+.next {
+    right: 10px;
+}
