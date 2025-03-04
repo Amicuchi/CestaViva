@@ -4,17 +4,16 @@ import axios from "axios";
 export default function Suporte() {
   const [tipo, setTipo] = useState("");
   const [mensagem, setMensagem] = useState("");
-  const [arquivos, setArquivos] = useState([]);
   const [imageLinks, setImageLinks] = useState([]);
   const [protocolo, setProtocolo] = useState("");
   const [loading, setLoading] = useState(false);
   const [erro, setErro] = useState("");
   const [uploadStatus, setUploadStatus] = useState("");
   const fileInputRef = useRef(null);
-
+  console.log(imageLinks);
+  
   const handleFileChange = async (e) => {
     const files = [...e.target.files];
-    setArquivos(files);
     await uploadImages(files);
   };
 
@@ -66,7 +65,8 @@ export default function Suporte() {
         "http://localhost:3000/send-suporte",
         {
           subject: `Suporte: ${tipo}`,
-          body: mensagem + imageLinks,
+          mensagem: mensagem,
+          imageLinks: imageLinks,
         },
         {
           headers: {
@@ -76,16 +76,21 @@ export default function Suporte() {
         }
       );
 
-      setProtocolo("Seu contato foi enviado com sucesso, retornaremos assim que possível.");
+      setProtocolo(
+        "Seu contato foi enviado com sucesso, retornaremos assim que possível."
+      );
       setTipo("");
       setMensagem("");
-      setArquivos([]);
       setImageLinks([]);
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
     } catch (error) {
-      setErro(`Falha ao enviar o email. Erro: ${error.response?.data?.msg || error.message}`);
+      setErro(
+        `Falha ao enviar o email. Erro: ${
+          error.response?.data?.msg || error.message
+        }`
+      );
     } finally {
       setLoading(false);
     }
@@ -103,35 +108,54 @@ export default function Suporte() {
         <option value="dificuldade">Dificuldade</option>
         <option value="sugestao">Sugestão</option>
         <option value="comentario">Comentário</option>
-        <option value="alteracao_entidade">Alteração de dados da Entidade</option>
-        <option value="alteracao_responsavel">Alteração de dados do Responsável</option>
-        <option value="alteracao_usuario">Alteração de dados do Voluntário</option>
+        <option value="alteracao entidade">
+          Alteração de dados da Entidade
+        </option>
+        <option value="alteracao responsavel">
+          Alteração de dados do Responsável
+        </option>
+        <option value="alteracao usuario">
+          Alteração de dados do Voluntário
+        </option>
       </select>
 
       <label className="UserLabel">Mensagem:</label>
-      <textarea value={mensagem} onChange={(e) => setMensagem(e.target.value)} required />
+      <textarea
+        value={mensagem}
+        onChange={(e) => setMensagem(e.target.value)}
+        required
+      />
 
       <label className="UserLabel">Enviar Arquivos:</label>
-      <input type="file" multiple onChange={handleFileChange} ref={fileInputRef} />
+      <input
+        type="file"
+        multiple
+        onChange={handleFileChange}
+        ref={fileInputRef}
+      />
 
       {uploadStatus && <p>{uploadStatus}</p>}
       {loading && <p>Enviando...</p>}
       {erro && <p className="errorMessage">{erro}</p>}
 
-      <button type="submit" disabled={loading}>Enviar</button>
-      <button type="button" onClick={() => {
-        setTipo("");
-        setMensagem("");
-        setArquivos([]);
-        setImageLinks([]);
-        setProtocolo("");
-        setUploadStatus("");
-        if (fileInputRef.current) fileInputRef.current.value = "";
-      }}>
+      <button type="submit" disabled={loading}>
+        Enviar
+      </button>
+      <button
+        type="button"
+        onClick={() => {
+          setTipo("");
+          setMensagem("");
+          setImageLinks([]);
+          setProtocolo("");
+          setUploadStatus("");
+          if (fileInputRef.current) fileInputRef.current.value = "";
+        }}
+      >
         Limpar Formulário
       </button>
 
-      {protocolo && <p>Protocolo: {protocolo}</p>}
+      {protocolo && <p>{protocolo}</p>}
     </form>
   );
 }
