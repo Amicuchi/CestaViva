@@ -22,35 +22,35 @@
         "button button button button";
 }
 
-input[name="CNPJ"] { grid-area: cnpj; }
+input[name="cnpj"] { grid-area: cnpj; }
 
-input[name="RazaoSocial"] { grid-area: razaoSocial; }
+input[name="razaoSocial"] { grid-area: razaoSocial; }
 
-input[name="NomeFantasia"] { grid-area: nomeFantasia; }
+input[name="nomeFantasia"] { grid-area: nomeFantasia; }
 
-input[name="EnderecoRua"] { grid-area: enderecoRua; }
+input[name="enderecoCep"] { grid-area: enderecoCep; }
 
-input[name="EnderecoNum"] { grid-area: enderecoNum; }
+input[name="enderecoRua"] { grid-area: enderecoRua; }
 
-input[name="EnderecoComp"] { grid-area: enderecoComp; }
+input[name="enderecoNum"] { grid-area: enderecoNum; }
 
-input[name="EnderecoBairro"] { grid-area: enderecoBairro; }
+input[name="enderecoComp"] { grid-area: enderecoComp; }
 
-input[name="EnderecoCidade"] { grid-area: enderecoCidade; }
+input[name="enderecoBairro"] { grid-area: enderecoBairro; }
 
-input[name="EnderecoEstado"] { grid-area: enderecoEstado; }
+input[name="enderecoCidade"] { grid-area: enderecoCidade; }
 
-input[name="EnderecoCep"] { grid-area: enderecoCep; }
+input[name="enderecoEstado"] { grid-area: enderecoEstado; }
 
-input[name="Responsavel"] { grid-area: responsavel; }
+input[name="nomeResponsavel"] { grid-area: responsavel; }
 
-input[name="Telefone"] { grid-area: telefone; }
+input[name="telefoneResponsavel"] { grid-area: telefone; }
 
-input[name="Email"] { grid-area: email; }
+input[name="email"] { grid-area: email; }
 
-input[name="Senha"] { grid-area: senha; }
+input[name="senha"] { grid-area: senha; }
 
-input[name="ConfirmeSenha"] { grid-area: confirmeSenha; }
+input[name="senha2"] { grid-area: confirmeSenha; }
 
 div[name="termo"] { grid-area: termo; }
 
