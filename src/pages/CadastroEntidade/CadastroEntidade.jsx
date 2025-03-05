@@ -1,110 +1,239 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import axios from "../../services/axiosConfig";
 import ModalTermo from "./components/ModalTermo";
+import InputMask from "react-input-mask";
+import * as yup from "yup";
 import "./CadastroEntidade.css";
 
+const validateCNPJ = (cnpj) => {
+  cnpj = cnpj.replace(/[^\d]/g, "");
+
+  if (cnpj.length !== 14) return false;
+
+  let soma = 0;
+  let peso = 2;
+
+  for (let i = 11; i >= 0; i--) {
+    soma += parseInt(cnpj.charAt(i)) * peso;
+    peso = peso === 9 ? 2 : peso + 1;
+  }
+
+  let digito1 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+  soma = 0;
+  peso = 2;
+
+  for (let i = 12; i >= 0; i--) {
+    soma += parseInt(cnpj.charAt(i)) * peso;
+    peso = peso === 9 ? 2 : peso + 1;
+  }
+
+  let digito2 = soma % 11 < 2 ? 0 : 11 - (soma % 11);
+
+  return (
+    parseInt(cnpj.charAt(12)) === digito1 &&
+    parseInt(cnpj.charAt(13)) === digito2
+  );
+};
+
 export default function CadastroEntidade() {
-  const [cnpj, setCnpj] = useState("");
-  const [razaoSocial, setRazaoSocial] = useState("");
-  const [nomeFantasia, setNomeFantasia] = useState("");
-  const [enderecoRua, setEnderecoRua] = useState("");
-  const [enderecoNum, setEnderecoNum] = useState("");
-  const [enderecoComp, setEnderecoComp] = useState("");
-  const [enderecoBairro, setEnderecoBairro] = useState("");
-  const [enderecoCidade, setEnderecoCidade] = useState("");
-  const [enderecoEstado, setEnderecoEstado] = useState("");
-  const [enderecoCep, setEnderecoCep] = useState("");
-  const [nomeResponsavel, setNomeResponsavel] = useState("");
-  const [telefoneResponsavel, setTelefoneResponsavel] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  const [senha2, setSenha2] = useState("");
+  const [formData, setFormData] = useState({
+    cnpj: "",
+    razaoSocial: "",
+    nomeFantasia: "",
+    enderecoRua: "",
+    enderecoNum: "",
+    enderecoComp: "",
+    enderecoBairro: "",
+    enderecoCidade: "",
+    enderecoEstado: "",
+    enderecoCep: "",
+    nomeResponsavel: "",
+    telefoneResponsavel: "",
+    email: "",
+    senha: "",
+    senha2: "",
+  });
 
   const [acceptedTerms, setAcceptedTerms] = useState(false);
-  const [error, setError] = useState("");
-  const [successMessage, setSuccessMessage] = useState(""); // Adicionando um estado para mensagens de sucesso
+  const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
+  const [open, setOpen] = useState(false);
 
-  const [open, setOpen] = useState(false); // Controla o modal
-  const handleOpen = () => setOpen(true); // Abre o modal
-  const handleClose = () => setOpen(false); // Fecha o modal
+  const buscaCEP = useCallback(async (cep) => {
+    const cleanCEP = cep.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+    if (cleanCEP.length === 8) {
+      try {
+        const response = await axios.get(
+          `https://viacep.com.br/ws/${cleanCEP}/json/`
+        );
+
+        const { logradouro, bairro, localidade, uf } = response.data;
+
+        setFormData((prev) => ({
+          ...prev,
+          enderecoRua: logradouro,
+          enderecoBairro: bairro,
+          enderecoCidade: localidade,
+          enderecoEstado: uf,
+        }));
+        // Limpa qualquer erro de CEP anterior
+      } catch (error) {
+        console.error("Erro ao buscar CEP", error);
+        setErrors((prev) => ({
+          ...prev,
+          enderecoCep: "Erro ao buscar CEP",
+        }));
+      }
+    }
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+  
+    // Se o campo for CNPJ, Telefone ou CEP, remove caracteres não numéricos
+    const formattedValue = ["cnpj", "telefoneResponsavel", "enderecoCep"].includes(name)
+      ? value.replace(/\D/g, "")
+      : value;
+  
+    setFormData((prev) => ({
+      ...prev,
+      [name]: formattedValue,
+    }));
+  
+    // Se for um CEP válido, busca automaticamente o endereço
+    if (name === "enderecoCep" && formattedValue.length === 8) {
+      buscaCEP(formattedValue);
+    }
+  };
+
+  const validationSchema = yup.object().shape({
+    cnpj: yup
+      .string()
+      .test("is-valid-cnpj", "CNPJ inválido", (value) =>
+        validateCNPJ(value.replace(/\D/g, ""))
+      )
+      .required("CNPJ é obrigatório"),
+    email: yup
+      .string()
+      .email("Email inválido")
+      .required("Email é obrigatório"),
+    senha: yup
+      .string()
+      .min(8, "Senha deve ter no mínimo 8 caracteres")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "Senha deve conter letra, número e caractere especial"
+      )
+      .required("Senha é obrigatória"),
+    senha2: yup
+      .string()
+      .oneOf([yup.ref("senha"), null], "As senhas não coincidem")
+      .required("Confirmação de senha é obrigatória"),
+    telefoneResponsavel: yup
+      .string()
+      .test(
+        "is-valid-phone",
+        "Telefone inválido",
+        (value) => value.replace(/\D/g, "").length >= 10
+      )
+      .required("Telefone é obrigatório"),
+    enderecoCep: yup
+      .string()
+      .test(
+        "is-valid-cep",
+        "CEP inválido",
+        (value) => value.replace(/\D/g, "").length === 8
+      )
+      .required("CEP é obrigatório"),
+    razaoSocial: yup
+      .string()
+      .required("Razão Social é obrigatória"),
+    enderecoNum: yup
+      .string()
+      .required("Número é obrigatório"),
+    nomeResponsavel: yup
+      .string()
+      .required("Nome do Responsável é obrigatório"),
+  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Verifica se as senhas coincidem
-    if (senha !== senha2) {
-      setError("As senhas não coincidem.");
-      return;
-    }
-
-    // Verifica se os termos foram aceitos
-    if (!acceptedTerms) {
-      setError(
-        "A leitura, conhecimento e consentimento com o termo é obrigatório."
-      );
-      return;
-    }
-
-    setError(""); // Limpa a mensagem de erro caso o checkbox esteja marcado
+    setErrors({});
 
     try {
-      // Fazendo a requisição para o backend
-      const response = await axios.post("/entidades", {
-        cnpj,
-        razaoSocial,
-        nomeFantasia,
-        endereco: enderecoRua,
-        numero: enderecoNum,
-        complemento: enderecoComp,
-        bairro: enderecoBairro,
-        cidade: enderecoCidade,
-        estado: enderecoEstado,
-        cep: enderecoCep,
-        telefone: telefoneResponsavel,
-        
-        // Definir o objeto usuario com os dados de email e senha
-        usuario: {
-          nome: nomeResponsavel,
-          email,
-          senha,
-        },
-      });
+      await validationSchema.validate(formData, { abortEarly: false });
 
-      // Verifica se o cadastro foi bem-sucedido
+      if (!acceptedTerms) {
+        setErrors({ terms: "Termos de uso devem ser aceitos" });
+        return;
+      }
+
+      // Prepara dados para envio
+      const dadosParaEnvio = {
+        cnpj: Number(formData.cnpj.replace(/\D/g, "")), // Remove caracteres não numéricos
+        razaoSocial: formData.razaoSocial,
+        nomeFantasia: formData.nomeFantasia || formData.razaoSocial,
+        cep: Number(formData.enderecoCep.replace(/\D/g, "")),
+        endereco: formData.enderecoRua,
+        numero: Number(formData.enderecoNum),
+        complemento: formData.enderecoComp || "",
+        bairro: formData.enderecoBairro,
+        cidade: formData.enderecoCidade,
+        estado: formData.enderecoEstado,
+        telefone: Number(formData.telefoneResponsavel.replace(/\D/g, "")),
+        usuario: {
+          nome: formData.nomeResponsavel,
+          email: formData.email,
+          senha: formData.senha,
+        },
+      };
+
+      // Remove campos não necessários
+      delete dadosParaEnvio.senha2;
+
+      const response = await axios.post("/entidades", dadosParaEnvio);
+
       if (response.status === 201) {
         setSuccessMessage("Cadastro realizado com sucesso!");
-        // Limpa os campos após o sucesso
-        setCnpj("");
-        setRazaoSocial("");
-        setNomeFantasia("");
-        setEnderecoRua("");
-        setEnderecoNum("");
-        setEnderecoComp("");
-        setEnderecoBairro("");
-        setEnderecoCidade("");
-        setEnderecoEstado("");
-        setEnderecoCep("");
-        setNomeResponsavel("");
-        setTelefoneResponsavel("");
-        setEmail("");
-        setSenha("");
-        setSenha2("");
+        
+        setFormData({
+          cnpj: "",
+          razaoSocial: "",
+          nomeFantasia: "",
+          enderecoRua: "",
+          enderecoNum: "",
+          enderecoComp: "",
+          enderecoBairro: "",
+          enderecoCidade: "",
+          enderecoEstado: "",
+          enderecoCep: "",
+          nomeResponsavel: "",
+          telefoneResponsavel: "",
+          email: "",
+          senha: "",
+          senha2: "",
+        });
         setAcceptedTerms(false);
       }
     } catch (error) {
-      // Exibir informações detalhadas do erro no frontend caso a requisição falhe
-      if (error.response) {
-        console.error("Erro no backend:", error.response.data); // Exibe a mensagem de erro no console
-        setError(
-          error.response.data.message ||
-            "Erro ao realizar o cadastro. Tente novamente."
-        ); // Exibe a mensagem do backend
-      } else if (error.request) {
-        console.error("Nenhuma resposta recebida do backend:", error.request);
-        setError("Erro de conexão com o servidor. Tente novamente mais tarde.");
+      if (error.name === "ValidationError") {
+        const errorMessages = {};
+        error.inner.forEach((err) => {
+          errorMessages[err.path] = err.message;
+        });
+        setErrors(errorMessages);
+      } else if (error.response) {
+        console.error("Erro no backend:", error.response.data);
+        setErrors({
+          backend: error.response.data.message || "Erro ao realizar o cadastro",
+        });
       } else {
-        console.error("Erro desconhecido:", error.message);
-        setError("Ocorreu um erro desconhecido. Tente novamente.");
+        console.error("Erro inesperado:", error);
+        setErrors({
+          backend: "Erro inesperado ao tentar realizar o cadastro",
+        });
       }
     }
   };
@@ -113,144 +242,170 @@ export default function CadastroEntidade() {
     <main className="CEContainer">
       <h1>Cadastro de Entidade</h1>
       <form className="CEForm" onSubmit={handleSubmit}>
-        <input
-          className="CEInput"
-          type="text"
-          name="CNPJ"
+        <InputMask
+          mask="99.999.999/9999-99"
+          maskChar=""
+          className={`CEInput ${errors.cnpj ? "input-error" : ""}`}
+          name="cnpj"
           placeholder="CNPJ"
-          value={cnpj}
-          onChange={(e) => setCnpj(e.target.value)}
+          value={formData.cnpj}
+          onChange={handleChange}
           required
         />
+        {errors.cnpj && <p className="error-text">{errors.cnpj}</p>}
+
         <input
-          className="CEInput"
+          className={`CEInput ${errors.razaoSocial ? "input-error" : ""}`}
           type="text"
-          name="RazaoSocial"
+          name="razaoSocial"
           placeholder="Razão Social"
-          value={razaoSocial}
-          onChange={(e) => setRazaoSocial(e.target.value)}
+          value={formData.razaoSocial}
+          onChange={handleChange}
           required
         />
-        <input
-          className="CEInput"
-          type="text"
-          name="NomeFantasia"
-          placeholder="Nome Fantasia"
-          value={nomeFantasia}
-          onChange={(e) => setNomeFantasia(e.target.value)}
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="EnderecoRua"
-          placeholder="Logradouro (Rua, Av, Travessa, etc"
-          value={enderecoRua}
-          onChange={(e) => setEnderecoRua(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="EnderecoNum"
-          placeholder="Número"
-          value={enderecoNum}
-          onChange={(e) => setEnderecoNum(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="EnderecoComp"
-          placeholder="Complemento"
-          value={enderecoComp}
-          onChange={(e) => setEnderecoComp(e.target.value)}
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="EnderecoBairro"
-          placeholder="Bairro"
-          value={enderecoBairro}
-          onChange={(e) => setEnderecoBairro(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="EnderecoCidade"
-          placeholder="Cidade"
-          value={enderecoCidade}
-          onChange={(e) => setEnderecoCidade(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="EnderecoEstado"
-          placeholder="Estado"
-          value={enderecoEstado}
-          onChange={(e) => setEnderecoEstado(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="EnderecoCep"
-          placeholder="CEP"
-          value={enderecoCep}
-          onChange={(e) => setEnderecoCep(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="email"
-          name="Email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="Responsavel"
-          placeholder="Nome do Responsável"
-          value={nomeResponsavel}
-          onChange={(e) => setNomeResponsavel(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="text"
-          name="Telefone"
-          placeholder="Telefone do Responsável"
-          value={telefoneResponsavel}
-          onChange={(e) => setTelefoneResponsavel(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="password"
-          name="Senha"
-          placeholder="Senha"
-          value={senha}
-          onChange={(e) => setSenha(e.target.value)}
-          required
-        />
-        <input
-          className="CEInput"
-          type="password"
-          name="ConfirmeSenha"
-          placeholder="Confirme sua Senha"
-          value={senha2}
-          onChange={(e) => setSenha2(e.target.value)}
-          required
-        />
-        {error && (
-          <p style={{ color: "red" }} className="errorMessage">
-            {error}
-          </p>
+        {errors.razaoSocial && (
+          <p className="error-text">{errors.razaoSocial}</p>
         )}
+
+        <input
+          className="CEInput"
+          type="text"
+          name="nomeFantasia"
+          placeholder="Nome Fantasia"
+          value={formData.nomeFantasia}
+          onChange={handleChange}
+        />
+
+        <InputMask
+          mask="99999-999"
+          maskChar=""
+          className={`CEInput ${errors.enderecoCep ? "input-error" : ""}`}
+          type="text"
+          name="enderecoCep"
+          placeholder="CEP"
+          value={formData.enderecoCep}
+          onChange={handleChange}
+          required
+        />
+        {errors.enderecoCep && (
+          <p className="error-text">{errors.enderecoCep}</p>
+        )}
+
+        <input
+          className="CEInput"
+          type="text"
+          name="enderecoRua"
+          placeholder="Logradouro (Rua, Av, Travessa, etc)"
+          value={formData.enderecoRua}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          className="CEInput"
+          type="text"
+          name="enderecoNum"
+          placeholder="Número"
+          value={formData.enderecoNum}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          className="CEInput"
+          type="text"
+          name="enderecoComp"
+          placeholder="Complemento"
+          value={formData.enderecoComp}
+          onChange={handleChange}
+        />
+
+        <input
+          className="CEInput"
+          type="text"
+          name="enderecoBairro"
+          placeholder="Bairro"
+          value={formData.enderecoBairro}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          className="CEInput"
+          type="text"
+          name="enderecoCidade"
+          placeholder="Cidade"
+          value={formData.enderecoCidade}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          className="CEInput"
+          type="text"
+          name="enderecoEstado"
+          placeholder="Estado"
+          value={formData.enderecoEstado}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          className={`CEInput ${errors.email ? "input-error" : ""}`}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+        />
+        {errors.email && <p className="error-text">{errors.email}</p>}
+
+        <input
+          className="CEInput"
+          type="text"
+          name="nomeResponsavel"
+          placeholder="Nome do Responsável"
+          value={formData.nomeResponsavel}
+          onChange={handleChange}
+          required
+        />
+
+        <InputMask
+          mask="(99) 99999-9999"
+          maskChar=""
+          className="CEInput"
+          type="tel"
+          name="telefoneResponsavel"
+          placeholder="Telefone do Responsável"
+          value={formData.telefoneResponsavel}
+          onChange={handleChange}
+          required
+        />
+
+        <input
+          className={`CEInput ${errors.senha ? "input-error" : ""}`}
+          type="password"
+          name="senha"
+          placeholder="Senha"
+          value={formData.senha}
+          onChange={handleChange}
+          required
+        />
+        {errors.senha && <p className="error-text">{errors.senha}</p>}
+
+        <input
+          className={`CEInput ${errors.senha2 ? "input-error" : ""}`}
+          type="password"
+          name="senha2"
+          placeholder="Confirme sua Senha"
+          value={formData.senha2}
+          onChange={handleChange}
+          required
+        />
+        {errors.senha2 && <p className="error-text">{errors.senha2}</p>}
+
+        {/* Checkbox de termos */}
         <div className="CEInput termo-checkbox" name="termo">
           <input
             type="checkbox"
@@ -262,27 +417,32 @@ export default function CadastroEntidade() {
             Eu li e aceito os{" "}
             <span
               style={{ color: "blue", cursor: "pointer" }}
-              onClick={handleOpen}
+              onClick={() => setOpen(true)}
             >
               termos de uso
             </span>
           </label>
         </div>
+        {errors.terms && <p className="error-text">{errors.terms}</p>}
+
+        {/* Mensagens de sucesso e erro geral */}
         {successMessage && (
           <p style={{ color: "green" }} className="successMessage">
             {successMessage}
           </p>
-        )}{" "}
-        {/* Mensagem de sucesso */}
+        )}
+        {errors.backend && (
+          <p style={{ color: "red" }} className="errorMessage">
+            {errors.backend}
+          </p>
+        )}
+
         <button className="ButtonTotal" type="submit" name="CEbutton">
           Cadastrar
         </button>
       </form>
 
-      <ModalTermo 
-        open={open} 
-        handleClose={handleClose} 
-      />
+      <ModalTermo open={open} handleClose={() => setOpen(false)} />
     </main>
   );
 }
