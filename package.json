@@ -30,7 +30,8 @@
     "react-input-mask": "^2.0.4",
     "react-router-dom": "^6.26.1",
     "serve": "^14.2.4",
-    "swiper": "^11.1.9"
+    "swiper": "^11.1.9",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
