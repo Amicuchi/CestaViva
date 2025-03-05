@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import axios from "../../services/axiosConfig";
 import ModalTermo from "./components/ModalTermo";
 import InputMask from "react-input-mask";
@@ -89,24 +89,105 @@ export default function CadastroEntidade() {
     }
   }, []);
 
+  const buscaCNPJ = useCallback(async (cnpj) => {
+    const cleanCNPJ = cnpj.replace(/\D/g, ""); // Remove caracteres não numéricos
+
+    if (cleanCNPJ.length === 14) {
+      try {
+        const response = await axios.get(
+          `https://brasilapi.com.br/api/cnpj/v1/${cleanCNPJ}`
+        );
+        if (response.data && !response.data.error) {
+          const {
+            razao_social,
+            nome_fantasia,
+            logradouro,
+            numero,
+            complemento,
+            bairro,
+            municipio,
+            uf,
+            cep,
+            email,
+            ddd_telefone_1,
+          } = response.data;
+
+          setFormData((prev) => ({
+            ...prev,
+            razaoSocial: razao_social,
+            nomeFantasia: nome_fantasia || razao_social,
+            enderecoRua: logradouro,
+            enderecoNum: numero || "",
+            enderecoComp: complemento || "",
+            enderecoBairro: bairro,
+            enderecoCidade: municipio,
+            enderecoEstado: uf,
+            enderecoCep: cep.replace(/\D/g, ""),
+            email: email || "",
+            telefoneResponsavel: ddd_telefone_1 || "",
+          }));
+
+          // Limpa mensagens de erro relacionadas ao CNPJ
+          setErrors((prev) => ({ ...prev, cnpj: "" }));
+        } else {
+          setErrors((prev) => ({
+            ...prev,
+            cnpj: "CNPJ não encontrado ou inválido",
+          }));
+        }
+      } catch (error) {
+        console.error("Erro ao buscar CNPJ", error);
+        setErrors((prev) => ({
+          ...prev,
+          cnpj: "Erro ao buscar CNPJ",
+        }));
+      }
+    }
+  }, []);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
-  
+    let formattedValue = value;
+
     // Se o campo for CNPJ, Telefone ou CEP, remove caracteres não numéricos
-    const formattedValue = ["cnpj", "telefoneResponsavel", "enderecoCep"].includes(name)
-      ? value.replace(/\D/g, "")
-      : value;
-  
+    if (["cnpj", "telefoneResponsavel", "enderecoCep"].includes(name)) {
+      formattedValue = value.replace(/\D/g, "");
+    }
+
+    // Adapta a máscara do telefone dinamicamente
+    if (name === "telefoneResponsavel") {
+      formattedValue = formattedValue.replace(
+        /^(\d{2})(\d{4,5})(\d{4})$/,
+        "($1)$2-$3"
+      );
+    }
     setFormData((prev) => ({
       ...prev,
       [name]: formattedValue,
     }));
-  
-    // Se for um CEP válido, busca automaticamente o endereço
-    if (name === "enderecoCep" && formattedValue.length === 8) {
+
+    // Dispara a busca ao preencher um CNPJ válido
+    if (name === "cnpj" && formattedValue.length === 14) {
+      buscaCNPJ(formattedValue);
+    } else if (name === "enderecoCep" && formattedValue.length === 8) {
+      // Se for um CEP válido, busca automaticamente o endereço
       buscaCEP(formattedValue);
     }
   };
+
+  // useEffect para formatar o telefone após ele ser atualizado
+  useEffect(() => {
+    if (formData.telefoneResponsavel) {
+      const formattedPhone = formData.telefoneResponsavel.replace(
+        /^(\d{2})(\d{4,5})(\d{4})$/,
+        "($1)$2-$3"
+      );
+      setFormData((prev) => ({
+        ...prev,
+        telefoneResponsavel: formattedPhone,
+      }));
+    }
+  }, [formData.telefoneResponsavel])
 
   const validationSchema = yup.object().shape({
     cnpj: yup
@@ -197,7 +278,7 @@ export default function CadastroEntidade() {
 
       if (response.status === 201) {
         setSuccessMessage("Cadastro realizado com sucesso!");
-        
+
         setFormData({
           cnpj: "",
           razaoSocial: "",
@@ -372,9 +453,8 @@ export default function CadastroEntidade() {
         />
 
         <InputMask
-          mask="(99) 99999-9999"
           maskChar=""
-          className="CEInput"
+          className={`CEInput ${errors.telefoneResponsavel ? "input-error" : ""}`}
           type="tel"
           name="telefoneResponsavel"
           placeholder="Telefone do Responsável"
