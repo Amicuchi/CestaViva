@@ -5,6 +5,35 @@ import InputMask from "react-input-mask";
 import * as yup from "yup";
 import "./CadastroEntidade.css";
 
+const tiposEntidade = [
+  "Abrigos para Pessoas em Situação de Rua",
+  "APAE",
+  "Associações de Moradores",
+  "Bancos de Alimentos",
+  "Casas de Repouso",
+  "Centro Espírita",
+  "Clínicas de Reabilitação",
+  "Coletivos de Apoio a Pessoas em Situação de Vulnerabilidade",
+  "Cooperativas de Pequenos Agricultores",
+  "Creches e Pré-Escolas Sociais",
+  "Escolas Públicas e Comunitárias",
+  "Fundações de Apoio a Crianças e Idosos",
+  "Hospitais",
+  "Igreja",
+  "Instituições de Assistência Social",
+  "Instituições de Ensino para Pessoas com Deficiência",
+  "Mesquita",
+  "Movimentos de Economia Solidária",
+  "ONGs de Apoio a Famílias em Vulnerabilidade",
+  "Orfanatos",
+  "Postos de Saúde",
+  "Projetos de Agricultura Familiar",
+  "Projetos de Combate à Fome",
+  "Redes de Voluntariado",
+  "Sinagoga",
+  "Templo Budista"
+].sort();
+
 const validateCNPJ = (cnpj) => {
   cnpj = cnpj.replace(/[^\d]/g, "");
 
@@ -53,6 +82,7 @@ export default function CadastroEntidade() {
     email: "",
     senha: "",
     senha2: "",
+    // tipoEntidade: "",
   });
 
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -237,6 +267,9 @@ export default function CadastroEntidade() {
     nomeResponsavel: yup
       .string()
       .required("Nome do Responsável é obrigatório"),
+    // tipoEntidade: yup
+    //   .string()
+    //   .required("Selecione o tipo de entidade"),
   });
 
   const handleSubmit = async (e) => {
@@ -295,6 +328,7 @@ export default function CadastroEntidade() {
           email: "",
           senha: "",
           senha2: "",
+          // tipoEntidade: "",
         });
         setAcceptedTerms(false);
       }
@@ -356,6 +390,22 @@ export default function CadastroEntidade() {
           value={formData.nomeFantasia}
           onChange={handleChange}
         />
+
+        <select
+          className={`CESelect ${errors.tipoEntidade ? "input-error" : ""}`}
+          name="tipoEntidade"
+          value={formData.tipoEntidade}
+          onChange={handleChange}
+          required
+        >
+          <option value="" className="CESelect">Selecione o tipo de entidade</option>
+          {tiposEntidade.map((tipo, index) => (
+            <option key={index} value={tipo}>
+              {tipo}
+            </option>
+          ))}
+        </select>
+        {errors.tipoEntidade && <p className="error-text">{errors.tipoEntidade}</p>}
 
         <InputMask
           mask="99999-999"

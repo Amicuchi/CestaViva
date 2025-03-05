@@ -2,6 +2,20 @@
     margin-bottom: 60px;
 }
 
+.CESelect{
+    margin: 10px 0;
+    padding-left: 15px;
+    padding: 5px 5px 5px 5px;
+    width: 100%;
+    text-align: left;
+    color: #666;
+    font-weight: 400;
+    border: 1px solid var(--bg-terciario);
+    box-shadow:
+        0 4px 8px rgba(199, 199, 199, 0.1),
+        0 6px 20px rgba(199, 199, 199, 0.1);
+}
+
 .CEForm {
     width: 820px;
     display: grid;
@@ -11,7 +25,7 @@
         "cnpj cnpj cnpj cnpj"
         "razaoSocial razaoSocial razaoSocial razaoSocial"
         "nomeFantasia nomeFantasia nomeFantasia nomeFantasia"
-        "enderecoCep enderecoCep enderecoCep enderecoCep"
+        "tipoEntidade tipoEntidade tipoEntidade enderecoCep"
         "enderecoRua enderecoRua enderecoRua enderecoNum"
         "enderecoComp enderecoComp enderecoBairro enderecoBairro"
         "enderecoCidade enderecoCidade enderecoCidade enderecoEstado"
@@ -27,6 +41,8 @@ input[name="cnpj"] { grid-area: cnpj; }
 input[name="razaoSocial"] { grid-area: razaoSocial; }
 
 input[name="nomeFantasia"] { grid-area: nomeFantasia; }
+
+select[name="tipoEntidade"] { grid-area: tipoEntidade; }
 
 input[name="enderecoCep"] { grid-area: enderecoCep; }
 
