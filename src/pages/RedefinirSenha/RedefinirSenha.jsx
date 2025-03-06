@@ -24,7 +24,7 @@ export default function RedefinirSenha() {
     try {
       // Faz uma requisição POST para o backend enviando a nova senha e o token para verificação
       const response = await axios.post(
-        "http://localhost:3000/auth/redefinir-senha",
+        `${import.meta.env.VITE_API_URL}/auth/redefinir-senha`,
         { token, novaSenha }
       );
 

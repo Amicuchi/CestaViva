@@ -11,7 +11,7 @@ export default function SolicitarRedefinicaoSenha() {
     try {
       // Faz a requisição para o endpoint do backend que lida com a solicitação de redefinição de senha
       const response = await axios.post(
-        "http://localhost:3000/auth/solicitar-redefinicao-senha",
+        `${import.meta.env.VITE_API_URL}/auth/solicitar-redefinicao-senha`,
         { email }
       );
 

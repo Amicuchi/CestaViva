@@ -61,7 +61,7 @@ export default function Suporte() {
       for (const file of files) {
         const base64Image = await convertFileToBase64(file);
         setUploadStatus(`Fazendo upload da imagem: ${file.name}`);
-        const response = await axios.post("http://localhost:3000/upload", {
+        const response = await axios.post(`${import.meta.env.VITE_API_URL}/upload`, {
           image: base64Image,
         });
 
@@ -87,7 +87,7 @@ export default function Suporte() {
 
       // Enviar suporte com os links das imagens
       await axios.post(
-        "http://localhost:3000/send-suporte",
+        `${import.meta.env.VITE_API_URL}/send-suporte`,
         {
           subject: `Suporte: ${tipo}`,
           mensagem: mensagem,
