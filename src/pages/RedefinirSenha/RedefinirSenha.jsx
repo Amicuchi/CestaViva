@@ -24,7 +24,7 @@ export default function RedefinirSenha() {
     try {
       // Faz uma requisição POST para o backend enviando a nova senha e o token para verificação
       const response = await axios.post(
-        "http://localhost:3000/auth/redefinir-senha",
+        `${import.meta.env.VITE_API_URL}/auth/redefinir-senha`,
         { token, novaSenha }
       );
 
@@ -47,18 +47,16 @@ export default function RedefinirSenha() {
           onChange={(e) => setSenha(e.target.value)}
           required
         />
-
         <label>Confirmar Nova Senha:</label>
         <input
-          type="password" 
-          value={confirmarSenha} 
-          onChange={(e) => setConfirmarSenha(e.target.value)} 
-          required 
+          type="password"
+          value={confirmarSenha}
+          onChange={(e) => setConfirmarSenha(e.target.value)}
+          required
         />
         {mensagem && <p>{mensagem}</p>}{" "}
-        
         <button type="submit">Redefinir Senha</button>
       </form>
     </div>
   );
-};
+}
