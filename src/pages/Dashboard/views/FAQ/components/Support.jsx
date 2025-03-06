@@ -11,10 +11,35 @@ export default function Suporte() {
   const [uploadStatus, setUploadStatus] = useState("");
   const fileInputRef = useRef(null);
   console.log(imageLinks);
-  
+
   const handleFileChange = async (e) => {
-    const files = [...e.target.files];
-    await uploadImages(files);
+    const files = e.target.files;
+
+    if (files.length > 1) {
+      setUploadStatus("Você pode enviar apenas 1 imagem.");
+      fileInputRef.current.value = ""; // Limpa o input
+      return;
+    }
+
+    const file = files[0]; // Obtém o único arquivo selecionado
+
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+      setUploadStatus("O arquivo selecionado não é uma imagem válida.");
+      fileInputRef.current.value = ""; // Limpa o input
+      return;
+    }
+
+    if (file.size > 5 * 1024 * 1024) {
+      // 5MB em bytes
+      setUploadStatus("O arquivo deve ter no máximo 5MB.");
+      fileInputRef.current.value = ""; // Limpa o input
+      return;
+    }
+
+    setUploadStatus(""); // Limpa mensagens anteriores
+    await uploadImages([file]); // Envia apenas um arquivo válido
   };
 
   // Converter arquivos em Base64
@@ -126,12 +151,13 @@ export default function Suporte() {
         required
       />
 
-      <label className="UserLabel">Enviar Arquivos:</label>
+      <label className="UserLabel">Anexar foto do bug (apenas 1 até 5mb)</label>
       <input
         type="file"
         multiple
         onChange={handleFileChange}
         ref={fileInputRef}
+        accept="image/*"
       />
 
       {uploadStatus && <p>{uploadStatus}</p>}
