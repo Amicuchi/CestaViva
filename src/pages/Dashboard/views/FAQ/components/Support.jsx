@@ -10,7 +10,7 @@ export default function Suporte() {
   const [erro, setErro] = useState("");
   const [uploadStatus, setUploadStatus] = useState("");
   const fileInputRef = useRef(null);
-  console.log(imageLinks);
+
 
   const handleFileChange = async (e) => {
     const files = e.target.files;
