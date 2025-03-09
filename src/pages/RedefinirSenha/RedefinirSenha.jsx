@@ -47,18 +47,16 @@ export default function RedefinirSenha() {
           onChange={(e) => setSenha(e.target.value)}
           required
         />
-
         <label>Confirmar Nova Senha:</label>
         <input
-          type="password" 
-          value={confirmarSenha} 
-          onChange={(e) => setConfirmarSenha(e.target.value)} 
-          required 
+          type="password"
+          value={confirmarSenha}
+          onChange={(e) => setConfirmarSenha(e.target.value)}
+          required
         />
         {mensagem && <p>{mensagem}</p>}{" "}
-        
         <button type="submit">Redefinir Senha</button>
       </form>
     </div>
   );
-};
+}
