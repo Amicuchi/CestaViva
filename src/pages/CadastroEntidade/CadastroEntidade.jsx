@@ -31,7 +31,7 @@ const tiposEntidade = [
   "Projetos de Combate à Fome",
   "Redes de Voluntariado",
   "Sinagoga",
-  "Templo Budista"
+  "Templo Budista",
 ].sort();
 
 const validateCNPJ = (cnpj) => {
@@ -82,7 +82,7 @@ export default function CadastroEntidade() {
     email: "",
     senha: "",
     senha2: "",
-    // tipoEntidade: "",
+    tipoEntidade: "",
   });
 
   const [acceptedTerms, setAcceptedTerms] = useState(false);
@@ -217,7 +217,7 @@ export default function CadastroEntidade() {
         telefoneResponsavel: formattedPhone,
       }));
     }
-  }, [formData.telefoneResponsavel])
+  }, [formData.telefoneResponsavel]);
 
   const validationSchema = yup.object().shape({
     cnpj: yup
@@ -226,10 +226,7 @@ export default function CadastroEntidade() {
         validateCNPJ(value.replace(/\D/g, ""))
       )
       .required("CNPJ é obrigatório"),
-    email: yup
-      .string()
-      .email("Email inválido")
-      .required("Email é obrigatório"),
+    email: yup.string().email("Email inválido").required("Email é obrigatório"),
     senha: yup
       .string()
       .min(8, "Senha deve ter no mínimo 8 caracteres")
@@ -258,18 +255,10 @@ export default function CadastroEntidade() {
         (value) => value.replace(/\D/g, "").length === 8
       )
       .required("CEP é obrigatório"),
-    razaoSocial: yup
-      .string()
-      .required("Razão Social é obrigatória"),
-    enderecoNum: yup
-      .string()
-      .required("Número é obrigatório"),
-    nomeResponsavel: yup
-      .string()
-      .required("Nome do Responsável é obrigatório"),
-    // tipoEntidade: yup
-    //   .string()
-    //   .required("Selecione o tipo de entidade"),
+    razaoSocial: yup.string().required("Razão Social é obrigatória"),
+    enderecoNum: yup.string().required("Número é obrigatório"),
+    nomeResponsavel: yup.string().required("Nome do Responsável é obrigatório"),
+    tipoEntidade: yup.string().required("Selecione o tipo de entidade"),
   });
 
   const handleSubmit = async (e) => {
@@ -297,6 +286,7 @@ export default function CadastroEntidade() {
         cidade: formData.enderecoCidade,
         estado: formData.enderecoEstado,
         telefone: Number(formData.telefoneResponsavel.replace(/\D/g, "")),
+        tipoEntidade: formData.tipoEntidade,
         usuario: {
           nome: formData.nomeResponsavel,
           email: formData.email,
@@ -328,7 +318,7 @@ export default function CadastroEntidade() {
           email: "",
           senha: "",
           senha2: "",
-          // tipoEntidade: "",
+          tipoEntidade: "",
         });
         setAcceptedTerms(false);
       }
@@ -398,14 +388,18 @@ export default function CadastroEntidade() {
           onChange={handleChange}
           required
         >
-          <option value="" className="CESelect">Selecione o tipo de entidade</option>
+          <option value="" className="CESelect">
+            Selecione o tipo de entidade
+          </option>
           {tiposEntidade.map((tipo, index) => (
             <option key={index} value={tipo}>
               {tipo}
             </option>
           ))}
         </select>
-        {errors.tipoEntidade && <p className="error-text">{errors.tipoEntidade}</p>}
+        {errors.tipoEntidade && (
+          <p className="error-text">{errors.tipoEntidade}</p>
+        )}
 
         <InputMask
           mask="99999-999"
@@ -504,7 +498,9 @@ export default function CadastroEntidade() {
 
         <InputMask
           maskChar=""
-          className={`CEInput ${errors.telefoneResponsavel ? "input-error" : ""}`}
+          className={`CEInput ${
+            errors.telefoneResponsavel ? "input-error" : ""
+          }`}
           type="tel"
           name="telefoneResponsavel"
           placeholder="Telefone do Responsável"
