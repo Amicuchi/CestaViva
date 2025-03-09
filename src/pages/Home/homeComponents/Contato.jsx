@@ -29,7 +29,7 @@ export default function Contato() {
         },
         body: JSON.stringify({
           to: "contatocestaviva@gmail.com",
-          subject: `Contato visitante ${formData.nome}`,
+          subject: `Contato de visitantes do site`,
           body: `Nome: ${formData.nome}\nTelefone: ${formData.telefone}\nEmail: ${formData.email}\nMensagem: ${formData.mensagem}`,
         }),
       });
