@@ -45,9 +45,13 @@
     transition: background-color 0.5s ease-in-out;
 }
 
-.menu li:hover,
+.menu li:hover {
+    background-color: var(--bg-secundario);
+}
+
 .menu li.active {
     background-color: var(--bg-secundario);
+    border-left: 3px solid var(--bg-hover);
 }
 
 .menu a {
