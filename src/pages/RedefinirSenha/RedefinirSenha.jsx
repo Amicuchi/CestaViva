@@ -37,9 +37,9 @@ export default function RedefinirSenha() {
   };
 
   return (
-    <div>
+    <main className="redefinicaoContainer">
       <h2>Redefinir Senha</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="redefinicaoForm">
         <label>Nova Senha:</label>
         <input
           type="password"
@@ -57,6 +57,6 @@ export default function RedefinirSenha() {
         {mensagem && <p>{mensagem}</p>}{" "}
         <button type="submit">Redefinir Senha</button>
       </form>
-    </div>
+    </main>
   );
 }

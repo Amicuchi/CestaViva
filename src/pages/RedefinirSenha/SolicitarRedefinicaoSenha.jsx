@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import "./RedefinicaoSenha.css";
 
 export default function SolicitarRedefinicaoSenha() {
   const [email, setEmail] = useState(""); // Estado para armazenar o valor do campo de e-mail
@@ -26,9 +27,9 @@ export default function SolicitarRedefinicaoSenha() {
   };
 
   return (
-    <div>
+    <main className="redefinicaoContainer">
       <h2>Solicitar Redefinição de Senha</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="redefinicaoForm">
         <label>Digite seu Email:</label>
         <input
           type="email"
@@ -39,6 +40,6 @@ export default function SolicitarRedefinicaoSenha() {
         <button type="submit">Enviar</button>
       </form>
       {mensagem && <p>{mensagem}</p>}{" "}
-    </div>
+    </main>
   );
 }
