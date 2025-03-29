@@ -62,8 +62,6 @@ export default function ListaProdutos({ campanhaId }) {
     }
   };
 
-  console.log(baixaQuantidades); // Verifique os valores de baixaQuantidades
-
   return (
     <table className="tabela-produtos">
       <thead>
