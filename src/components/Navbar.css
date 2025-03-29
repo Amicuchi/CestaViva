@@ -1,0 +1,52 @@
+.headerHomePage{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+/* Estiliza a foto do perfil */
+.perfil-foto {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #ddd;
+}
+
+/* Menu suspenso */
+.menu-dropdown {
+  position: relative;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: hidden;
+  min-width: 150px;
+  z-index: 10;
+}
+
+.dropdown-content li {
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.dropdown-content li:hover {
+  background: #f0f0f0;
+}
+
+/* Exibir o menu quando passar o mouse */
+.menu-dropdown:hover .dropdown-content {
+  display: block;
+}
