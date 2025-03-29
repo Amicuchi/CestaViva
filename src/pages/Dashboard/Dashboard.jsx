@@ -1,4 +1,3 @@
-// Dashboard
 import { Outlet, useLocation } from 'react-router-dom';
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
@@ -12,14 +11,19 @@ export default function Dashboard() {
         switch (location.pathname) {
             case '/dashboard/dashboardhome':
                 return 'Dashboard';
+                
             case '/dashboard/perfil':
                 return 'Perfil da Entidade';
+
             case '/dashboard/campanhas':
                 return 'Gerenciamento de Campanhas';
+
             case '/dashboard/faq':
                 return 'Perguntas Frequentes';
+
             case '/dashboard/configuracoes':
                 return 'Configurações';
+
             default:
                 return 'Painel de Controle';
         }
