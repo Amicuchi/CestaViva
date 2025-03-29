@@ -18,7 +18,7 @@
     left: 0;
     bottom: 0;
     width: 110px;
-    height: 100vh;
+    height: 90vh;
     padding: 0 1.7rem;
     color: var(--bg-principal);
     overflow: hidden;
@@ -45,9 +45,13 @@
     transition: background-color 0.5s ease-in-out;
 }
 
-.menu li:hover,
+.menu li:hover {
+    background-color: var(--bg-secundario);
+}
+
 .menu li.active {
     background-color: var(--bg-secundario);
+    border-left: 3px solid var(--bg-hover);
 }
 
 .menu a {
@@ -154,40 +158,6 @@
     border-radius: 50%;
     background-color: lightgrey;
 }
-
-/* Cores dos cartões */
-.light-red {
-    background-color: rgb(247, 177, 177);
-}
-
-.light-purple {
-    background-color: rgb(221, 177, 221);
-}
-
-.light-green {
-    background-color: lightgreen;
-}
-
-.light-blue {
-    background-color: lightblue;
-}
-
-.dark-red {
-    background-color: red;
-}
-
-.dark-purple {
-    background-color: purple;
-}
-
-.dark-green {
-    background-color: green;
-}
-
-.dark-blue {
-    background-color: blue;
-}
-
 
 /* Dashboard Section Table */
 

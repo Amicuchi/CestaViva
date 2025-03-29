@@ -8,7 +8,7 @@ export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
   // Estados para os dados do produto
   const [nomeProduto, setNomeProduto] = useState("");
   const [metaProduto, setMetaProduto] = useState("");
-  const [quantidadeRecebida, setQuantidadeRecebida] = useState("");
+  const [quantidadeRecebida] = useState(0);
   const [unidadeMedida, setUnidadeMedida] = useState("");
 
   const fetchCadastrarProduto = useCallback(async () => {
@@ -16,8 +16,8 @@ export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
       const novoProduto = {
         nomeProduto,
         metaProduto,
-        quantidadeRecebida,
         unidadeMedida,
+        quantidadeRecebida,
       };
 
       // Realiza a requisição POST para cadastrar o produto
@@ -33,8 +33,8 @@ export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
   }, [
     nomeProduto,
     metaProduto,
-    quantidadeRecebida,
     unidadeMedida,
+    quantidadeRecebida,
     campanhaId,
     onSave,
   ]);
@@ -48,7 +48,7 @@ export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
   const limparFormulario = () => {
     setNomeProduto("");
     setMetaProduto("");
-    setQuantidadeRecebida("");
+    // setQuantidadeRecebida("");
     setUnidadeMedida("");
   };
 
@@ -85,14 +85,14 @@ export default function ModalProduto({ isOpen, onClose, onSave, campanhaId }) {
           fullWidth
           margin="normal"
         />
-        <TextField
+        {/* <TextField
           label="Quantidade Recebida"
           value={quantidadeRecebida}
           onChange={(e) => setQuantidadeRecebida(e.target.value)}
           fullWidth
           margin="normal"
           type="number"
-        />
+        /> */}
         <TextField
           label="Unidade de Medida"
           value={unidadeMedida}

@@ -1,0 +1,162 @@
+
+/* Estilização principal do modal */
+.modal-box-entidade {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px;
+  padding: 1.5rem;
+  background-color: var(--bg-principal);
+  border: 1px solid var(--bg-hover);
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+
+
+/* Cabeçalho do modal (Imagem + Nome) */
+.modal-header {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid var(--bg-hover);
+  border-radius: 8px;
+  background-color: var(--bg-principal);
+  box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.2);
+  width: 100%;
+}
+
+.modal-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 1rem;
+  border: 2px solid var(--bg-hover);
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0;
+  text-align: left;
+  color: var(--text-principal);
+}
+
+
+/* Corpo do modal com informações e lista de necessidades */
+.modal-description {
+  flex: 1; /* Ocupa o espaço restante */
+  width: 100%;
+  margin-top: 1rem;
+  padding-right: 1rem;
+  overflow-y: auto;
+}
+
+
+/* Seções dentro do modal */
+.modal-section {
+    margin-top: 2rem;
+    padding: 0.2rem 1rem;
+}
+
+.modal-section.endereco p{
+    text-align: center;
+}
+
+.modal-section p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  font-weight: 300;
+  margin: 0.5rem 0;
+  text-align: justify;
+}
+
+.modal-section h3 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.modal-description hr {
+  margin: 1rem 0;
+  border: 0;
+  border-top: 1px solid var(--bg-hover);
+}
+
+/* ------------------- Lista de necessidades ------------------- */
+
+.necessidades{
+
+margin-bottom: 2rem;}
+
+.necessidades-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.necessidade-item {
+    background-color: var(--bg-secundario);
+    padding: 0.6rem;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.necessidade-nome {
+    font-weight: 500;
+    color: var(--text-principal);
+}
+
+.necessidade-tipo {
+    font-size: 0.85rem;
+    color: var(--text-secundario);
+}
+
+.necessidade-qtd {
+    font-size: 0.85rem;
+    font-weight: 400;
+    color: var(--text-destaque);
+}
+
+/* ------------------- Botão de Fechar ------------------- */
+.ButtonTotal {
+  margin-top: 1rem;
+  align-self: flex-end;
+}
+
+
+/* Responsividade */
+/* Mobile */
+@media (max-width: 480px) {
+  .modal-box {
+    width: 95% !important;
+    height: auto;
+    padding: 1.5rem;
+}
+
+  .modal-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+  .modal-image {
+    margin-bottom: 0.5rem;
+  }
+
+  .modal-content {
+      padding-right: 0;
+  }
+}
+
+/* Extra small to medium devices */
+@media (min-width: 481px) and (max-width: 1023px) {
+  .modal-box {
+    width: 80% !important;
+  }
+}

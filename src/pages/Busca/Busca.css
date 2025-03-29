@@ -3,15 +3,32 @@
     margin: 0 auto;
 }
 
-.buscaSelects{
+/* Primeira linha: Filtros */
+.buscaFiltros {
     display: flex;
     justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 10px;
 }
 
 select {
-    display: block;
-    width: 45%;
-    margin: 10px 0 ;
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 35%;
+}
+
+/* Segunda linha: Input ocupa 100% da largura */
+.buscaNome {
+    display: flex;
+}
+
+.buscaNome input {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;

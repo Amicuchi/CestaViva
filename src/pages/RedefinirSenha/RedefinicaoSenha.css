@@ -1,0 +1,11 @@
+.redefinicaoContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85svh;
+}
+
+.redefinicaoContainer .redefinicaoForm{
+    width: 100%;
+    max-width: 500px;
+}

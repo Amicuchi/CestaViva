@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../services/AuthContext";
+import "./Login.css";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -44,7 +45,7 @@ export default function Login() {
   }, []);
 
   return (
-    <main>
+    <main className="LoginContainer">
       <h1>Login</h1>
       <form className="LoginForm" onSubmit={handleSubmit}>
         <input
