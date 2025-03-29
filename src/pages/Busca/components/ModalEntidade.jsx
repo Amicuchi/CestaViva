@@ -1,9 +1,15 @@
-import { Modal, Box, Button } from "@mui/material";
+import {
+  Modal,
+  Box,
+  Button,
+} from "@mui/material";
 import PropTypes from "prop-types";
 import "./ModalEntidade.css";
 import fotoAlt from "../../../assets/default-images/default1.jpg";
 
 export default function ModalEntidade({ open, handleClose, entidade }) {
+  if (!entidade) return null;
+
   return (
     <Modal
       open={open}
@@ -12,7 +18,6 @@ export default function ModalEntidade({ open, handleClose, entidade }) {
       className="modal-container"
     >
       <Box className="modal-box-entidade">
-        {/* Cabeçalho: Foto + Nome da Entidade */}
         <div className="modal-header">
           <img
             src={entidade.imagem || fotoAlt}
@@ -29,8 +34,6 @@ export default function ModalEntidade({ open, handleClose, entidade }) {
 
         {/* Corpo do Modal */}
         <div id="modal-description" className="modal-description">
-
-          {/* Endereço da entidade */}
           <div className="modal-section endereco">
             <h3>Endereço</h3>
             <p>
@@ -42,7 +45,6 @@ export default function ModalEntidade({ open, handleClose, entidade }) {
             {entidade.complemento && <p>Complemento: {entidade.complemento}</p>}
           </div>
 
-          {/* Bio da entidade */}
           {entidade.descricao && (
             <div className="modal-section">
               <h3>Sobre a entidade</h3>
@@ -55,31 +57,36 @@ export default function ModalEntidade({ open, handleClose, entidade }) {
             <h3>Necessidades</h3>
             {entidade.necessidades && entidade.necessidades.length > 0 ? (
               <ul className="necessidades-list">
-                {entidade.necessidades.map((necessidade) => (
-                  <li key={necessidade._id} className="necessidade-item">
+                {entidade.necessidades.map((produto) => (
+                  <li key={produto._id} className="necessidade-item">
                     <span className="necessidade-nome">
-                      {necessidade.nomeProduto}
+                      {produto.nomeProduto}
                     </span>
-                    <span className="necessidade-tipo">
-                      ({necessidade.tipo})
+                    <span className="necessidade-campanha">
+                      (Campanha: {produto.cesta?.nomeCampanha || "N/A"})
                     </span>
                     <span className="necessidade-qtd">
-                      {" "}
-                      - {necessidade.qtdNecessaria} unidades
+                      Recebido {produto.quantidadeRecebida} de{" "}
+                      {produto.metaProduto} {produto.unidadeMedida}
                     </span>
+                    <progress
+                      value={produto.quantidadeRecebida}
+                      max={produto.metaProduto}
+                    ></progress>
                   </li>
                 ))}
               </ul>
             ) : (
-              <p>Nenhuma necessidade cadastrada.</p>
+                <p>
+                  Nenhum item necessário cadastrado para as campanhas ativas desta entidade.
+                </p>              
             )}
           </div>
         </div>
 
-        {/* Botão de Fechar */}
         <Button
           onClick={handleClose}
-          sx={{ backgroundColor: "var(--bg-terciario)" }}
+          sx={{ backgroundColor: "var(--bg-terciario)", marginTop: "auto" }}
           className="ButtonTotal"
           variant="contained"
         >
@@ -90,30 +97,10 @@ export default function ModalEntidade({ open, handleClose, entidade }) {
   );
 }
 
-// Adicionando a validação de prop-types
+
 ModalEntidade.propTypes = {
   open: PropTypes.bool.isRequired,
   handleClose: PropTypes.func.isRequired,
-  entidade: PropTypes.shape({
-    nomeFantasia: PropTypes.string,
-    endereco: PropTypes.string,
-    numero: PropTypes.string,
-    bairro: PropTypes.string,
-    cidade: PropTypes.string,
-    estado: PropTypes.string,
-    complemento: PropTypes.string,
-    descricao: PropTypes.string,
-    imagem: PropTypes.string,
-    bio: PropTypes.string,
-    foto: PropTypes.string,
-    tipoEntidade: PropTypes.string,
-    necessidades: PropTypes.arrayOf(
-      PropTypes.shape({
-        _id: PropTypes.string,
-        nomeProduto: PropTypes.string,
-        tipo: PropTypes.string,
-        qtdNecessaria: PropTypes.number,
-      })
-    ),
-  }),
+  entidade: PropTypes.object,
+  necessidades: PropTypes.array,
 };

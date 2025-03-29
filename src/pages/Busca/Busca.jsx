@@ -18,43 +18,46 @@ export default function Busca() {
   // Estados para o modal
   const [modalOpen, setModalOpen] = useState(false);
   const [entidadeSelecionada, setEntidadeSelecionada] = useState(null);
+  const [necessidadesSelecionadas, setNecessidadesSelecionadas] = useState([]);
 
   const location = useLocation();
 
-  // Fetch de entidades e suas necessidades quando o componente é montado
   useEffect(() => {
-    api
-      .get("/entidades")
-      .then((response) => {
-        setEntidades(response.data);
+    
+  async function fetchData() {
+    try {
+      const { data: entidadesData } = await api.get("/entidades");
 
-        // A ideia aqui é extrair todas as cidades que estão cadastradas nas entidades e exibi-las de maneira que não se repitam no filtro por cidade.
-        // Assim, nenhuma cidade precisa ser inserida manualmente, correndo o risco de deixar alguma de lado, impedindo que a entidade daquela cidade seja encontrada.
+      const entidadesComNecessidades = await Promise.all(
+        entidadesData.map(async (entidade) => {
+          const { data: necessidades } = await api.get(`/entidades/${entidade._id}/produtos`);
+          return { ...entidade, necessidades };
+        })
+      );
+      setEntidades(entidadesComNecessidades);
 
-        // Extraindo cidades únicas das entidades
-        const cidadesUnicas = [
-          ...new Set(response.data.map((entidade) => entidade.cidade)),
-        ];
-        setCidades(cidadesUnicas);
+      const cidadesUnicas = [
+        ...new Set(entidadesComNecessidades.map((entidade) => entidade.cidade)),
+      ];
+      setCidades(cidadesUnicas);
 
-        // Extraindo itens únicos das necessidades das entidades
-        // Utilizamos flatMap para criar uma lista única de itens
-        const itensUnicos = [
-          ...new Set(
-            response.data.flatMap((entidade) => entidade.necessidades || [])
-          ),
-        ];
-        setItens(itensUnicos);
+      const itensUnicos = [
+        ...new Set(entidadesComNecessidades.flatMap((entidade) => entidade.necessidades || [])),
+      ];
+      setItens(itensUnicos);
 
-        // Extraindo tipos únicos das entidades
-        const tiposUnicos = [
-          ...new Set(response.data.map((entidade) => entidade.tipoEntidade)),
-        ];
+      const tiposUnicos = [
+        ...new Set(entidadesComNecessidades.map((entidade) => entidade.tipoEntidade)),
+      ];
+      setTipos(tiposUnicos);
 
-        setTipos(tiposUnicos);
-      })
-      .catch((error) => console.error("Erro ao buscar entidades:", error));
-  }, []);
+    } catch (error) {
+      console.error("Erro ao buscar entidades e necessidades:", error);
+    }
+  }
+
+  fetchData();
+}, []);
 
   // Atualiza o estado do filtroCidade com o valor extraído da URL
   useEffect(() => {
@@ -64,9 +67,9 @@ export default function Busca() {
 
     if (cidade) {
       setFiltroCidade(cidade);
-      // Atualizar estado: Configura o estado filtroCidade com o valor extraído da URL, o que faz com que o filtro na página de busca seja aplicado automaticamente.
+      // Atualizar estado: Configura o estado filtroCidade com o valor extraído da URL, 
+      // o que faz com que o filtro na página de busca seja aplicado automaticamente.
     }
-
   }, [location.search]); // Atualizar quando a URL mudar
 
   // Filtra entidades baseado nos filtros aplicados
@@ -104,6 +107,7 @@ export default function Busca() {
   // Função para abrir o modal e definir a entidade selecionada
   const handleOpenModal = (entidade) => {
     setEntidadeSelecionada(entidade);
+    setNecessidadesSelecionadas(entidade.necessidades);
     setModalOpen(true);
   };
 
@@ -202,8 +206,7 @@ export default function Busca() {
                 {entidade.necessidades && entidade.necessidades.length > 0 ? (
                   entidade.necessidades.map((necessidade) => (
                     <span className="necessidade" key={necessidade._id}>
-                      {necessidade.nomeProduto} ({necessidade.tipo}) -
-                      Quantidade: {necessidade.qtdNecessaria}
+                      {necessidade.nomeProduto}
                     </span>
                   ))
                 ) : (
@@ -222,7 +225,8 @@ export default function Busca() {
         <ModalEntidade
           open={modalOpen}
           handleClose={handleCloseModal}
-          entidade={entidadeSelecionada} // Passar entidade selecionada como prop
+          entidade={entidadeSelecionada}
+          necessidades={necessidadesSelecionadas}
         />
       )}
     </main>
