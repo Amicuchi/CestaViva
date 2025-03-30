@@ -18,7 +18,7 @@ export default function ListaProdutos({ campanhaId }) {
   // Função para buscar produtos da campanha
   const fetchProdutos = useCallback(async () => {
     try {
-      const response = await api.get(`/cestas/${campanhaId}/produtos`);
+      const response = await api.get(`/cestas/${campanhaId}`);
       setProdutos(response.data); // Atualiza o estado com os dados do produto
     } catch (error) {
       console.error("Erro ao tentar buscar produtos:", error.message);
