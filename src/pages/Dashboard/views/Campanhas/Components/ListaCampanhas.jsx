@@ -17,7 +17,6 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
     setSelectedCampanha(null); // Reseta a campanha selecionada
   };
 
-
   const abrirModal = (e, campanhaId) => {
     e.stopPropagation(); // Impede que o clique no botão afete a linha
     setSelectedCampanha(campanhaId); // Define a campanha selecionada para cadastro de produto
@@ -51,8 +50,10 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
   };
   const navigate = useNavigate(); // Hook do React Router para navegação
 
-  const navegarParaCampanha = (idCampanha) => {
-    navigate(`/dashboard/campanhas/${idCampanha}`); // Navega para a rota da campanha específica
+  const navegarParaCampanha = (campanha) => {
+    navigate(`/dashboard/campanhas/${campanha._id}`, {
+      state: { nomeCampanha: campanha.nomeCampanha },
+    }); // Navega para a rota da campanha específica
   };
 
   return (
@@ -69,7 +70,7 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
         <tbody>
           {campanhas.map((campanha) => (
             <React.Fragment key={campanha._id}>
-              <tr onClick={() => navegarParaCampanha(campanha._id)}>
+              <tr onClick={() => navegarParaCampanha(campanha)}>
                 <td>{campanha.nomeCampanha}</td>
                 <td>{formatarData(campanha.comecaEm)}</td>
                 <td>{formatarData(campanha.terminaEm)}</td>
