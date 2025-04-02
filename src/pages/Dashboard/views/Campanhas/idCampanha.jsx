@@ -19,6 +19,8 @@ export default function IdCampanha() {
 
   const salvarProduto = (novoProduto, index) => {
     setProdutos([...produtos, { ...novoProduto, id: index }]);
+    setModalOpenProduto(false);
+    window.location.reload();
   };
 
   return (
