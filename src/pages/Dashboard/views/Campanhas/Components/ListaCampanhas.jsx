@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import ModalProduto from "./ModalProduto";
-import ListaProdutos from "./ListaProdutos";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
 import api from "../../../../../services/axiosConfig";
+import { useNavigate } from "react-router-dom";
 
 export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
   const [isModalOpenProduto, setModalOpenProduto] = useState(false); // Controla se o modal está aberto
@@ -15,14 +15,6 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
   const fecharModal = () => {
     setModalOpenProduto(false); // Fecha o modal
     setSelectedCampanha(null); // Reseta a campanha selecionada
-  };
-
-  const [expanded, setExpanded] = useState(null); // Controla qual linha da tabela está expandida
-
-  // Função para alternar entre expandir e recolher uma linha
-  const toggleExpand = (id) => {
-    // console.log("Expanding row for ID:", id);  // Log do ID da linha expandida
-    setExpanded(expanded === id ? null : id); // Alterna a linha expandida
   };
 
   const abrirModal = (e, campanhaId) => {
@@ -56,6 +48,13 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
       );
     }
   };
+  const navigate = useNavigate(); // Hook do React Router para navegação
+
+  const navegarParaCampanha = (campanha) => {
+    navigate(`/dashboard/campanhas/${campanha._id}`, {
+      state: { nomeCampanha: campanha.nomeCampanha },
+    }); // Navega para a rota da campanha específica
+  };
 
   return (
     <div className="card--container lastOne">
@@ -71,7 +70,7 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
         <tbody>
           {campanhas.map((campanha) => (
             <React.Fragment key={campanha._id}>
-              <tr onClick={() => toggleExpand(campanha._id)}>
+              <tr onClick={() => navegarParaCampanha(campanha)}>
                 <td>{campanha.nomeCampanha}</td>
                 <td>{formatarData(campanha.comecaEm)}</td>
                 <td>{formatarData(campanha.terminaEm)}</td>
@@ -90,16 +89,6 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
                   </button>
                 </td>
               </tr>
-              {expanded === campanha._id && (
-                <tr>
-                  <td colSpan="4">
-                    {/* Renderiza a lista de produtos quando a linha é expandida */}
-                    <div>
-                      <ListaProdutos campanhaId={campanha._id} />
-                    </div>
-                  </td>
-                </tr>
-              )}
             </React.Fragment>
           ))}
         </tbody>
