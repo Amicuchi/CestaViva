@@ -2,13 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import BarraDeProgresso from "./BarraProgresso";
 import api from "../../../../../services/axiosConfig";
 import PropTypes from "prop-types";
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faTrashCan,
-  faPenToSquare,
-  faArrowDown
-} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 export default function ListaProdutos({ campanhaId }) {
   // Estado local para armazenar a quantidade de baixa para cada produto
@@ -25,6 +20,15 @@ export default function ListaProdutos({ campanhaId }) {
     }
   }, [campanhaId]);
 
+  const deletarProduto = async (campanhaId, produtoId) => {
+    try {
+      await api.delete(`/cestas/${campanhaId}/produtos/${produtoId}/delete`);
+      fetchProdutos();
+    } catch (error) {
+      console.error("Erro ao deletar produto:", error);
+    }
+  };
+
   useEffect(() => {
     fetchProdutos(); // Carrega os produtos ao montar o componente
   }, [fetchProdutos]);
@@ -37,28 +41,32 @@ export default function ListaProdutos({ campanhaId }) {
     }));
   };
 
-  const handleReceberProdutos = async (id) => {
-    const quantidadeBaixa = baixaQuantidades[id] || 0;
+  const handleAtualizarProdutos = async (id, operacao = "adicionar") => {
+    const quantidade = Number(baixaQuantidades[id] || 0);
+
+    if (quantidade <= 0) {
+      console.warn("Quantidade inválida.");
+      return;
+    }
+
+    const quantidadeBaixa = operacao === "retirar" ? -quantidade : quantidade;
 
     try {
       const response = await api.post(
         `/cestas/${campanhaId}/produtos/${id}/baixa`,
-        {
-          quantidadeBaixa: Number(quantidadeBaixa),
-        }
+        { quantidadeBaixa }
       );
-      console.log(response.data.msg); // Exibe a mensagem de sucesso
 
-      fetchProdutos();  // Atualiza a lista de produtos após registrar a baixa
+      console.log(response.data.msg); // Exibe a mensagem de sucesso
+      fetchProdutos(); // Atualiza a lista de produtos
 
       // Limpa o input de baixa para o produto
       setBaixaQuantidades((prevQuantidades) => ({
         ...prevQuantidades,
-        [id]: '' // Reseta o valor do input para esse produto
+        [id]: "",
       }));
-
     } catch (error) {
-      console.error("Erro ao registrar a baixa do produto:", error.message);
+      console.error("Erro ao atualizar o produto:", error.message);
     }
   };
 
@@ -105,24 +113,34 @@ export default function ListaProdutos({ campanhaId }) {
               </td>
               <td className="btn--container">
                 <button
-                  className="btn--icon"
-                  title="Dar Baixa"
-                  onClick={() => handleReceberProdutos(produto._id || produto.id)}
+                  title="Receber Produto"
+                  onClick={() =>
+                    handleAtualizarProdutos(
+                      produto._id || produto.id,
+                      "adicionar"
+                    )
+                  }
                 >
-                  <FontAwesomeIcon icon={faArrowDown} />
+                  Receber
                 </button>
 
                 <button
-                  className="btn--icon"
-                  title="Editar Produto"
-                  onClick={() => handleReceberProdutos(produto._id || produto.id)}
+                  title="Retirar Produto"
+                  onClick={() =>
+                    handleAtualizarProdutos(
+                      produto._id || produto.id,
+                      "retirar"
+                    )
+                  }
                 >
-                  <FontAwesomeIcon icon={faPenToSquare} />
+                  Retirar
                 </button>
                 <button
                   className="btn--icon"
                   title="Excluir Produto"
-                  onClick={() => handleReceberProdutos(produto._id || produto.id)}
+                  onClick={() =>
+                    deletarProduto(campanhaId, produto._id || produto.id)
+                  }
                 >
                   <FontAwesomeIcon icon={faTrashCan} />
                 </button>
