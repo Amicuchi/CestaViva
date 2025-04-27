@@ -70,12 +70,16 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
                 <td>{formatarData(campanha.terminaEm)}</td>
                 <td className="btn--container">
                   <button
+                    aria-label="Editar Campanha"
+                    title="Editar Campanha"
                     className="btn--icon"
                     onClick={(e) => abrirModal(e, campanha._id)}
                   >
                     <FontAwesomeIcon icon={faPen} />
                   </button>
                   <button
+                    aria-label="Deletar Campanha"
+                    title="Deletar Campanha"
                     className="btn--icon"
                     onClick={() => deletarCesta(campanha._id)}
                   >
