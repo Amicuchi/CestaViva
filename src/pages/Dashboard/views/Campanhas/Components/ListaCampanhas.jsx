@@ -1,37 +1,30 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import ModalProduto from "./ModalProduto";
-
+import ModalEditarCampanha from "./ModalEditarCampanha";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faBoxOpen } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faPen } from "@fortawesome/free-solid-svg-icons";
 import api from "../../../../../services/axiosConfig";
 import { useNavigate } from "react-router-dom";
+import formatarData from "../../../../../utils/formatarData";
 
 export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
-  const [isModalOpenProduto, setModalOpenProduto] = useState(false); // Controla se o modal está aberto
-  const [selectedCampanha, setSelectedCampanha] = useState(null); // Controla a campanha para cadastro de produto
-  const [produtos, setProdutos] = useState([]); // Estado para produtos como array vazio
+  const [isModalOpenCampanha, setModalOpenCampanha] = useState(false); // Controla se o modal está aberto
+  const [selectedCampanha, setSelectedCampanha] = useState(null);
 
   const fecharModal = () => {
-    setModalOpenProduto(false); // Fecha o modal
+    setModalOpenCampanha(false); // Fecha o modal
     setSelectedCampanha(null); // Reseta a campanha selecionada
   };
 
   const abrirModal = (e, campanhaId) => {
     e.stopPropagation(); // Impede que o clique no botão afete a linha
     setSelectedCampanha(campanhaId); // Define a campanha selecionada para cadastro de produto
-    setModalOpenProduto(true); // Abre o modal
+    setModalOpenCampanha(true); // Abre o modal
   };
 
-  const salvarProduto = (novoProduto, index) => {
-    setProdutos([...produtos, { ...novoProduto, id: index }]); // Adiciona o novo produto à lista de produtos
-
-    fecharModal(); // Fecha o modal após salvar
-  };
-
-  const formatarData = (data) => {
-    const date = new Date(data); // Cria um novo objeto Date a partir da string de data recebida
-    return date.toLocaleDateString("pt-BR"); // Formata a data para o formato 'dd/mm/aaaa'
+  const salvarCampanha = () => {
+    fetchCampanhas();
+    fecharModal();
   };
 
   const deletarCesta = async (idCesta) => {
@@ -48,6 +41,7 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
       );
     }
   };
+
   const navigate = useNavigate(); // Hook do React Router para navegação
 
   const navegarParaCampanha = (campanha) => {
@@ -76,12 +70,16 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
                 <td>{formatarData(campanha.terminaEm)}</td>
                 <td className="btn--container">
                   <button
+                    aria-label="Editar Campanha"
+                    title="Editar Campanha"
                     className="btn--icon"
                     onClick={(e) => abrirModal(e, campanha._id)}
                   >
-                    <FontAwesomeIcon icon={faBoxOpen} />
+                    <FontAwesomeIcon icon={faPen} />
                   </button>
                   <button
+                    aria-label="Deletar Campanha"
+                    title="Deletar Campanha"
                     className="btn--icon"
                     onClick={() => deletarCesta(campanha._id)}
                   >
@@ -93,13 +91,11 @@ export default function ListaCampanhas({ campanhas, fetchCampanhas }) {
           ))}
         </tbody>
       </table>
-
-      {/* Modal para cadastrar novo produto */}
-      {isModalOpenProduto && (
-        <ModalProduto
-          isOpen={isModalOpenProduto}
+      {isModalOpenCampanha && (
+        <ModalEditarCampanha
+          isOpen={isModalOpenCampanha}
           onClose={fecharModal}
-          onSave={salvarProduto}
+          onSave={salvarCampanha}
           campanhaId={selectedCampanha}
         />
       )}
