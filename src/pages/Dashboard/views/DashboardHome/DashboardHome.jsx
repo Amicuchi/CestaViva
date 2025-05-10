@@ -38,7 +38,7 @@ export default function DashboardHome() {
             <h2>Olá, {entidade.nomeFantasia}!</h2>
             <p>Bem-vindo ao seu painel de controle.</p>
 
-            <div className="dashboardHome-stats">
+            {/* <div className="dashboardHome-stats">
               
               <div className="dashboardHomeStat-card">
                 <h3>12</h3>
@@ -49,7 +49,7 @@ export default function DashboardHome() {
                 <h3>27</h3>
                 <span className="title">Produtos Recebidos</span>
               </div>
-            </div>
+            </div> */}
 
             <section className="dashboardHome-actions">
               <Link to="/dashboard/perfil" className="button">Atualizar Perfil</Link>
